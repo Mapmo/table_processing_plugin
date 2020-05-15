@@ -7,6 +7,9 @@ $splittedFilename = explode(".", $uploadedFile);
 $extension = end($splittedFilename);
 $newFilename = "temp." . $extension;
 $targetDir = "./uploads/";
+if (!file_exists($targetDir)) {
+    mkdir($targetDir, 0777, true);
+}
 $targetFile = $targetDir . $newFilename;
 
 move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], $targetFile);
