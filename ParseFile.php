@@ -1,6 +1,6 @@
 <?php
 
-include "SimpleXLSX.php";
+include "./includes/SimpleXLSX.php";
 
 $uploadedFile = $_FILES["uploadedFile"]["name"];
 $splittedFilename = explode(".", $uploadedFile);
