@@ -1,16 +1,14 @@
 <?php
-
 include "./includes/SimpleXLSX.php";
-
-// filter empty file names and paths
-$files = array_filter($_FILES['upload']['name']);
-
-$total = count($_FILES['upload']['name']);
 
 $targetDir = "./uploads/";
 if (!file_exists($targetDir)) {
     mkdir($targetDir, 0777, true);
 }
+
+// filter empty file names and paths
+$files = array_filter($_FILES['upload']['name']);
+$total = count($_FILES['upload']['name']);
 
 for ($i = 0; $i < $total; $i++) {
 
