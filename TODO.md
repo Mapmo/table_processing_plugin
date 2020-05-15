@@ -4,8 +4,11 @@ Final project for the Web Technologies subject at FMI, Sofia University
 Tasks for the demo:
 
 Importing xlsx files - Tanya
+
+	- issue: more than 1 sheet in file\
+	- maximum of uploaded files\
 	
-Notes: I use contenteditable div's. Some useful resource on updating the table (for the join, filter, etc.): https://stackoverflow.com/questions/1391278/contenteditable-change-events
+Notes: I use contenteditable div's. Some useful resource on updating the table (for the join, filter, etc.): https://stackoverflow.com/questions/1391278/contenteditable-change-events\
 
 Manipulating data - Martin\
 	- Create the a dropdown to choose tables  (based on their order in uploading)\

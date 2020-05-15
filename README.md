@@ -5,12 +5,16 @@ Final project for the Web Technologies subject at FMI, Sofia University
 
 Импортване на `.xlsx` файлове (Таня)
 
-	* Front end - `index.html`		
-		* Форма, в която могат да се качват файлове само с разширение `.xlsx` - Excel 2007+ файлове
-		* При submit се праща POST HTTP заявка към файла `ParseFile.php`
-	* Back end
-		* `ParseFile.php`
-			* `include "./includes/SimpleXLSX.php";` ---> ползва се за парсване на `.xlsx` файла във формат на php асоциативен масив
-			* новокаченият файл се преименува до `temp.xlsx` и се мести в директорията `./uploads`
-			* парсва файла и го репрезентира на страницата като таблица, чиито клетки могат да се редактират (conteditable div)
-			* полезен ресурс за conteditable div: https://stackoverflow.com/questions/1391278/contenteditable-change-events
+	* Front end - `index.html`\	
+		* Форма, в която могат да се качват файлове (1 или много) само с разширение `.xlsx` - Excel 2007+ файлове\
+		* При submit се праща POST HTTP заявка към файла `ParseFile.php`\
+	* Back end\
+		* `ParseFile.php`\
+			* `include "./includes/SimpleXLSX.php";` ---> ползва се за парсване на `.xlsx` файла във формат на php асоциативен масив\
+			* новокачените файлове се филтрират за празни имена и пътища\
+			* създава се директорията `./uploads` (ако не съществува)\
+			* за всеки един файл:
+				* преименуваме го, като за префикс слагаме микросекунди (Unix timestamp) конкатенирани с "-" и истинското име на файла ---> по този начин избягваме повторение на имена на качените от потребителя файлове\
+				* преместваме го в `./uploads` директорията\
+				* файлът се парсва и се репрезентира на страницата като таблица, чиито клетки могат да се редактират (conteditable div) ---> Тук спрямо изборът на потребителя (чрез drop-down) може да се управлява коя таблица точно да се покаже\
+				* полезен ресурс за conteditable div: https://stackoverflow.com/questions/1391278/contenteditable-change-events\

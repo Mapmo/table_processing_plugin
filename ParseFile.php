@@ -2,24 +2,37 @@
 
 include "./includes/SimpleXLSX.php";
 
-$uploadedFile = $_FILES["uploadedFile"]["name"];
-$splittedFilename = explode(".", $uploadedFile);
-$extension = end($splittedFilename);
-$newFilename = "temp." . $extension;
+// filter empty file names and paths
+$files = array_filter($_FILES['upload']['name']);
+
+$total = count($_FILES['upload']['name']);
+
 $targetDir = "./uploads/";
 if (!file_exists($targetDir)) {
     mkdir($targetDir, 0777, true);
 }
-$targetFile = $targetDir . $newFilename;
 
-move_uploaded_file($_FILES["uploadedFile"]["tmp_name"], $targetFile);
+for ($i = 0; $i < $total; $i++) {
 
-if ($xlsx = SimpleXLSX::parse($targetFile)) {
-    echo '<table><tbody>';
+    $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
 
-    foreach ($xlsx->rows() as $r) {
-        echo '<tr><td><div contenteditable>' . implode('</div></td><td><div contenteditable>', $r) . '</div></td></tr>';
+    if ($tmpFilePath != "") {
+        
+        $newFilePath = $targetDir . (microtime(true)) . "-" . $_FILES['upload']['name'][$i];
+
+        if (move_uploaded_file($tmpFilePath, $newFilePath)) {
+
+            if ($xlsx = SimpleXLSX::parse($newFilePath)) {
+                echo '<table><tbody>';
+
+                foreach ($xlsx->rows() as $r) {
+                    echo '<tr><td><div contenteditable>' . implode('</div></td><td><div contenteditable>', $r) . '</div></td></tr>';
+                }
+            } else {
+                echo SimpleXLSX::parseError();
+            }
+        }
     }
-} else {
-    echo SimpleXLSX::parseError();
+
+    echo "------------------------------";
 }
