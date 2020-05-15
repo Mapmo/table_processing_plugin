@@ -15,8 +15,9 @@ for ($i = 0; $i < $total; $i++) {
     $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
 
     if ($tmpFilePath != "") {
-        
-        $newFilePath = $targetDir . (microtime(true)) . "-" . $_FILES['upload']['name'][$i];
+
+	$newFileName = (microtime(true)) . "-" . $_FILES['upload']['name'][$i];
+	$newFilePath = $targetDir . $newFileName;
 
         if (move_uploaded_file($tmpFilePath, $newFilePath)) {
 
