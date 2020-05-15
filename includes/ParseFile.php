@@ -1,7 +1,7 @@
 <?php
 include "SimpleXLSX.php";
 
-$targetDir = "uploads";
+$targetDir = "uploads/";
 if (!file_exists($targetDir)) {
     mkdir($targetDir, 0777, true);
 }
@@ -21,17 +21,12 @@ for ($i = 0; $i < $total; $i++) {
 
         if (move_uploaded_file($tmpFilePath, $newFilePath)) {
 
-            if ($xlsx = SimpleXLSX::parse($newFilePath)) {
-                echo '<table><tbody>';
-
-                foreach ($xlsx->rows() as $r) {
-                    echo '<tr><td><div contenteditable>' . implode('</div></td><td><div contenteditable>', $r) . '</div></td></tr>';
-                }
-            } else {
-                echo SimpleXLSX::parseError();
-            }
-        }
+		if (! $xlsx[$newFileName] = SimpleXLSX::parse($newFilePath)){
+			die("Error parsing file $newFilePath");
+		}
+	}
     }
 
-    echo "------------------------------";
+	for each
+	echo "------------------------------";
 }
