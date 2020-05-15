@@ -20,12 +20,9 @@ for ($i = 0; $i < $total; $i++) {
 	$newFilePath = $targetDir . $newFileName;
 
         if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-
 		if (! $xlsx[$newFileName] = SimpleXLSX::parse($newFilePath)){
 			die("Error parsing file $newFilePath");
 		}
 	}
     }
-
-	echo "------------------------------";
 }
