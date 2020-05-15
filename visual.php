@@ -15,4 +15,7 @@ echo '<form>';
 	echo '<input type="submit">';
 echo '</form>';
 
+if(isset($_GET['table'])){
+	include "includes/PrintTable.php";
+}
 ?>
