@@ -1,17 +1,15 @@
 <?php
+
+session_start();
 if(! isset($_GET['table'])) {
 	include "includes/ParseFile.php";
 }
 
 echo '<form>';
-	echo '<label for="cars">Choose a car:</label>';
+	echo '<label for="table">Choose table to edit:</label>';
 	echo '<select id="table" name="table">';
-		foreach (array_keys($xlsx) as $r) {
-			$tmp = $r;
-			$pattern = "/^[0-9]*\.[0-9]*-/";
-			$replacement = "";
-			$realFile = preg_replace($pattern, $replacement, $tmp);
-			echo '<option value="'.$r.'">'.$realFile.'</option>';
+		foreach (array_keys($_SESSION) as $r) {
+			echo '<option value="'.$_SESSION[$r].'">'.$r.'</option>';
 		}
 	echo '</select>';
 	echo '<input type="submit">';

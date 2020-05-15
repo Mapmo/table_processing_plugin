@@ -16,13 +16,15 @@ for ($i = 0; $i < $total; $i++) {
 
     if ($tmpFilePath != "") {
 
-	$newFileName = (microtime(true)) . "-" . $_FILES['upload']['name'][$i];
+	$fileName = $_FILES['upload']['name'][$i];
+	$newFileName = (microtime(true)) . "-" . $fileName;
 	$newFilePath = $targetDir . $newFileName;
 
         if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-		if (! $xlsx[$newFileName] = SimpleXLSX::parse($newFilePath)){
-			die("Error parsing file $newFilePath");
-		}
+		//if (! $xlsx[$newFileName] = SimpleXLSX::parse($newFilePath)){
+		//	die("Error parsing file $newFilePath");
+		//}
+		$_SESSION[$fileName] = $newFilePath;
 	}
     }
 }
