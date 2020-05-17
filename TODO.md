@@ -18,6 +18,6 @@ Manipulating data - Martin\
 
 Exporting data - Daniel\
 	+ Create a dropdown to choose the format to save the data (only xlsx atm)\
-	- Create an input field that allows the user to cho0se a name for the new file(s) (should use the data from the names table to suggest the name for the file)\
+	+ Create an input field that allows the user to cho0se a name for the new file(s) (should use the data from the names table to suggest the name for the file)\
 	- Create a file in the specified format by exporting the data from the DB\
 	+ Download it on the client's machine\
