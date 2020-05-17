@@ -36,3 +36,6 @@ Final project for the Web Technologies subject at FMI, Sofia University
 	* `./includes/SimpleXLSX.php`
 		* Външна библиотека 
 		* Използва се за парсване на `.xlsx` файла във формат на php асоциативен масив
+* /utils
+    * `utils.php`
+        * Съдържа основни функции, за манипулиране на данни 
