@@ -52,3 +52,5 @@ if (isset($target_extension)) {
 8. Да има ли интервали между оператор и променливи
 
 9. === false или (!$var) да ползваме
+
+10. Разделяе на front-end от back-end (e.g формите във visual.php)
