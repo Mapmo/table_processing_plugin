@@ -18,15 +18,17 @@ echo '</form>';
 if(!isset($_GET['table'])){
     exit;
 }
-//TODO on every change in table update file locally
 
 include "includes/PrintTable.php";
-define("SUPPORTED_FILE_EXTENSIONS",["xslx"]);
+define("SUPPORTED_FILE_EXTENSIONS",["xlsx"]);
+
+$uploadedFileName = $_GET['table'];
+$nameOfTable = pathinfo(explode('-',$uploadedFileName)[1],PATHINFO_FILENAME);
 
 echo '<form action="streamfile.php">';
 echo '<label for="table">Choose a name for the exported file:</label>';
-echo '<input type="text" name="file_to_save" value="'.$_GET['table'].'" hidden>';
-echo '<input type="text" name="export_filename" required>';
+echo '<input type="text" name="file_to_save" value="'.$uploadedFileName.'" hidden>';
+echo '<input type="text" name="export_filename" value="'.$nameOfTable.'" required>';
 echo '<select id="extension" name="export_file_extension" required>';
 foreach (SUPPORTED_FILE_EXTENSIONS as $ext) {
     echo '<option value="' .$ext .'">.'.$ext.'</option>';
