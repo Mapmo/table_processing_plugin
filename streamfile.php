@@ -6,7 +6,7 @@ $mimetypes = ["xlsx" => "application/vnd.openxmlformats-officedocument.spreadshe
 function readfile_chunked($filename) {
     $fileHandler = fopen($filename, 'rb');
 
-    if ($fileHandler === false) {
+    if (!$fileHandler) {
         return false;
     }
 
