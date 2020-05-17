@@ -23,3 +23,4 @@ Exporting data - Daniel\
 	+ Download it on the client's machine
 	- If the extension of the uploaded file and the wanted extension of the downloaded file aren't the same -> Use library for the conversion 
     - Use different folder for downloading/conversion stage
+	- Add the changes to the README.md file
