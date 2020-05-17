@@ -4,6 +4,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
 Документация:
 
 Импортване на `.xlsx` файлове (Таня + Мартин)
+Експортване на `.xlsx` файлове - Даниел
 
 * /
 	 * `index.php`
