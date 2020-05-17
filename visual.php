@@ -23,8 +23,9 @@ if(!isset($_GET['table'])){
 include "includes/PrintTable.php";
 define("SUPPORTED_FILE_EXTENSIONS",["xslt"]);
 
-echo '<form action="download.php">';
+echo '<form action="streamfile.php">';
 echo '<label for="table">Choose a name for the exported file:</label>';
+echo '<input type="text" name="file_to_save" value="'.$_GET['table'].'" hidden>';
 echo '<input type="text" name="export_filename" required>';
 echo '<select id="extension" name="export_file_extension" required>';
 foreach (SUPPORTED_FILE_EXTENSIONS as $ext) {
