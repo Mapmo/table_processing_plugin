@@ -2,7 +2,7 @@
 define('CHUNK_SIZE', 1024*1024); // Size (in bytes) of tiles chunk
 
 $mimetypes = [
-    ".xslt" => "text/xsl"
+    "xslt" => "text/xsl"
 ];
 
 // Read a file and display its content chunk by chunk
@@ -45,7 +45,7 @@ function sanitizeInput($input)
 
 
 session_start();
-if(!isset($_GET['export_file_extension']) || isset($_GET['export_filename']) || isset($_GET['file_to_save'])) {
+if(!isset($_GET['export_file_extension']) || !isset($_GET['export_filename']) || !isset($_GET['file_to_save'])) {
     echo "<p>Fill the whole download form.</p>";
     exit;
 }
