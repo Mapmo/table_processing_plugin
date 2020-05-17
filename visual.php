@@ -21,7 +21,7 @@ if(!isset($_GET['table'])){
 //TODO on every change in table update file locally
 
 include "includes/PrintTable.php";
-define("SUPPORTED_FILE_EXTENSIONS",["xslt"]);
+define("SUPPORTED_FILE_EXTENSIONS",["xslx"]);
 
 echo '<form action="streamfile.php">';
 echo '<label for="table">Choose a name for the exported file:</label>';

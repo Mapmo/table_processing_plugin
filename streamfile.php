@@ -2,7 +2,7 @@
 define('CHUNK_SIZE', 1024*1024); // Size (in bytes) of tiles chunk
 
 $mimetypes = [
-    "xslt" => "text/xsl"
+    "xslx" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 ];
 
 // Read a file and display its content chunk by chunk
