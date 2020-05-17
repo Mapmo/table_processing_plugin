@@ -24,18 +24,9 @@ include "includes/PrintTable.php";
 define("SUPPORTED_FILE_EXTENSIONS",["xslt"]);
 
 echo '<form action="download.php">';
-echo '<label for="table">Choose table/file to save:</label>';
-echo '<select id="file_to_save" name="file_to_save">';
-foreach (array_keys($_SESSION) as $r) {
-    echo '<option value="'.$_SESSION[$r].'">'.$r.'</option>';
-}
-echo '</select>';
-
-echo '<br/>';
-
-echo '<label for="table">Pick a name:</label>';
-echo '<input type="text" name="export_filename">';
-echo '<select id="extension" name="export_file_extension">';
+echo '<label for="table">Choose a name for the exported file:</label>';
+echo '<input type="text" name="export_filename" required>';
+echo '<select id="extension" name="export_file_extension" required>';
 foreach (SUPPORTED_FILE_EXTENSIONS as $ext) {
     echo '<option value="' .$ext .'">.'.$ext.'</option>';
 }
