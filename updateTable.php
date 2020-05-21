@@ -15,9 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $spreadsheet = IOFactory::load("example.xlsx");
     $worksheet = $spreadsheet->getActiveSheet();
 
-    for($i=1;$i<=$cntRow;$i++){
-        for($j=1;$j<=$cntCol;$j++){
-            $worksheet->getCell(toAlpha($j-1).$i)->setValue($_POST[$i."|".$j]);
+    for ($i = 1; $i <= $cntRow; $i++) {
+        for ($j = 1; $j <= $cntCol; $j++) {
+            $worksheet->getCell(toAlpha($j - 1) . $i)->setValue($_POST[$i . "|" . $j]);
         }
     }
     $writer = new Xlsx($spreadsheet);
