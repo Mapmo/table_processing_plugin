@@ -4,16 +4,16 @@ if (!isset($_GET['table'])) {
     include "includes/ParseFile.php";
 }
 
-echo '<form>';
+echo '<head><script defer src="js/update.js"></script></head>';
+echo '<form onsubmit="return check()">';
 echo '<label for="table">Choose table to edit:</label>';
 echo '<select id="table" name="table">';
 foreach (array_keys($_SESSION) as $r) {
     echo '<option value="' . $_SESSION[$r] . '">' . $r . '</option>';
 }
 echo '</select>';
-echo '<input type="submit">';
+echo '<input type="submit"/>';
 echo '</form>';
-
 
 if(!isset($_GET['table'])){
     exit;
