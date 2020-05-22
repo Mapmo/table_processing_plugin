@@ -1,10 +1,12 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
+
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-function toAlpha($num){
-    return chr(substr("000".($num+65),-3));
+function toAlpha($num)
+{
+    return chr(substr("000" . ($num + 65), -3));
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -12,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $cntRow = $_POST["cntrow"];
     $pathToTable = $_POST["pathToTable"];
 
-    $spreadsheet = IOFactory::load("example.xlsx");
+    $spreadsheet = IOFactory::load($pathToTable);
     $worksheet = $spreadsheet->getActiveSheet();
 
     for ($i = 1; $i <= $cntRow; $i++) {
