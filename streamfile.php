@@ -2,6 +2,10 @@
 define('CHUNK_SIZE', 1024 * 1024); // Size (in bytes) of tiles chunk
 $mimetypes = ["xlsx" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"];
 
+$getExportFileExtension = $_GET['exportFileExtension'];
+$getExportFilename = $_GET['exportFilename'];
+$getFileToSave = $_GET['fileТoSave'];
+
 // Read a file and display its content chunk by chunk
 function ReadfileChunked($filename)
 {
@@ -21,23 +25,21 @@ function ReadfileChunked($filename)
     return fclose($fileHandler);
 }
 
-if (!isset($_GET['exportFileExtension']) || !isset($_GET['exportFilename']) || !isset($_GET['fileToSave'])) {
+if (!isset($getExportFileExtension) || !isset($getExportFilename) || !isset($getFileToSave)) {
     echo "<p>Fill the whole download form.</p>";
     exit;
 }
 
-
 include_once "utils/utils.php";
-$fileToSave = SanitizeInput($_GET['fileToSave']);
+$fileToSave = SanitizeInput($getFileToSave);
 if (!file_exists($fileToSave)) {
     error_log("The file [" . "$fileToSave" . ", which the user wants to save, doesn't exist");
     echo "<p>Problem with the system, try later</p>";
     exit;
 }
 
-$exportExtension = SanitizeInput($_GET['exportFileExtension']);
-$exportFilename = SanitizeInput($_GET['exportFilename']);
-
+$exportExtension = SanitizeInput($getExportFileExtension);
+$exportFilename = SanitizeInput($getExportFilename);
 
 if (empty($exportExtension) || empty($exportFilename)) {
     echo "<p>Illegal usage of symbols in the name of export file or its extension</p>";
