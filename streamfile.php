@@ -28,15 +28,15 @@ if (!isset($_GET['export_file_extension']) || !isset($_GET['export_filename']) |
 
 
 include_once "utils/utils.php";
-$fileToSave = sanitizeInput($_GET['file_to_save']);
+$fileToSave = SanitizeInput($_GET['file_to_save']);
 if (!file_exists($fileToSave)) {
     error_log("The file [" . "$fileToSave" . ", which the user wants to save, doesn't exist");
     echo "<p>Problem with the system, try later</p>";
     exit;
 }
 
-$exportExtension = sanitizeInput($_GET['export_file_extension']);
-$exportFilename = sanitizeInput($_GET['export_filename']);
+$exportExtension = SanitizeInput($_GET['export_file_extension']);
+$exportFilename = SanitizeInput($_GET['export_filename']);
 
 
 if (empty($exportExtension) || empty($exportFilename)) {

@@ -1,6 +1,6 @@
 <?php
 
-function sanitizeInput($input)
+function SanitizeInput($input)
 {
     $input = trim($input);
     $input = htmlspecialchars($input);
