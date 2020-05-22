@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_GET['table'])) {
-    include "includes/ParseFile.php";
+    include "includes/parse_file.php";
 }
 
 echo '<head><script defer src="js/update.js"></script></head>';
