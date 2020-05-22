@@ -10,7 +10,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
         index.php
             Почиства ако преди това е имало друга сесия (включително временните файлове)
             Форма, в която могат да се качват файлове (1 или много) само с разширение .xlsx - Excel 2007+ файлове]
-            При submit се праща POST HTTP заявка към файла ParseFile.php
+            При submit се праща POST HTTP заявка към файла visual.php
         visual.php
             Тук потребителят идва след като е качил таблиците си
             Използва се includes/ParseTable.php за обработка на качените файлове
