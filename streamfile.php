@@ -29,7 +29,7 @@ if(!isset($_GET['export_file_extension']) || !isset($_GET['export_filename']) ||
 include_once "utils/utils.php";
 $fileToSave = sanitizeInput($_GET['file_to_save']);
 if(!file_exists($fileToSave)){
-    error_log("The file ["."$fileToSave".", which the user wants to save, doesnt exist");
+    error_log("The file ["."$fileToSave".", which the user wants to save, doesn't exist");
     echo "<p>Problem with the system, Try later</p>";
     exit;
 }
