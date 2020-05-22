@@ -5,7 +5,7 @@
 3. Без интервали след и преди скоби както е в горния пример
 4. Да се използва === вместо ==
 5. Файлове се кръщават във формат snake_case (и в php, и в js)
-6. Променливи се кръщават в camelCase (в php, и в js)
+6. Променливи се кръщават в camelCase (и в php, и в js)
 7. Функции се кръщават:
 	* в PascalCase в php
 	* в camelCase в js
@@ -14,7 +14,7 @@
 10. Сорс файловете, които са страници, които се зареждат за потребителя да се съхраняват в / (root) иначе в /include
 11. При асициативните масиви първо стойността им се записва в променлива, която е по-лесна за четене и разбиране
 
-$target_extension = $_GET['export_file_extension'])
+$target_extension = $_GET['exportFileExtension'])
 if (isset($target_extension)) {
 	trim($target_extenssion);
 }
