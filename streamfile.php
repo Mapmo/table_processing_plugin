@@ -30,7 +30,7 @@ include_once "utils/utils.php";
 $fileToSave = sanitizeInput($_GET['file_to_save']);
 if(!file_exists($fileToSave)){
     error_log("The file ["."$fileToSave".", which the user wants to save, doesn't exist");
-    echo "<p>Problem with the system, Try later</p>";
+    echo "<p>Problem with the system, try later</p>";
     exit;
 }
 
@@ -39,7 +39,7 @@ $exportFilename = sanitizeInput($_GET['export_filename']);
 
 
 if(empty($exportExtension) || empty($exportFilename)){
-    echo "<p>Illegal usage of of symbols in the name of export file or it's extension</p>";
+    echo "<p>Illegal usage of symbols in the name of export file or its extension</p>";
     exit;
 }
 
