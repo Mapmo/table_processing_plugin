@@ -19,7 +19,7 @@ if (!isset($_GET['table'])) {
     exit;
 }
 
-include "includes/PrintTable.php";
+include "includes/print_table.php";
 define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]);
 
 $uploadedFileName = $_GET['table'];
