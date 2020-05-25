@@ -1,7 +1,10 @@
 <?php
 include "SimpleXLSX.php";
-if ($xlsx = SimpleXLSX::parse($_GET['table'])) {
-    echo '<form action="updateTable.php" method="post"><table>';
+
+$table = $_GET['table'];
+
+if ($xlsx = SimpleXLSX::parse($table)) {
+    echo '<form action="update_table.php" method="post"><table>';
     $row = 0;
     $column = 1;
 
@@ -21,7 +24,7 @@ if ($xlsx = SimpleXLSX::parse($_GET['table'])) {
         echo '</tr>';
     }
     echo '</table>';
-    echo '<input name="pathToTable" type="text" value="' . $_GET['table'] . '" hidden/>';
+    echo '<input name="pathToTable" type="text" value="' . $table . '" hidden/>';
     echo '<input name="cntrow" type="text" value="' . $row . '" hidden/>';
     echo '<input name="cntcol" type="text" value="' . $column . '" hidden/>';
     echo '<input id="update-button" name="update-button" type="submit" hidden/>';
