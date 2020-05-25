@@ -41,14 +41,14 @@ function setCheckAttribute() {
 if (!isset($_GET['table'])) {
     exit;
 }
-
 $uploadedFileName = $_GET['table'];
+
 ?>
 
 <!-- Form to choose a phrase to search for in the table -->	
     	<form <?php setCheckAttribute() ?> >
 		<label for="search">Choose value to search: </label>
-		<input type="text" id="search" name="search" value="<?php echo $_GET['search']; ?>"/ >
+		<input type="text" id="search" name="search" value="<?php if(isset($_GET['search'])) { echo $_GET['search']; }?>"/ >
 		<input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden/>
 		<input type="submit"/>
 	</form>
@@ -58,9 +58,6 @@ include "includes/print_table.php";
 define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]);
 
 $nameOfTable = pathinfo(explode('-', $uploadedFileName)[1], PATHINFO_FILENAME);
-
-
-
 ?>
 
 <!-- Form to chooses how to save the table -->	
