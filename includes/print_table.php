@@ -15,6 +15,8 @@ if ($xlsx = SimpleXLSX::parse($table)) {
         }
     }
 
+/*
+Extracted to print_row_search & print_row_nosearch
     foreach ($xlsx->rows() as $r) {
         $row++;
         echo '<tr>';
@@ -23,6 +25,14 @@ if ($xlsx = SimpleXLSX::parse($table)) {
         }
         echo '</tr>';
     }
+*/
+if (isset($_GET['search'])) {
+	include "print_row_search.php";
+} else {
+	include "print_row_nosearch.php";
+}
+	
+
     echo '</table>';
     echo '<input name="pathToTable" type="text" value="' . $table . '" hidden/>';
     echo '<input name="cntrow" type="text" value="' . $row . '" hidden/>';
