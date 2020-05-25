@@ -30,6 +30,37 @@ if (!isset($_GET['table'])) {
 
     <?php
 
+echo '<head><script defer src="js/update.js"></script></head>';
+echo '<form onsubmit="return check()">';
+echo '<label for="table">Choose table to edit :</label>';
+echo '<select id="table" name="table">';
+foreach (array_keys($_SESSION) as $r) {
+    echo '<option value="' . $_SESSION[$r] . '">' . $r . '</option>';
+}
+echo '</select>';
+echo '<input type="submit"/>';
+echo '</form>';
+
+
+if (!isset($_GET['table'])) {
+    exit;
+}
+
+$uploadedFileName = $_GET['table'];
+
+echo '<form onsubmit="return check()">';
+echo '<label for="search">Choose value to search: </label>';
+echo '<input type="text" id="search" name="search">';
+echo '<input type="text" id="table" name="table" value="' . $uploadedFileName .'" hidden>';
+echo '<input type="submit"/>';
+echo '</form>';
+
+
+include "includes/PrintTable.php";
+define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]);
+
+$nameOfTable = pathinfo(explode('-', $uploadedFileName)[1], PATHINFO_FILENAME);
+
     if (!isset($_GET['table'])) {
         exit;
     }
