@@ -6,6 +6,13 @@ session_start();
 if (!isset($_GET['table'])) {
     include "includes/parse_file.php";
 }
+
+function setCheckAttribute() {
+        //if search is active this form attribute will cause the submit button to overwrite the table
+	if(!isset($_GET['search'])) {
+                 echo 'onsubmit="return check()"';
+        }
+}
 ?>
 
 <head>
@@ -17,12 +24,7 @@ if (!isset($_GET['table'])) {
 <body>
 
 <!-- Form to choose which table to display -->	
-    <form <?php
-         //if search is active this attribute mwill cause the submit button to overwrite the table
-	 if(!isset($_GET['search'])) {
-		 echo 'onsubmit="return check()"';
-	}
-?> >
+    <form <?php setCheckAttribute() ?> >
         <label for="table">Choose table to edit:</label>
         <select id="table" name="table">
             <?php
@@ -44,9 +46,9 @@ $uploadedFileName = $_GET['table'];
 ?>
 
 <!-- Form to choose a phrase to search for in the table -->	
-	<form onsubmit="return check()">
+    	<form <?php setCheckAttribute() ?> >
 		<label for="search">Choose value to search: </label>
-		<input type="text" id="search" name="search"/>
+		<input type="text" id="search" name="search" value="<?php echo $_GET['search']; ?>"/ >
 		<input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden/>
 		<input type="submit"/>
 	</form>
