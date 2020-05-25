@@ -17,7 +17,12 @@ if (!isset($_GET['table'])) {
 <body>
 
 <!-- Form to choose which table to display -->	
-    <form onsubmit="return check()">
+    <form <?php
+         //if search is active this attribute mwill cause the submit button to overwrite the table
+	 if(!isset($_GET['search'])) {
+		 echo 'onsubmit="return check()"';
+	}
+?> >
         <label for="table">Choose table to edit:</label>
         <select id="table" name="table">
             <?php
