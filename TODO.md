@@ -11,7 +11,7 @@ Importing xlsx files - Tanya
 Notes: I use contenteditable div's. Some useful resource on updating the table (for the join, filter, etc.): https://stackoverflow.com/questions/1391278/contenteditable-change-events\
 
 Manipulating data - Martin\
-	- Create a new table called temporary, where you store result of an operation (e.g. SELECT, JOIN)
+	- Print only the rows that match the search in the table
 
 Exporting data - Daniel\
 	+ Create a dropdown to choose the format to save the data (only xlsx atm)\
