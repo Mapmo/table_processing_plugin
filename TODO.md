@@ -11,8 +11,6 @@ Importing xlsx files - Tanya
 Notes: I use contenteditable div's. Some useful resource on updating the table (for the join, filter, etc.): https://stackoverflow.com/questions/1391278/contenteditable-change-events\
 
 Manipulating data - Martin\
-	- Add numbers and digits to the cells
-	- Create a dropdown to select an operation (only SELECT for the prototype)\
 	- Create a new table called temporary, where you store result of an operation (e.g. SELECT, JOIN)
 
 Exporting data - Daniel\
@@ -26,3 +24,6 @@ Exporting data - Daniel\
 
 for future
 	- maximum of uploaded files\
+	- define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]); from visual.php should be used for importing as well
+	- Add numbers and digits to the cells
+	- Create a dropdown to select an operation (only SELECT for the prototype)\
