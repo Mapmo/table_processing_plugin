@@ -33,8 +33,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
             * файлът се записва в сесията, като ключът е новото му име, а стойността му е старото
 
     * includes/PrintTable.php
-        * Файлът се парсва и се репрезентира на страницата като таблица, чиито клетки могат да се редактират (conteditable div)
-        * полезен ресурс за conteditable div: https://stackoverflow.com/questions/1391278/contenteditable-change-events
+        * Файлът се парсва и се репрезентира на страницата като таблица, чиито клетки могат да се редактират
 
     * ./includes/SimpleXLSX.php
         * Външна библиотека
@@ -46,6 +45,5 @@ Final project for the Web Technologies subject at FMI, Sofia University
 
 * /js
     * update.js
-        * Съдържа функцията sleep, която служи за забавяне на sumbit-a, защото ако не забавя ивръщането на true от check(), то записа няма да стане изобщо - SHOULD BE INVESTIGATED
         * Съдържа функцията check(), която служи за цъкане на скрития бутон за update във формата с таблицата
 
