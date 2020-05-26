@@ -1,5 +1,5 @@
 <?php  
-$hasAnyItem = false; #in case there is no match
+$hasAnyItem = false; //in case there is no match
 
 foreach ($xlsx->rows() as $r) {
         $row++;
