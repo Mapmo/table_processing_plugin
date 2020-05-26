@@ -25,9 +25,9 @@ if ($xlsx = SimpleXLSX::parse($table)) { ?>
 
             ?>
         </table>
-        <input name="pathToTable" type="text" value=" <?php echo $table; ?>" hidden />
-        <input name="cntrow" type="text" value="<?php $row; ?>" hidden />
-        <input name="cntcol" type="text" value="<?php $column ?>;" hidden />
+        <input name="pathToTable" type="text" value="<?php echo $table; ?>" hidden />
+        <input name="cntrow" type="text" value="<?php echo $row; ?>" hidden />
+        <input name="cntcol" type="text" value="<?php echo $column ?>;" hidden />
         <input id="updateButton" name="updateButton" type="submit" hidden />
     </form>
 <?php

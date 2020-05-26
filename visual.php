@@ -18,7 +18,7 @@ if (!isset($_GET['table'])) {
 <body>
 
     <!-- Form to choose which table to display -->
-    <form>
+    <form onsubmit="return check()">
         <label for="table">Choose table to edit:</label>
         <select id="table" name="table">
             <?php
@@ -40,7 +40,7 @@ if (!isset($_GET['table'])) {
     ?>
 
     <!-- Form to choose a phrase to search for in the table -->
-    <form>
+    <form onsubmit="return check()">
         <label for="search">Choose value to search: </label>
         <input type="text" id="search" name="search" value="<?php if (isset($_GET['search'])) {
                                                                 echo $_GET['search'];
