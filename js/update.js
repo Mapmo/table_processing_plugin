@@ -4,8 +4,8 @@ function sleep(delay) {
 }
 
 function check() {
-    if (document.getElementById('update-button')) {
-        document.getElementById('update-button').click();
+    if (document.getElementById('updateButton')) {
+        document.getElementById('updateButton').click();
         sleep(2000);
     }
     return true;

@@ -28,7 +28,7 @@ if (isset($_GET['search'])) {
     <input name="pathToTable" type="text" value=" <?php echo $table; ?>" hidden/>
     <input name="cntrow" type="text" value="<?php $row; ?>" hidden/>
     <input name="cntcol" type="text" value="<?php $column ?>;" hidden/>
-    <input id="update-button" name="update-button" type="submit" hidden/>
+    <input id="updateButton" name="updateButton" type="submit" hidden/>
     </form>
 <?php
 } else {
