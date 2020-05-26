@@ -24,5 +24,3 @@ foreach ($xlsx->rows() as $r) {
 if($hasAnyItem === false) {
 	echo '<tr><td><h1>No match found</h1></td></tr>';
 }
-
-?>

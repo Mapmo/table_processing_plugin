@@ -17,7 +17,7 @@ if (!isset($_GET['table'])) {
 
 <body>
 
-<!-- Form to choose which table to display -->	
+    <!-- Form to choose which table to display -->
     <form>
         <label for="table">Choose table to edit:</label>
         <select id="table" name="table">
@@ -30,31 +30,33 @@ if (!isset($_GET['table'])) {
         <input type="submit" />
     </form>
 
-<?php
+    <?php
 
-if (!isset($_GET['table'])) {
-    exit;
-}
-$uploadedFileName = $_GET['table'];
+    if (!isset($_GET['table'])) {
+        exit;
+    }
+    $uploadedFileName = $_GET['table'];
 
-?>
+    ?>
 
-<!-- Form to choose a phrase to search for in the table -->	
-    	<form>
-		<label for="search">Choose value to search: </label>
-		<input type="text" id="search" name="search" value="<?php if(isset($_GET['search'])) { echo $_GET['search']; }?>"/ >
-		<input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden/>
-		<input type="submit"/>
-	</form>
+    <!-- Form to choose a phrase to search for in the table -->
+    <form>
+        <label for="search">Choose value to search: </label>
+        <input type="text" id="search" name="search" value="<?php if (isset($_GET['search'])) {
+                                                                echo $_GET['search'];
+                                                            } ?>"/>
+        <input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden />
+        <input type="submit" />
+    </form>
 
-<?php
-include "includes/print_table.php";
-define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]);
+    <?php
+    include "includes/print_table.php";
+    define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]);
 
-$nameOfTable = pathinfo(explode('-', $uploadedFileName)[1], PATHINFO_FILENAME);
-?>
+    $nameOfTable = pathinfo(explode('-', $uploadedFileName)[1], PATHINFO_FILENAME);
+    ?>
 
-<!-- Form to chooses how to save the table -->	
+    <!-- Form to chooses how to save the table -->
     <form action="streamfile.php" onsubmit="return check()">
         <label for="table">Choose a name for the exported file:</label>
         <input type="text" name="fileТoSave" value=<?php echo $uploadedFileName ?> hidden>
@@ -69,5 +71,5 @@ $nameOfTable = pathinfo(explode('-', $uploadedFileName)[1], PATHINFO_FILENAME);
         <input type="submit" value="Save as">
     </form>
 </body>
-</html>
 
+</html>
