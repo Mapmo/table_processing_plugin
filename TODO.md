@@ -23,15 +23,21 @@ for future
 	- If the extension of the uploaded file and the wanted extension of the downloaded file aren't the same -> Use library for the conversion \
     	- Use different folder for downloading/conversion stage\
 	- Make searching for items in a specific column\
-	- own format for local tables with style
-	- configuration file
-	- users
-	- admins
-	- file sharing
-	- formules
-	- styling of cells
-	- UI
-	- locking of cell
-	- choosing file
-	- make dropdown 5 latest
-	- backup files
+
+------------------------------
+
+- locking of cell
+- backup files (support for versions)
+- own format for local tables with style
+- configuration file (for magic numbers, etc.) -> could be config table in database
+- users
+- admins
+- file sharing
+- styling of cells(bold/italic, colours)
+- UI
+- choosing file
+- make dropdown 5 latest
+- include/delete rows & columns
+- export only part of the table
+- support formulas?
+
