@@ -19,7 +19,18 @@ for future
 	- define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]); from visual.php should be used for importing as well\
 	- Add numbers and digits to the cells\
 	- Create a dropdown to select an operation (if we add more)\
-	- issue: more than 1 sheet in file\
+	- issue: more than 1 sheet in file    ignore???\
 	- If the extension of the uploaded file and the wanted extension of the downloaded file aren't the same -> Use library for the conversion \
     	- Use different folder for downloading/conversion stage\
-	- Make searching for items in a specific column
+	- Make searching for items in a specific column\
+	- own format for local tables with style
+	- configuration file
+	- users
+	- admins
+	- file sharing
+	- formules
+	- styling of cells
+	- UI
+	- locking of cell
+	- choosing file
+	- make dropdown 5 latest
