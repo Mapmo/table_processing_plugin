@@ -15,23 +15,18 @@ Exporting data - Daniel\
 	- Add the changes to the README.md file (if havent done so already)
 
 for future
-	- maximum of uploaded files\
-	- define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]); from visual.php should be used for importing as well\
-	- Add numbers and digits to the cells\
-	- Create a dropdown to select an operation (if we add more)\
-	- issue: more than 1 sheet in file    ignore???\
-	- If the extension of the uploaded file and the wanted extension of the downloaded file aren't the same -> Use library for the conversion \
-    	- Use different folder for downloading/conversion stage\
-	- Make searching for items in a specific column\
-	- own format for local tables with style
-	- configuration file
-	- users
-	- admins
-	- file sharing
-	- formules
-	- styling of cells
-	- UI
-	- locking of cell
-	- choosing file
-	- make dropdown 5 latest
-	- backup files
+    	- Use different folder for downloading/conversion stage Daniel\
+	- users Martin\
+	- own format for local tables with style Tanya\
+	- backup files Daniel\
+	- Create a dropdown to select an operation (if we add more) Marin\
+	- file sharing DB only Martin\
+	- choosing file at startup //will require DB reading for user files Tanya\
+	- make dropdown 5 latest Tanya\
+	- maximum of uploaded files Tanya\
+	- define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]); from visual.php should be used for importing as well Daniel\
+	- Add numbers and digits to the cells  Martin\
+	- UI styles the menu with styles on the site\
+	- styling of cells the functionality itself Tanya\
+	- locking of cell Tanya\
+	- configuration file for settings Daniel\
