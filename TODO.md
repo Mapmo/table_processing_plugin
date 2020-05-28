@@ -34,3 +34,4 @@ for future
 	- locking of cell
 	- choosing file
 	- make dropdown 5 latest
+	- backup files
