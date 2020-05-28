@@ -15,6 +15,7 @@ Exporting data - Daniel\
 	- Add the changes to the README.md file (if havent done so already)
 
 for future
+<<<<<<< HEAD
     	- Use different folder for downloading/conversion stage Daniel\
 	- users Martin\
 	- own format for local tables with style Tanya\
