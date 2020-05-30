@@ -13,6 +13,8 @@ if (!isset($_GET['table'])) {
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <title>Table Processing Plugin</title>
     <script defer src="js/update.js"></script>
+    <script defer src="js/beautify.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/beautify.css">
 </head>
 
 <body>
@@ -44,10 +46,19 @@ if (!isset($_GET['table'])) {
         <label for="search">Choose value to search: </label>
         <input type="text" id="search" name="search" value="<?php if (isset($_GET['search'])) {
                                                                 echo $_GET['search'];
-                                                            } ?>"/>
+                                                            } ?>" />
         <input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden />
         <input type="submit" />
     </form>
+
+    <br>
+    <div>
+        <button id="boldButton" onclick="toggleBoldStyle()" ><b>B</b></button>
+        <button id="italicButton" onclick="toggleItalicStyle()"><i>I</i></button>
+        <button id="underlineButton" onclick="toggleUnderlineStyle()"><u>U</u></button>
+        <input id="rowToBeautify" type="hidden">
+        <input id="colToBeautify" type="hidden">
+    </div>
 
     <?php
     include "includes/print_table.php";
