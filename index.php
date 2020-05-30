@@ -8,6 +8,7 @@
 
 <body>
 	<?php
+
 	//The following block will clear all files from the previous session and the session itself
 	session_start();
 	foreach (array_keys($_SESSION) as $r) {
