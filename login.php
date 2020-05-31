@@ -11,6 +11,9 @@ if (isset($_GET['warn'])) {
 		case 'captcha':
 			echo '<h2 class="warn">Wrong captcha</h2>';
 			break;
+		case 'data':
+                        echo '<h2 class="warn">Wrong username/password</h2>';
+			break;
 	}
 }
 ?>
