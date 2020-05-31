@@ -64,6 +64,9 @@ Final project for the Web Technologies subject at FMI, Sofia University
 	* Извършва валидация за влизане в системата
 	* Извиква се от /login.php 
 
+   * /includes/logout.php
+	* Унищожава сесията и пренасочва към index.php
+
     * /includes/parse_file.php
         * Новокачените файлове се филтрират за празни имена и пътища
         * Създава се директорията ./uploads (ако не съществува)
