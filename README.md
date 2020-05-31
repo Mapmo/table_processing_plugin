@@ -45,6 +45,10 @@ Final project for the Web Technologies subject at FMI, Sofia University
 	* /includes/main.css
 	    * Съдържа основните стилове, които са използвани из целия проект
 
+   * /includes/db_connection.php
+	* Създава връзка с базата данни
+	* конфигурирана е за mysql с user: root и pass: 1234
+
    * /includes/fonts
 	* Директория, съдържаща много шрифотве
 	* Използват се за /includes/captcha.php	
@@ -96,3 +100,14 @@ Final project for the Web Technologies subject at FMI, Sofia University
     * /includes/utils
 	* Съдържа основни функции, за манипулиране на данни
 
+
+
+DATABASE SETUP:
+user: root
+password: 1234
+name: tables_db
+tables: 
+	- users:
+		id: int AI
+		user: varchar 256
+		password: varchar 256
