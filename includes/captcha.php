@@ -15,7 +15,7 @@
 	
 	$_SESSION['captcha'] = $rnd;
 	
-	// GD
+	// GD library required
 	$image = imagecreatetruecolor(200, 60);
 	$background = imagecolorallocate($image, rand(200,255), rand(200,255), rand(200,255));
 	imagefilledrectangle($image, 0, 0, 200, 60, $background);
@@ -25,7 +25,7 @@
 	for($i=0; $i<strlen($rnd); $i++){
 		$color = imagecolorallocate($image, rand(0,180), rand(0,180), rand(0,180));
 		$font = realpath($files[array_rand($files)]);
-		imagettftext($image, rand(14,24), rand(-20,20), 10+$i*rand(28,30), rand(30,50), $color, $font, $rnd[$i]);
+		imagettftext($image, rand(18,26), rand(-20,20), 10+$i*rand(28,30), rand(30,50), $color, $font, $rnd[$i]);
 	}
 	
 	imagepng($image);
