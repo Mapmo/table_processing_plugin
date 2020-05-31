@@ -11,6 +11,17 @@ Final project for the Web Technologies subject at FMI, Sofia University
         * Ако клиентът не е логнат го кара или да се регистрира или да влезе в акаунта си.
         * Логнат потребител вижда форма, в която могат да се качват файлове (1 или много) само с разширение .xlsx - Excel 2007+ файлове]
         * При submit се праща POST HTTP заявка към файла visual.php
+
+    * /login.php
+	* Позволява на потребителя да въведе потребителско име и парола
+	* Пренасочва към includes/login.php, където се извършва валидация и същинско логване в системата
+	* Използва /includes/captcha.php за създаване на captcha image
+
+    * /register.php
+	* Позволява на потребителя да се регистрира в системата
+	* Пренасочва към includes/register.php, където се извършва същинкста регистрация или евентуален провал
+	* Използва /includes/captcha.php за създаване на captcha image
+	
     * /visual.php
         * Тук потребителят идва след като е качил таблиците си
         * Използва се includes/parse_table.php за обработка на качените файлове
@@ -23,16 +34,29 @@ Final project for the Web Technologies subject at FMI, Sofia University
         * При цъкане на бутона за записване, се изпраща заявка към streamfile.php, в който вече започва да стриймва искания файл.
 
 * /includes
+   * /includes/captcha.php
+	* Създава captcha image и сетва $_SESSION['captcha'] с въпросната стойност
+	* Изисква php-gd блиблотеката!!!, която след инсталация трябва да се добави и в php.ini (extension=gd)
+	* Използва различни шрифтове от /includes/fonts
+ 
    * /includes/css
    	* /includes/beautify.css
             * Съдържа стиловете, които се използват за форматиране на клетките - болднат, курсив и подчертан.
 
-    * /includes/js
+   * /includes/fonts
+	* Директория, съдържаща много шрифотве
+	* Използват се за /includes/captcha.php	
+
+   * /includes/js
 	* /includes/js/update.js
 	    * Съдържа функцията check(), която служи за цъкане на скрития бутон за update във формата с таблицата
 
 	* includes/js/beautify.js
 	    * Съдържа функции, свързани с прилагането на форматиране на клетките на таблицата (toggleBoldStyle, etc.) и updateRowAndCol функцията, която ъпдейтва избраната клетка (чрез скритите input полета с id-та rowToBeautify и colToBeautify от visual.php)
+
+    * /includes/login.php
+	* Извършва валидация за влизане в системата
+	* Извиква се от /login.php 
 
     * /includes/parse_file.php
         * Новокачените файлове се филтрират за празни имена и пътища
@@ -47,6 +71,11 @@ Final project for the Web Technologies subject at FMI, Sofia University
 	    * В зависимост дали става дума за търсене или за обикновено показване, файлът използва един от двата файла за показване на редовете от таблицата
 		    - includes/print_row_search.php
 		    - includes/print_row_nosearch.php
+
+    * /includes/register.php
+	* Използва се за регистриране в системата
+	* Извиква се /register.php
+	* Валидира капчата и повторената парола
 
     * /includes/SimpleXLSX.php
         * Външна библиотека
