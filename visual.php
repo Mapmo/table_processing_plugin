@@ -18,6 +18,10 @@ if (!isset($_GET['table'])) {
 </head>
 
 <body>
+    <!-- Logout -->
+    <form action="includes/logout.php" onsubmit="return check()">
+    	<input type="submit" value="Logout">
+    </form>
 
     <!-- Form to choose which table to display -->
     <form onsubmit="return check()">
