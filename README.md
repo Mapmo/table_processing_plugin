@@ -42,6 +42,8 @@ Final project for the Web Technologies subject at FMI, Sofia University
    * /includes/css
    	* /includes/beautify.css
             * Съдържа стиловете, които се използват за форматиране на клетките - болднат, курсив и подчертан.
+	* /includes/main.css
+	    * Съдържа основните стилове, които са използвани из целия проект
 
    * /includes/fonts
 	* Директория, съдържаща много шрифотве
