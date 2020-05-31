@@ -7,7 +7,10 @@
 </head>
 
 <body>
-	<?php if(isset($_SESSION['user'])) { ?>
+	<?php
+	session_start();
+	if(isset($_SESSION['user'])) { 
+	?>
 		<form action="visual.php" enctype="multipart/form-data" method="post">
 			<label for="upload">Select files (accepts only Excel 2007+ files):</label>
 			<input type="file" id="upload" name="upload[]" accept=".xlsx" multiple="multiple"><br><br>
