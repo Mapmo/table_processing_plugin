@@ -17,5 +17,8 @@ function CloseCon($conn)
 {
 	$conn -> close();
 }
+
+DEFINE("USER_PEPPER", "jert5-49$3423k,tge?234");
+DEFINE("PASSWORD_PEPPER", "m[45=3ojg=*ew3m%34wtAN");
   
 ?>
