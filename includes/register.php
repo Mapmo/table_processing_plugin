@@ -2,10 +2,11 @@
 session_start();
 include "utils/form_validation.php";
 
-if((ValidateCaptcha() && ValidatePasswordRetype()) === true) {
-	echo "Success";
-} else {
-	echo "Failure";
+if(ValidateCaptcha() === false) {
+       	header('Location: /register.php?warn=captcha');
 }
 
+if(ValidatePasswordRetype() === false) {
+        header('Location: /register.php?warn=retype');
+}
 ?>
