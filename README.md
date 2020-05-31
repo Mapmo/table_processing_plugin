@@ -82,6 +82,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
 	* Използва се за регистриране в системата
 	* Извиква се /register.php
 	* Валидира капчата и повторената парола
+	* Създава home directory за потребителя с номера на неговото id в базата данни
 
     * /includes/SimpleXLSX.php
         * Външна библиотека
@@ -100,7 +101,9 @@ Final project for the Web Technologies subject at FMI, Sofia University
     * /includes/utils
 	* Съдържа основни функции, за манипулиране на данни
 
-
+/users - съхранява файловете на потребителетите
+	* 0 - default user, използва се като skel при създаването на нови потребители
+	    * shared.yml - използва се за съгранение на файловете, които са споделени с потребителя
 
 DATABASE SETUP:
 user: root

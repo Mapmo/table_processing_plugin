@@ -14,6 +14,9 @@ if (isset($_GET['warn'])) {
 		case 'retype':
 			echo '<h2 class="warn">Passwords do not match</h2>';
 			break;
+		case 'taken':
+			echo '<h2 class="warn">Name already taken</h2>';
+			break;
         }
 }
 ?>
