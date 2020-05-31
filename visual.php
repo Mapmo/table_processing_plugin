@@ -25,6 +25,10 @@ if (!isset($_GET['table'])) {
         <select id="table" name="table">
             <?php
             foreach (array_keys($_SESSION) as $r) {
+		#There are reservet keywords is session now
+		if($r === "captcha" || $r === "user") { 
+			continue; 
+		} 
                 echo '<option value="' . $_SESSION[$r] . '">' . $r . '</option>';
             }
             ?>
