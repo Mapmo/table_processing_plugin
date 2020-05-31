@@ -11,6 +11,11 @@
 	session_start();
 	if(isset($_SESSION['user'])) { 
 	?>
+		<!-- Logout -->
+    		<form action="includes/logout.php" onsubmit="return check()">
+        		<input type="submit" value="Logout">
+   		 </form>
+
 		<form action="visual.php" enctype="multipart/form-data" method="post">
 			<label for="upload">Select files (accepts only Excel 2007+ files):</label>
 			<input type="file" id="upload" name="upload[]" accept=".xlsx" multiple="multiple"><br><br>
