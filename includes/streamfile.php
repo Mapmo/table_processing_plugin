@@ -4,7 +4,7 @@ $mimetypes = ["xlsx" => "application/vnd.openxmlformats-officedocument.spreadshe
 
 $getExportFileExtension = $_GET['exportFileExtension'];
 $getExportFilename = $_GET['exportFilename'];
-$getFileToSave = $_GET['fileТoSave'];
+$getFileToSave = '../' . $_GET['fileТoSave'];
 
 // Read a file and display its content chunk by chunk
 function ReadfileChunked($filename)

@@ -12,9 +12,9 @@ if (!isset($_GET['table'])) {
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <title>Table Processing Plugin</title>
-    <script defer src="js/update.js"></script>
-    <script defer src="js/beautify.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/beautify.css">
+    <script defer src="includes/js/update.js"></script>
+    <script defer src="includes/js/beautify.js"></script>
+    <link rel="stylesheet" type="text/css" href="includes/css/beautify.css">
 </head>
 
 <body>
@@ -68,7 +68,7 @@ if (!isset($_GET['table'])) {
     ?>
 
     <!-- Form to chooses how to save the table -->
-    <form action="streamfile.php" onsubmit="return check()">
+    <form action="includes/streamfile.php" onsubmit="return check()">
         <label for="table">Choose a name for the exported file:</label>
         <input type="text" name="fileТoSave" value=<?php echo $uploadedFileName ?> hidden>
         <input type="text" name="exportFilename" value=<?php echo $nameOfTable ?> required>
