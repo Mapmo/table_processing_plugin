@@ -15,7 +15,6 @@ Exporting data - Daniel\
 	- Add the changes to the README.md file (if havent done so already)
 
 for future
-<<<<<<< HEAD
     	- Use different folder for downloading/conversion stage Daniel\
 	- users Martin\
 	- own format for local tables with style Tanya\
@@ -27,7 +26,5 @@ for future
 	- maximum of uploaded files Tanya\
 	- define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]); from visual.php should be used for importing as well Daniel\
 	- Add numbers and digits to the cells  Martin\
-	- UI styles the menu with styles on the site\
-	- styling of cells the functionality itself Tanya\
 	- locking of cell Tanya\
 	- configuration file for settings Daniel\
