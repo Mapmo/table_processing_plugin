@@ -18,9 +18,11 @@ $login_query = "SELECT id FROM users WHERE user='" . $user . "' AND password='" 
 
 $login = mysqli_query($db_connection, $login_query);
 if (!$login) {
+	CloseCon($db_connection);
         die(mysqli_error($db_connection));
 }
 if(mysqli_num_rows($login) === 0) {
+	CloseCon($db_connection);
         header('Location: /login.php?warn=data');
         exit;
 }

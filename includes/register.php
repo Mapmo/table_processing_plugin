@@ -27,6 +27,7 @@ $get_id_query = "SELECT id FROM users WHERE user='" . $user . "'";
 #Validation that the name is not already taken
 $get_id = mysqli_query($db_connection, $get_id_query);
 if (!$get_id) {
+	CloseCon($db_connection);
 	die(mysqli_error($db_connection));
 }
 if(mysqli_num_rows($get_id) > 0) {
@@ -36,11 +37,17 @@ if(mysqli_num_rows($get_id) > 0) {
 
 #the registration itself
 $register_query = "INSERT into users (user, password) VALUES ('" . $user . "', '" .  $password . "')";
-$register = mysqli_query($db_connection, $register_query) || die(mysqli_error($db_connection));
+$register = mysqli_query($db_connection, $register_query) 
+
+if(!$register) {
+	CloseCon($db_connection);
+	die(mysqli_error($db_connection));
+}
 
 $get_id = mysqli_query($db_connection, $get_id_query);
 
 if (!$get_id) {
+	CloseCon($db_connection);
         die(mysqli_error($db_connection));
 }
 
