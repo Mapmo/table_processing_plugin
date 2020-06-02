@@ -18,9 +18,11 @@ if(ValidatePasswordRetype() === false) {
 include "db_connection.php";
 $db_connection = OpenCon();
 
+$hash_config= parse_ini_file("configs/hash.ini");
+
 #ADD pepper to the user input and hash it
-$user = hash("sha256", $db_connection -> real_escape_string($_POST['user']) . USER_PEPPER);
-$password = hash("sha256", $db_connection -> real_escape_string($_POST['pass']) . PASSWORD_PEPPER);
+$user = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['user']) . $hash_config['username_paper']);
+$password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['pass']) . $hash_config['password_paper']);
 
 $get_id_query = "SELECT id FROM users WHERE user='" . $user . "'";
 
@@ -37,7 +39,7 @@ if(mysqli_num_rows($get_id) > 0) {
 
 #the registration itself
 $register_query = "INSERT into users (user, password) VALUES ('" . $user . "', '" .  $password . "')";
-$register = mysqli_query($db_connection, $register_query) 
+$register = mysqli_query($db_connection, $register_query);
 
 if(!$register) {
 	CloseCon($db_connection);
