@@ -10,8 +10,10 @@ if (ValidateCaptcha()  === false) {
 include "db_connection.php";
 $db_connection = OpenCon();
 
-$user = htmlentities($_POST["user"]);
-$password = htmlentities($_POST["pass"]);
+$hash_config= parse_ini_file("configs/hash.ini");
+
+$user = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['user']) . $hash_config['username_paper']);
+$password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['pass']) . $hash_config['password_paper']);
 
 $login_query = $db_connection->prepare("SELECT * FROM users WHERE user = :user");
 
