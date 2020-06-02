@@ -4,63 +4,80 @@ include "utils/form_validation.php";
 include "utils/utils.php";
 
 #Validates that the user successfully entered the captcha
-if(ValidateCaptcha() === false) {
-       	header('Location: /register.php?warn=captcha');
+if (ValidateCaptcha() === false) {
+	header('Location: /register.php?warn=captcha');
 	exit;
 }
 
 #Validates that the user successfully entered the password twice
-if(ValidatePasswordRetype() === false) {
-        header('Location: /register.php?warn=retype');
+if (ValidatePasswordRetype() === false) {
+	header('Location: /register.php?warn=retype');
 	exit;
 }
 
 include "db_connection.php";
 $db_connection = OpenCon();
 
-#ADD pepper to the user input and hash it
-$user = hash("sha256", $db_connection -> real_escape_string($_POST['user']) . USER_PEPPER);
-$password = hash("sha256", $db_connection -> real_escape_string($_POST['pass']) . PASSWORD_PEPPER);
+$user = htmlentities($_POST["user"]);
+$password = password_hash(htmlentities($_POST["pass"]), PASSWORD_DEFAULT);
 
-$get_id_query = "SELECT id FROM users WHERE user='" . $user . "'";
+$get_id_query = $db_connection->prepare("SELECT id FROM users WHERE user = :user");
+
+$get_id_query->bindParam(':user', $user);
+
+$result = $get_id_query->execute() or die("Failed to query from DB!");
 
 #Validation that the name is not already taken
-$get_id = mysqli_query($db_connection, $get_id_query);
-if (!$get_id) {
-	die(mysqli_error($db_connection));
-}
-if(mysqli_num_rows($get_id) > 0) {
-	header('Location: /register.php?warn=taken');
+$get_id = $get_id_query->fetch(PDO::FETCH_ASSOC);
+
+if ($get_id) {
+	CloseCon($db_connection);
+	header('Location: ../register.php?warn=taken');
 	exit;
 }
 
 #the registration itself
-$register_query = "INSERT into users (user, password) VALUES ('" . $user . "', '" .  $password . "')";
-$register = mysqli_query($db_connection, $register_query) || die(mysqli_error($db_connection));
+$register_query = $db_connection->prepare("INSERT into users (user, password) VALUES (:user, :password)");
 
-$get_id = mysqli_query($db_connection, $get_id_query);
+$register_query->bindParam(':user', $user);
+$register_query->bindParam(':password', $password);
 
-if (!$get_id) {
-        die(mysqli_error($db_connection));
+$register = $register_query->execute();
+
+if (!$register) {
+	CloseCon($db_connection);
+	die("Failed to query from DB!");
 }
 
-#creates the home directory of the user
-$row = mysqli_fetch_row($get_id);
-$id = $row[0];
+$result = $get_id_query->execute() or die("Failed to query from DB!");
 
-$skel="../users/0";
-$home="../users/" . $id;
+$get_id = $get_id_query->fetch(PDO::FETCH_ASSOC);
+
+if (!$get_id) {
+	CloseCon($db_connection);
+	die("Error!");
+}
+
+$id = $get_id['id'];
+
+#creates the home directory of the user
+
+$skel = "../users/0";
+$home = "../users/" . $id;
 
 RecursiveCopy($skel, $home);
 
 CloseCon($db_connection);
 ?>
 <html>
+
 <head>
-        <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-        <h1 class="ok">Registration successful</h1>
-	<a href="/login.php">Login to your account</a>
+	<h1 class="ok">Registration successful</h1>
+	<a href="./login.php">Login to your account</a>
 </body>
+
 </html>
