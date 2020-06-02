@@ -1,6 +1,6 @@
 <?php
 
-$exporting_configs = parse_ini_file("configs/exporting.ini");
+$exporting_configs = parse_ini_file("../configs/exporting.ini");
 
 $getExportFileExtension = $_GET['exportFileExtension'];
 $getExportFilename = $_GET['exportFilename'];

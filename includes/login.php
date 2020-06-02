@@ -10,10 +10,10 @@ if (ValidateCaptcha()  === false) {
 include "db_connection.php";
 $db_connection = OpenCon();
 
-$hash_config= parse_ini_file("configs/hash.ini");
+$hash_config= parse_ini_file("../configs/hash.ini");
 
-$user = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['user']) . $hash_config['username_paper']);
-$password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['pass']) . $hash_config['password_paper']);
+$user = hash($hash_config['hash_algorithm'], htmlentities($_POST['user']) . $hash_config['username_pepper']);
+$password = hash($hash_config['hash_algorithm'], htmlentities($_POST['pass']) . $hash_config['password_pepper']);
 
 $login_query = $db_connection->prepare("SELECT * FROM users WHERE user = :user");
 
@@ -28,7 +28,7 @@ if (!$firstrow) {
         exit;
 }
 
-if (password_verify($password, $firstrow['password'])) {
+if ($password === $firstrow['password']) {
         #logs the user in the system
         var_dump($firstrow);
         $_SESSION['user']  = $firstrow['user'];
