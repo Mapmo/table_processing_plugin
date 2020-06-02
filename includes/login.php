@@ -2,33 +2,39 @@
 session_start();
 include "utils/form_validation.php";
 
-if(ValidateCaptcha()  === false) {
-	header('Location: /login.php?warn=captcha');
-	exit;
+if (ValidateCaptcha()  === false) {
+        header('Location: ../login.php?warn=captcha');
+        exit;
 }
 
 include "db_connection.php";
 $db_connection = OpenCon();
 
-#ADD pepper to the user input and hash it
-$user = hash("sha256", $db_connection -> real_escape_string($_POST['user']) . USER_PEPPER);
-$password = hash("sha256", $db_connection -> real_escape_string($_POST['pass']) . PASSWORD_PEPPER);
+$user = htmlentities($_POST["user"]);
+$password = htmlentities($_POST["pass"]);
 
-$login_query = "SELECT id FROM users WHERE user='" . $user . "' AND password='" . $password . "'";
+$login_query = $db_connection->prepare("SELECT * FROM users WHERE user = :user");
 
-$login = mysqli_query($db_connection, $login_query);
-if (!$login) {
-        die(mysqli_error($db_connection));
-}
-if(mysqli_num_rows($login) === 0) {
+$login_query->bindParam(':user', $user);
+
+$result = $login_query->execute() or die("Failed to query from DB!");
+
+$firstrow = $login_query->fetch(PDO::FETCH_ASSOC) or die("Not valid username or/and password.");
+
+if (!$firstrow) {
         header('Location: /login.php?warn=data');
         exit;
 }
 
-#logs the user in the system
-$row = mysqli_fetch_row($login);
-$_SESSION['user']  = $row[0];
+if (password_verify($password, $firstrow['password'])) {
+        #logs the user in the system
+        var_dump($firstrow);
+        $_SESSION['user']  = $firstrow['user'];
 
-CloseCon($db_connection);
-header('Location: /');
-?>
+        CloseCon($db_connection);
+        header('Location: ../');
+} else {
+        die("Not valid username or/and password.");
+        header('Location: /login.php?warn=data');
+        exit;
+}
