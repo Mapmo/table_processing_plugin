@@ -13,6 +13,7 @@ $db_connection = OpenCon();
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 $user = htmlentities($_POST["user"]);
 $password = htmlentities($_POST["pass"]);
 =======
@@ -23,6 +24,9 @@ $password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_s
 >>>>>>> a9c2f49... Re-add changes configuration files
 =======
 $hash_config= parse_ini_file("../configs/hash.ini");
+=======
+$hash_config = parse_ini_file("../configs/hash.ini");
+>>>>>>> 1b94d67... rename login.php in root to login_form.php just so there are no
 
 $user = hash($hash_config['hash_algorithm'], htmlentities($_POST['user']) . $hash_config['username_pepper']);
 $password = hash($hash_config['hash_algorithm'], htmlentities($_POST['pass']) . $hash_config['password_pepper']);
@@ -67,6 +71,6 @@ if ($password === $firstrow['password']) {
         header('Location: ../');
 } else {
         die("Not valid username or/and password.");
-        header('Location: /login.php?warn=data');
+        header('Location: ../login.php?warn=data');
         exit;
 }

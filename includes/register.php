@@ -5,13 +5,13 @@ include "utils/utils.php";
 
 #Validates that the user successfully entered the captcha
 if (ValidateCaptcha() === false) {
-	header('Location: /register.php?warn=captcha');
+	header('Location: ../register_form.php?warn=captcha');
 	exit;
 }
 
 #Validates that the user successfully entered the password twice
 if (ValidatePasswordRetype() === false) {
-	header('Location: /register.php?warn=retype');
+	header('Location: ../register_form.php?warn=retype');
 	exit;
 }
 
@@ -55,6 +55,7 @@ $get_id = $get_id_query->fetch(PDO::FETCH_ASSOC);
 
 if ($get_id) {
 	CloseCon($db_connection);
+<<<<<<< HEAD
 	header('Location: ../register.php?warn=taken');
 =======
 $get_id = mysqli_query($db_connection, $get_id_query);
@@ -65,6 +66,9 @@ if (!$get_id) {
 if(mysqli_num_rows($get_id) > 0) {
 	header('Location: /register.php?warn=taken');
 >>>>>>> 92fa741... Add closing of connection to DB after query failure, as Daniel suggested
+=======
+	header('Location: ../register_form.php?warn=taken');
+>>>>>>> 1b94d67... rename login.php in root to login_form.php just so there are no
 	exit;
 }
 
@@ -123,7 +127,7 @@ CloseCon($db_connection);
 
 <body>
 	<h1 class="ok">Registration successful</h1>
-	<a href="./login.php">Login to your account</a>
+	<a href="../login.php">Login to your account</a>
 </body>
 
 </html>
