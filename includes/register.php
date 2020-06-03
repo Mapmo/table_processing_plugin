@@ -5,13 +5,13 @@ include "utils/utils.php";
 
 #Validates that the user successfully entered the captcha
 if (ValidateCaptcha() === false) {
-	header('Location: /register.php?warn=captcha');
+	header('Location: ../register_form.php?warn=captcha');
 	exit;
 }
 
 #Validates that the user successfully entered the password twice
 if (ValidatePasswordRetype() === false) {
-	header('Location: /register.php?warn=retype');
+	header('Location: ../register_form.php?warn=retype');
 	exit;
 }
 
@@ -34,7 +34,7 @@ $get_id = $get_id_query->fetch(PDO::FETCH_ASSOC);
 
 if ($get_id) {
 	CloseCon($db_connection);
-	header('Location: ../register.php?warn=taken');
+	header('Location: ../register_form.php?warn=taken');
 	exit;
 }
 
@@ -79,7 +79,7 @@ CloseCon($db_connection);
 
 <body>
 	<h1 class="ok">Registration successful</h1>
-	<a href="./login.php">Login to your account</a>
+	<a href="../login.php">Login to your account</a>
 </body>
 
 </html>

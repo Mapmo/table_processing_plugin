@@ -24,8 +24,8 @@
 
 	<?php } else { ?>
 	<h1>You are currently not logged in the system.</h1>
-	<a href="login.php">Login</a>
-	<a href="register.php">Register</a>
+	<a href="login_form.php">Login</a>
+	<a href="register_form.php">Register</a>
 	<?php } ?>
 </body>
 
