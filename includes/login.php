@@ -3,7 +3,7 @@ session_start();
 include "utils/form_validation.php";
 
 if (ValidateCaptcha()  === false) {
-        header('Location: ../login.php?warn=captcha');
+        header('Location: ../login_form.php?warn=captcha');
         exit;
 }
 
@@ -24,7 +24,7 @@ $result = $login_query->execute() or die("Failed to query from DB!");
 $firstrow = $login_query->fetch(PDO::FETCH_ASSOC) or die("Not valid username or/and password.");
 
 if (!$firstrow) {
-        header('Location: /login.php?warn=data');
+        header('Location: ../login_form.php?warn=data');
         exit;
 }
 
@@ -37,6 +37,6 @@ if ($password === $firstrow['password']) {
         header('Location: ../');
 } else {
         die("Not valid username or/and password.");
-        header('Location: ../login.php?warn=data');
+        header('Location: ../login_form.php?warn=data');
         exit;
 }

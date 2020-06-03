@@ -79,7 +79,7 @@ CloseCon($db_connection);
 
 <body>
 	<h1 class="ok">Registration successful</h1>
-	<a href="../login.php">Login to your account</a>
+	<a href="../login_form.php">Login to your account</a>
 </body>
 
 </html>
