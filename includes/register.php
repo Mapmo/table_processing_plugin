@@ -28,21 +28,41 @@ $get_id_query->bindParam(':user', $user);
 $result = $get_id_query->execute() or die("Failed to query from DB!");
 
 #Validation that the name is not already taken
+<<<<<<< HEAD
 $get_id = $get_id_query->fetch(PDO::FETCH_ASSOC);
 
 if ($get_id) {
 	CloseCon($db_connection);
 	header('Location: ../register.php?warn=taken');
+=======
+$get_id = mysqli_query($db_connection, $get_id_query);
+if (!$get_id) {
+	CloseCon($db_connection);
+	die(mysqli_error($db_connection));
+}
+if(mysqli_num_rows($get_id) > 0) {
+	header('Location: /register.php?warn=taken');
+>>>>>>> 92fa741... Add closing of connection to DB after query failure, as Daniel suggested
 	exit;
 }
 
 #the registration itself
+<<<<<<< HEAD
 $register_query = $db_connection->prepare("INSERT into users (user, password) VALUES (:user, :password)");
 
 $register_query->bindParam(':user', $user);
 $register_query->bindParam(':password', $password);
 
 $register = $register_query->execute();
+=======
+$register_query = "INSERT into users (user, password) VALUES ('" . $user . "', '" .  $password . "')";
+$register = mysqli_query($db_connection, $register_query) 
+
+if(!$register) {
+	CloseCon($db_connection);
+	die(mysqli_error($db_connection));
+}
+>>>>>>> 92fa741... Add closing of connection to DB after query failure, as Daniel suggested
 
 if (!$register) {
 	CloseCon($db_connection);
@@ -55,7 +75,11 @@ $get_id = $get_id_query->fetch(PDO::FETCH_ASSOC);
 
 if (!$get_id) {
 	CloseCon($db_connection);
+<<<<<<< HEAD
 	die("Error!");
+=======
+        die(mysqli_error($db_connection));
+>>>>>>> 92fa741... Add closing of connection to DB after query failure, as Daniel suggested
 }
 
 $id = $get_id['id'];
