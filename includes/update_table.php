@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -12,7 +12,7 @@ function ToAlpha($num)
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $cntCol = $_POST["cntcol"];
     $cntRow = $_POST["cntrow"];
-    $pathToTable = $_POST["pathToTable"];
+    $pathToTable = '../' . $_POST["pathToTable"];
 
     $spreadsheet = IOFactory::load($pathToTable);
     $worksheet = $spreadsheet->getActiveSheet();

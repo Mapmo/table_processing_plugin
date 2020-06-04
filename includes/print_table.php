@@ -4,7 +4,7 @@ include "SimpleXLSX.php";
 $table = $_GET['table'];
 
 if ($xlsx = SimpleXLSX::parse($table)) { ?>
-    <form action="includes/update_table.php" method="post">
+    <form action="/includes/update_table.php" method="post">
         <table>
             <?php
             $row = 0;
