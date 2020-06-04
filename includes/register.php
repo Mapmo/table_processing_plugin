@@ -18,8 +18,16 @@ if (ValidatePasswordRetype() === false) {
 include "db_connection.php";
 $db_connection = OpenCon();
 
+<<<<<<< HEAD
 $user = htmlentities($_POST["user"]);
 $password = password_hash(htmlentities($_POST["pass"]), PASSWORD_DEFAULT);
+=======
+$hash_config= parse_ini_file("configs/hash.ini");
+
+#ADD pepper to the user input and hash it
+$user = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['user']) . $hash_config['username_paper']);
+$password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['pass']) . $hash_config['password_paper']);
+>>>>>>> 26a8d8a... Extract hash configs in separate .ini file
 
 $get_id_query = $db_connection->prepare("SELECT id FROM users WHERE user = :user");
 
@@ -56,7 +64,7 @@ $register_query->bindParam(':password', $password);
 $register = $register_query->execute();
 =======
 $register_query = "INSERT into users (user, password) VALUES ('" . $user . "', '" .  $password . "')";
-$register = mysqli_query($db_connection, $register_query) 
+$register = mysqli_query($db_connection, $register_query);
 
 if(!$register) {
 	CloseCon($db_connection);
