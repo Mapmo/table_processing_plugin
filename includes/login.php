@@ -3,7 +3,7 @@ session_start();
 include "utils/form_validation.php";
 
 if (ValidateCaptcha()  === false) {
-        header('Location: ../login.php?warn=captcha');
+        header('Location: ../login_form.php?warn=captcha');
         exit;
 }
 
@@ -49,6 +49,7 @@ $password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_s
 $firstrow = $login_query->fetch(PDO::FETCH_ASSOC) or die("Not valid username or/and password.");
 
 if (!$firstrow) {
+<<<<<<< HEAD
 =======
 $login = mysqli_query($db_connection, $login_query);
 if (!$login) {
@@ -59,6 +60,9 @@ if(mysqli_num_rows($login) === 0) {
 	CloseCon($db_connection);
 >>>>>>> 92fa741... Add closing of connection to DB after query failure, as Daniel suggested
         header('Location: /login.php?warn=data');
+=======
+        header('Location: ../login_form.php?warn=data');
+>>>>>>> 6720357... rename login.php in root directory to login_form.php
         exit;
 }
 
@@ -71,6 +75,6 @@ if ($password === $firstrow['password']) {
         header('Location: ../');
 } else {
         die("Not valid username or/and password.");
-        header('Location: ../login.php?warn=data');
+        header('Location: ../login_form.php?warn=data');
         exit;
 }
