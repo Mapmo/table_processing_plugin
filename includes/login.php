@@ -31,12 +31,12 @@ if (!$firstrow) {
 if ($password === $firstrow['password']) {
         #logs the user in the system
         var_dump($firstrow);
-        $_SESSION['user']  = $firstrow['user'];
+        $_SESSION['user']  = $firstrow['id'];
 
         CloseCon($db_connection);
         header('Location: ../');
 } else {
-        die("Not valid username or/and password.");
         header('Location: ../login_form.php?warn=data');
+        die("Not valid username or/and password.");
         exit;
 }
