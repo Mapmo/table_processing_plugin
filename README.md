@@ -109,6 +109,11 @@ Final project for the Web Technologies subject at FMI, Sofia University
 	* 0 - default user, използва се като skel при създаването на нови потребители
 	    * shared.yml - използва се за съхранение на файловете, които са споделени с потребителя
 
+* /configs
+	* /configs/database.ini - Съдържа необходимите конфигурациите за свързване с базата
+	* /configs/hash.ini - Съдържа конфигурации свързами с хеширането на важни потребителски данни
+	* /configs/exporting.ini - Съдържа конфигурации свързани с експортване на таблици - списъкл от съпортнати extensions, размер на блоковете, които се пращат на потребителите при операцията по теглене
+
 DATABASE SETUP:
 user: root
 password: 1234
