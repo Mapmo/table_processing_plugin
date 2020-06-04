@@ -21,11 +21,11 @@ if (isset($_GET['warn'])) {
 }
 ?>
         <form action="includes/register.php" method="POST">
-                User: <input type="text" name="user" /><br />
-                Password: <input type="password" name="pass" /><br />
-                Retype password: <input type="password" name="pass2" /><br />
+                User: <input type="text" name="user" required /><br />
+                Password: <input type="password" name="pass" required /><br />
+                Retype password: <input type="password" name="pass2" required /><br />
                 <img src="includes/captcha.php" alt="security code" /><br />
-                Security code: <input type="text" name="captcha" /><br />
+                Security code: <input type="text" name="captcha" required/ ><br />
                 <input type="submit" name="submit" value="Register" />
         </form>
 </body>
