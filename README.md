@@ -48,7 +48,8 @@ Final project for the Web Technologies subject at FMI, Sofia University
    * /includes/db_connection.php
 	* Създава връзка с базата данни
 	* конфигурирана е за mysql с user: root и pass: 1234
-    * използваме PDO (ресурс за затварянето на връзката с базата: https://stackoverflow.com/questions/18277233/pdo-closing-connection)
+    	* използваме PDO (ресурс за затварянето на връзката с базата: https://stackoverflow.com/questions/18277233/pdo-closing-connection), изисква да се добави extension=php_pdo_mysql в php.ini файла
+
 
    * /includes/fonts
 	* Директория, съдържаща много шрифотве
