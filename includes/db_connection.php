@@ -3,12 +3,11 @@ function OpenCon()
 {
 <<<<<<< HEAD
 	try {
-		$dbhost = "localhost";
-		$dbuser = "root";
-		$dbpass = "1234";
-		$dbname  = "tables_db";
 
-		$conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+		$db_configs= parse_ini_file("configs/database.ini");
+
+		$conn = new PDO("mysql:host=".$db_configs['db_host'].";dbname=".$db_configs["db_name"],
+			$db_configs["db_user"], $db_configs["db_pass"]);
 
 		return $conn;
 	} catch (PDOException $error) {

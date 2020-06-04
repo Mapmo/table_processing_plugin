@@ -19,6 +19,7 @@ include "db_connection.php";
 $db_connection = OpenCon();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $user = htmlentities($_POST["user"]);
 $password = password_hash(htmlentities($_POST["pass"]), PASSWORD_DEFAULT);
 =======
@@ -28,6 +29,12 @@ $hash_config= parse_ini_file("configs/hash.ini");
 $user = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['user']) . $hash_config['username_paper']);
 $password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['pass']) . $hash_config['password_paper']);
 >>>>>>> 26a8d8a... Extract hash configs in separate .ini file
+=======
+$hash_config= parse_ini_file("configs/hash.ini");
+
+$user = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['user']) . $hash_config['username_paper']);
+$password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['pass']) . $hash_config['password_paper']);
+>>>>>>> a9c2f49... Re-add changes configuration files
 
 $get_id_query = $db_connection->prepare("SELECT id FROM users WHERE user = :user");
 
