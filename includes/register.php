@@ -18,30 +18,10 @@ if (ValidatePasswordRetype() === false) {
 include "db_connection.php";
 $db_connection = OpenCon();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-$user = htmlentities($_POST["user"]);
-$password = password_hash(htmlentities($_POST["pass"]), PASSWORD_DEFAULT);
-=======
-$hash_config= parse_ini_file("configs/hash.ini");
-
-#ADD pepper to the user input and hash it
-$user = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['user']) . $hash_config['username_paper']);
-$password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['pass']) . $hash_config['password_paper']);
->>>>>>> 26a8d8a... Extract hash configs in separate .ini file
-=======
-$hash_config= parse_ini_file("configs/hash.ini");
-
-$user = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['user']) . $hash_config['username_paper']);
-$password = hash($hash_config['hash_algorithm'], $db_connection -> real_escape_string($_POST['pass']) . $hash_config['password_paper']);
->>>>>>> a9c2f49... Re-add changes configuration files
-=======
 $hash_config= parse_ini_file("../configs/hash.ini");
 
 $user = hash($hash_config['hash_algorithm'], htmlentities($_POST['user']) . $hash_config['username_pepper']);
 $password = hash($hash_config['hash_algorithm'], htmlentities($_POST['pass']) . $hash_config['password_pepper']);
->>>>>>> 8832876... Fix extraction of the configurations
 
 $get_id_query = $db_connection->prepare("SELECT id FROM users WHERE user = :user");
 
@@ -50,45 +30,21 @@ $get_id_query->bindParam(':user', $user);
 $result = $get_id_query->execute() or die("Failed to query from DB!");
 
 #Validation that the name is not already taken
-<<<<<<< HEAD
 $get_id = $get_id_query->fetch(PDO::FETCH_ASSOC);
 
 if ($get_id) {
 	CloseCon($db_connection);
-<<<<<<< HEAD
-	header('Location: ../register.php?warn=taken');
-=======
-$get_id = mysqli_query($db_connection, $get_id_query);
-if (!$get_id) {
-	CloseCon($db_connection);
-	die(mysqli_error($db_connection));
-}
-if(mysqli_num_rows($get_id) > 0) {
-	header('Location: /register.php?warn=taken');
->>>>>>> 92fa741... Add closing of connection to DB after query failure, as Daniel suggested
-=======
 	header('Location: ../register_form.php?warn=taken');
->>>>>>> 1b94d67... rename login.php in root to login_form.php just so there are no
 	exit;
 }
 
 #the registration itself
-<<<<<<< HEAD
 $register_query = $db_connection->prepare("INSERT into users (user, password) VALUES (:user, :password)");
 
 $register_query->bindParam(':user', $user);
 $register_query->bindParam(':password', $password);
 
 $register = $register_query->execute();
-=======
-$register_query = "INSERT into users (user, password) VALUES ('" . $user . "', '" .  $password . "')";
-$register = mysqli_query($db_connection, $register_query);
-
-if(!$register) {
-	CloseCon($db_connection);
-	die(mysqli_error($db_connection));
-}
->>>>>>> 92fa741... Add closing of connection to DB after query failure, as Daniel suggested
 
 if (!$register) {
 	CloseCon($db_connection);
@@ -101,11 +57,7 @@ $get_id = $get_id_query->fetch(PDO::FETCH_ASSOC);
 
 if (!$get_id) {
 	CloseCon($db_connection);
-<<<<<<< HEAD
 	die("Error!");
-=======
-        die(mysqli_error($db_connection));
->>>>>>> 92fa741... Add closing of connection to DB after query failure, as Daniel suggested
 }
 
 $id = $get_id['id'];
