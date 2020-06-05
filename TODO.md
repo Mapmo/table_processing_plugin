@@ -11,10 +11,8 @@ Importing xlsx files - Tanya
 	- maximum of uploaded files Tanya\
 	
 Manipulating data - Martin\
-	- users Martin\
 	- file sharing DB only Martin\
 	- Add numbers and digits to the cells  Martin
-	- logout
 
 Exporting data - Daniel\
     	- Use different folder for downloading/conversion stage Daniel\
