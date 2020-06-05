@@ -8,21 +8,25 @@
 
 <body>
 	<?php
-
-	//The following block will clear all files from the previous session and the session itself
 	session_start();
-	foreach (array_keys($_SESSION) as $r) {
-		unlink($_SESSION[$r]);
-	}
-
-	session_unset();
-	session_destroy();
+	if(isset($_SESSION['user'])) { 
 	?>
-	<form action="visual.php" enctype="multipart/form-data" method="post">
-		<label for="upload">Select files (accepts only Excel 2007+ files):</label>
-		<input type="file" id="upload" name="upload[]" accept=".xlsx" multiple="multiple"><br><br>
-		<input type="submit">
-	</form>
+		<!-- Logout -->
+    		<form action="includes/logout.php" onsubmit="return check()">
+        		<input type="submit" value="Logout">
+   		 </form>
+
+		<form action="visual.php" enctype="multipart/form-data" method="post">
+			<label for="upload">Select files (accepts only Excel 2007+ files):</label>
+			<input type="file" id="upload" name="upload[]" accept=".xlsx" multiple="multiple"><br><br>
+			<input type="submit">
+		</form>
+
+	<?php } else { ?>
+	<h1>You are currently not logged in the system.</h1>
+	<a href="login_form.php">Login</a>
+	<a href="register_form.php">Register</a>
+	<?php } ?>
 </body>
 
 </html>

@@ -1,13 +1,13 @@
 <?php
-define('CHUNK_SIZE', 1024 * 1024); // Size (in bytes) of tiles chunk
-$mimetypes = ["xlsx" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"];
+
+$exporting_configs = parse_ini_file("../configs/exporting.ini");
 
 $getExportFileExtension = $_GET['exportFileExtension'];
 $getExportFilename = $_GET['exportFilename'];
 $getFileToSave = '../' . $_GET['fileТoSave'];
 
 // Read a file and display its content chunk by chunk
-function ReadfileChunked($filename)
+function ReadfileChunked($filename,$chunk_size)
 {
     $fileHandler = fopen($filename, 'rb');
 
@@ -16,7 +16,7 @@ function ReadfileChunked($filename)
     }
 
     while (!feof($fileHandler)) {
-        $buffer = fread($fileHandler, CHUNK_SIZE);
+        $buffer = fread($fileHandler, $chunk_size);
         echo $buffer;
         ob_flush();
         flush();
@@ -46,10 +46,10 @@ if (empty($exportExtension) || empty($exportFilename)) {
     exit;
 }
 
-header('Content-Type: ' . $mimetypes[$exportExtension]);
+header('Content-Type: ' . $exporting_configs["mimetypes"][$exportExtension]);
 header('Content-Disposition: attachment; filename=' . basename($exportFilename . "." . $exportExtension));
 
-if (!ReadfileChunked($fileToSave)) {
+if (!ReadfileChunked($fileToSave,$exporting_configs["chunk_size"])) {
     error_log("Problem during streaming file [" . $fileToSave . "] to the client");
     echo "<p>Problem occurred during the file download. Please try again</p>";
 }

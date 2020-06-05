@@ -18,6 +18,10 @@ if (!isset($_GET['table'])) {
 </head>
 
 <body>
+    <!-- Logout -->
+    <form action="includes/logout.php" onsubmit="return check()">
+    	<input type="submit" value="Logout">
+    </form>
 
     <!-- Form to choose which table to display -->
     <form onsubmit="return check()">
@@ -25,6 +29,10 @@ if (!isset($_GET['table'])) {
         <select id="table" name="table">
             <?php
             foreach (array_keys($_SESSION) as $r) {
+		#There are reservet keywords is session now
+		if($r === "captcha" || $r === "user") { 
+			continue; 
+		} 
                 echo '<option value="' . $_SESSION[$r] . '">' . $r . '</option>';
             }
             ?>

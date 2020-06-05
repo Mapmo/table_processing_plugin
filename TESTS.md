@@ -35,6 +35,7 @@ Expected Results:
 	4. Create a successful registration
 Expected Results:
 	- You are told the registration is success
+	- In /user/{id} directory is created with the id of the newly created user and it should contain shared_files.yml file
 
 	5. Go back to index.php and click Register again
 Expected Resuts:

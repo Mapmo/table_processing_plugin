@@ -1,5 +1,5 @@
 <?php
-$targetDir = "uploads/";
+$targetDir = "users/" . $_SESSION['user'] . "/uploads/";
 if (!file_exists($targetDir)) {
     mkdir($targetDir, 0777, true);
 }
