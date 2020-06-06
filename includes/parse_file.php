@@ -25,8 +25,9 @@ for ($i = 0; $i < $total; $i++) {
 	do {
 	    $tmp = $newFilePath . '(' . $i++ . ')';
 	} while(file_exists($tmp));
+	
+	$newFilePath = $tmp;
     }	
-    $newFilePath = $tmp;
 
     #Add the information to the shared_files.yaml file
     $yaml_path = $targetDir . '../shared_files.yml';
