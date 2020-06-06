@@ -2,7 +2,6 @@
 
 $exporting_configs = parse_ini_file("../configs/exporting.ini");
 
-$getExportFileExtension = $_GET['exportFileExtension'];
 $getExportFilename = $_GET['exportFilename'];
 $getFileToSave = '../' . $_GET['fileТoSave'];
 
@@ -25,29 +24,27 @@ function ReadfileChunked($filename,$chunk_size)
     return fclose($fileHandler);
 }
 
-if (!isset($getExportFileExtension) || !isset($getExportFilename) || !isset($getFileToSave)) {
-    echo "<p>Fill the whole download form.</p>";
-    exit;
+if (!isset($getExportFilename) || !isset($getFileToSave)) {
+    die("<p>Fill the whole download form.</p>");
 }
 
 include_once "utils/utils.php";
 $fileToSave = SanitizeInput($getFileToSave);
+
 if (!file_exists($fileToSave)) {
     error_log("The file [" . "$fileToSave" . ", which the user wants to save, doesn't exist");
-    echo "<p>Problem with the system, try later</p>";
-    exit;
+    die("<p>Problem with the system, try later</p>");
 }
 
-$exportExtension = SanitizeInput($getExportFileExtension);
 $exportFilename = SanitizeInput($getExportFilename);
 
-if (empty($exportExtension) || empty($exportFilename)) {
+if (empty($exportFilename)) {
     echo "<p>Illegal usage of symbols in the name of export file or its extension</p>";
     exit;
 }
 
-header('Content-Type: ' . $exporting_configs["mimetypes"][$exportExtension]);
-header('Content-Disposition: attachment; filename=' . basename($exportFilename . "." . $exportExtension));
+header('Content-Type: ' . $exporting_configs["mimetypes"]['xlsx']);
+header('Content-Disposition: attachment; filename=' . basename($exportFilename));
 
 if (!ReadfileChunked($fileToSave,$exporting_configs["chunk_size"])) {
     error_log("Problem during streaming file [" . $fileToSave . "] to the client");

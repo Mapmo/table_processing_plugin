@@ -48,25 +48,13 @@
         <input id="colToBeautify" type="hidden">
     </div>
 
-    <?php
-    include "includes/print_table.php";
-    define("SUPPORTED_FILE_EXTENSIONS", ["xlsx"]);
-
-    $nameOfTable = pathinfo(explode('-', $uploadedFileName)[1], PATHINFO_FILENAME);
-    ?>
+    <?php include "includes/print_table.php"; ?>
 
     <!-- Form to chooses how to save the table -->
     <form action="includes/streamfile.php" onsubmit="return check()">
         <label for="table">Choose a name for the exported file:</label>
-        <input type="text" name="fileТoSave" value=<?php echo $uploadedFileName ?> hidden>
-        <input type="text" name="exportFilename" value=<?php echo $nameOfTable ?> required>
-        <select id="extension" name="exportFileExtension" required>
-            <?php
-            foreach (SUPPORTED_FILE_EXTENSIONS as $ext) {
-                echo '<option value="' . $ext . '">.' . $ext . '</option>';
-            }
-            ?>
-        </select>
+        <input type="text" name="fileТoSave" value="<?php echo $uploadedFileName ?>" hidden/>
+        <input type="text" name="exportFilename" value="<?php echo basename($uploadedFileName); ?>" required/>
         <input type="submit" value="Save as">
     </form>
 </body>
