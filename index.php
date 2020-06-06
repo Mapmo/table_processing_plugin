@@ -23,15 +23,15 @@
 			<input type="submit">
 		</form>
 
-		<h2>Select files that you want to edit:</h2>	
+		<h2>Files that you have access to:</h2>	
 		<?php 
-		
-			#add validation
-			$file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
-			$parsed = yaml_parse($file);
+			$filePath  = 'users/' . $_SESSION['user'] . '/shared_files.yml';
+			if (file_exists($filePath)) {
+			    $file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
+			    $parsed = yaml_parse($file);
 		?>
 		<?php
-			foreach ($parsed as $file) {
+			    foreach ($parsed as $file) {
 		?>
 				<form action="visual.php" method="post">
 					<input name ="table" value="<?php echo "users/" . $file['owner'] . '/uploads/' . $file['name']; ?>" hidden />
@@ -52,9 +52,13 @@
 					<input type="submit" value="Edit"/>
 				</form>
 				<br/>
-		<?php   } ?>
-		<?php
-		} else { ?>
+		<?php   
+			}
+		    } else { ?>
+			<h3>You have no uploaded/shared files</h3>
+	<?php
+ 		   } 
+	} else { ?>
 	<h1>You are currently not logged in the system.</h1>
 	<a href="login_form.php">Login</a>
 	<a href="register_form.php">Register</a>
