@@ -23,7 +23,7 @@ for ($i = 0; $i < $total; $i++) {
     if (file_exists($newFilePath)) {
 	$i = 1;
 	do {
-	    $tmp = $newFilePath . '(' . $i++ . ')';
+	    $tmp = $targetDir . '(' . $i++ . ')' . $fileName;
 	} while(file_exists($tmp));
 	
 	$newFilePath = $tmp;
