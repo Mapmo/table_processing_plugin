@@ -29,10 +29,12 @@
 			if (file_exists($filePath)) {
 			    $file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
 			    $parsed = yaml_parse($file);
-		?>
+
+			    if(empty($parsed)) { ?>
+				<h3>You have no uploaded/shared files</h3>
 		<?php
-			    foreach ($parsed as $file) {
-		?>
+			    } else {
+				foreach ($parsed as $file) { ?>
 				<form action="visual.php" method="post">
 					<input name ="table" value="<?php echo "users/" . $file['owner'] . '/uploads/' . $file['name']; ?>" hidden />
 					<?php 
@@ -53,6 +55,7 @@
 				</form>
 				<br/>
 		<?php   
+				}
 			}
 		    } else { ?>
 			<h3>You have no uploaded/shared files</h3>
