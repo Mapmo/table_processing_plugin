@@ -97,7 +97,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
 	* Извежда ред по ред стойностите на таблицата
 
     * /includes/print_row_search
-	* Обхожда таблицата ред по ред и принтира само тези, които отговарят на regex стойността от $_GET['search']
+	* Обхожда таблицата ред по ред и принтира само тези, които отговарят на regex стойността от $_POST['search']
 
     * /includes/update_table.php
         * Получава заявка със съдържанието на всички клетки от таблицата и името на таблицата

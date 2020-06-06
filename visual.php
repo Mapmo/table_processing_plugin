@@ -3,7 +3,7 @@
 
 <?php
 session_start();
-if (!isset($_GET['table'])) {
+if (!isset($_POST['table'])) {
     include "includes/parse_file.php";
 }
 
@@ -24,7 +24,7 @@ if (!isset($_GET['table'])) {
     </form>
 
     <!-- Form to choose which table to display -->
-    <form onsubmit="return check()">
+    <form onsubmit="return check()" method="post">
         <label for="table">Choose table to edit:</label>
         <select id="table" name="table">
             <?php
@@ -42,18 +42,18 @@ if (!isset($_GET['table'])) {
 
     <?php
 
-    if (!isset($_GET['table'])) {
+    if (!isset($_POST['table'])) {
         exit;
     }
-    $uploadedFileName = $_GET['table'];
+    $uploadedFileName = $_POST['table'];
 
     ?>
 
     <!-- Form to choose a phrase to search for in the table -->
-    <form onsubmit="return check()">
+    <form onsubmit="return check()" method="post" >
         <label for="search">Choose value to search: </label>
-        <input type="text" id="search" name="search" value="<?php if (isset($_GET['search'])) {
-                                                                echo $_GET['search'];
+        <input type="text" id="search" name="search" value="<?php if (isset($_POST['search'])) {
+                                                                echo $_POST['search'];
                                                             } ?>" />
         <input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden />
         <input type="submit" />
