@@ -15,6 +15,11 @@
     	<input type="submit" value="Logout">
     </form>
 
+    <!-- Go Back form -->
+    <form action ="index.php" onsubmit="return check()">
+	<input type="submit" value="Back to home">
+    </form>
+
     <?php
 
     if (!isset($_POST['table'])) {
