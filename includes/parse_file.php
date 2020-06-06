@@ -44,8 +44,8 @@ for ($i = 0; $i < $total; $i++) {
     fwrite($shared, ""); #for empty line
 }
 
-if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-    $_SESSION[$fileName] = $newFilePath;
+if (!move_uploaded_file($tmpFilePath, $newFilePath)) {
+	die("Failed to move the uploaded file to the user's directory");
 }
 
 header('Location: ../index.php');

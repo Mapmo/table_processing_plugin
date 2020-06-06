@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-session_start();
-?>
-
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <title>Table Processing Plugin</title>
@@ -17,23 +13,6 @@ session_start();
     <!-- Logout -->
     <form action="includes/logout.php" onsubmit="return check()">
     	<input type="submit" value="Logout">
-    </form>
-
-    <!-- Form to choose which table to display -->
-    <form onsubmit="return check()" method="post">
-        <label for="table">Choose table to edit:</label>
-        <select id="table" name="table">
-            <?php
-            foreach (array_keys($_SESSION) as $r) {
-		#There are reservet keywords is session now
-		if($r === "captcha" || $r === "user") { 
-			continue; 
-		} 
-                echo '<option value="' . $_SESSION[$r] . '">' . $r . '</option>';
-            }
-            ?>
-        </select>
-        <input type="submit" />
     </form>
 
     <?php
