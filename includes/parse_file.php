@@ -1,5 +1,7 @@
 <?php
-$targetDir = "users/" . $_SESSION['user'] . "/uploads/";
+session_start();
+
+$targetDir = "../users/" . $_SESSION['user'] . "/uploads/";
 if (!file_exists($targetDir)) {
     mkdir($targetDir, 0777, true);
 }
@@ -45,3 +47,5 @@ for ($i = 0; $i < $total; $i++) {
 if (move_uploaded_file($tmpFilePath, $newFilePath)) {
     $_SESSION[$fileName] = $newFilePath;
 }
+
+header('Location: ../index.php');

@@ -3,10 +3,6 @@
 
 <?php
 session_start();
-if (!isset($_POST['table'])) {
-    include "includes/parse_file.php";
-}
-
 ?>
 
 <head>
