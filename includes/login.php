@@ -31,7 +31,7 @@ if (!$firstrow) {
 if ($password === $firstrow['password']) {
         #logs the user in the system
         var_dump($firstrow);
-        $_SESSION['user']  = $firstrow['id'];
+        $_SESSION['user']  = $_POST['user'];
 
         CloseCon($db_connection);
         header('Location: ../');

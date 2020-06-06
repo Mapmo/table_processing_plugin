@@ -1,0 +1,12 @@
+- name: test.xlsx(5) 
+  owner: 1
+  write: 1
+
+- name: test.xlsx(7)
+  owner: 1
+  write: 1
+
+- name: test.xlsx(8)
+  owner: root
+  write: 1
+

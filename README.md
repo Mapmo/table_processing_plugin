@@ -12,12 +12,12 @@ Final project for the Web Technologies subject at FMI, Sofia University
         * Логнат потребител вижда форма, в която могат да се качват файлове (1 или много) само с разширение .xlsx - Excel 2007+ файлове]
         * При submit се праща POST HTTP заявка към файла visual.php
 
-    * /login.php
+    * /login_form.php
 	* Позволява на потребителя да въведе потребителско име и парола
 	* Пренасочва към includes/login.php, където се извършва валидация и същинско логване в системата
 	* Използва /includes/captcha.php за създаване на captcha image
 
-    * /register.php
+    * /register_form.php
 	* Позволява на потребителя да се регистрира в системата
 	* Пренасочва към includes/register.php, където се извършва същинкста регистрация или евентуален провал
 	* Използва /includes/captcha.php за създаване на captcha image
@@ -64,7 +64,8 @@ Final project for the Web Technologies subject at FMI, Sofia University
 
     * /includes/login.php
 	* Извършва валидация за влизане в системата
-	* Извиква се от /login.php 
+	* Извиква се от /logini_form.php 
+	* Сетва $_SESSION['user'] = $_POST['user']
 
    * /includes/logout.php
 	* Унищожава сесията и пренасочва към index.php
@@ -74,6 +75,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
         * Създава се директорията ./users/USER_ID/uploads (ако не съществува)
         * За всеки един файл:
             * преместваме го в /users/uploads директорията, като ако вече има такъв файл там го преименуваме с индексче
+	    * добавя мета данните му в shared_files.yaml файла на потребителя
 
     * /includes/print_table.php
         * Файлът се парсва и се репрезентира на страницата като таблица, чиито клетки могат да се редактират
