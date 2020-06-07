@@ -8,6 +8,9 @@ if(isset($_GET['warn'])) {
 		case "self_share":
 			echo "Cannot share with yourself";
 			break;
+		case "unknown":
+			echo "Could not find user";
+			break;
 	}
 	echo "</h3>";
 }
