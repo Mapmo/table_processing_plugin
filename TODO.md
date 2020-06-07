@@ -10,7 +10,6 @@ Importing xlsx files - Tanya
 	- add numbers and digits to the cells  Martin
 	
 Manipulating data - Martin\
-	- option to share table with other users\
 
 Exporting data - Daniel\
     	- Use different folder for downloading/conversion stage Daniel\

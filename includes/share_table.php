@@ -7,7 +7,7 @@ if ($_SESSION['user'] === $userTo) {
 	exit;
 }
 
-include "db_connection.php";
+include("db_connection.php");
 $db_connection = OpenCon();
 
 $hash_config = parse_ini_file("../configs/hash.ini");
@@ -27,4 +27,14 @@ if(!$login_query->fetch(PDO::FETCH_ASSOC)) {
 	exit;
 }
 
+$yamlPath = $targetDir = "../users/" . $userTo . "/shared_files.yml";
+$name = $_POST['name'];
+$owner = $_POST['owner'];
+$write = $_POST['write'];
+
+include("utils/yaml.php");
+
+YamlAppend($yamlPath, $name, $owner, $write);
+
+header('Location: /index.php?ok=share');
 ?>
