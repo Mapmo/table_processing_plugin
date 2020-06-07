@@ -21,3 +21,6 @@ Exporting data - Daniel\
 for future:\
 UI styles\
 Create a dropdown to select an operation (if we add more)
+make the share form hide when not active in index.php
+index.php requires some code to be extracted in another files
+print_row_(no)search files have common code that should be extracted
