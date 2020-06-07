@@ -28,7 +28,7 @@ $firstrow = $login_query->fetch(PDO::FETCH_ASSOC);
 CloseCon($db_connection);
 
 if (!$firstrow) {
-	header('Location: ../login_form.php?warn=data1');
+	header('Location: ../login_form.php?warn=data');
 	exit;
 }
 
