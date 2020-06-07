@@ -24,13 +24,11 @@ if(!$result = $login_query->execute()) {
 	die("Failed to query from DB!");
 }
 
+$firstrow = $login_query->fetch(PDO::FETCH_ASSOC);
 CloseCon($db_connection);
 
-if(!$firstrow = $login_query->fetch(PDO::FETCH_ASSOC)) {
- 	die("Not valid username or/and password.");
-}
 if (!$firstrow) {
-	header('Location: ../login_form.php?warn=data');
+	header('Location: ../login_form.php?warn=data1');
 	exit;
 }
 
