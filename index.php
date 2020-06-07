@@ -13,9 +13,9 @@
 	if(isset($_SESSION['user'])) { 
 	?>
 		<!-- Logout -->
-    		<form action="includes/logout.php" onsubmit="return check()">
+    	<form action="includes/logout.php" onsubmit="return check()">
         		<input type="submit" value="Logout">
-   		 </form>
+   		</form>
 
 		<!-- Upload file(s) form -->
 		<?php include("includes/upload_file_form.php"); ?>
@@ -28,18 +28,18 @@
             include("includes/index_warnings.php");
 
 			$filePath  = 'users/' . $_SESSION['user'] . '/shared_files.yml';
-			if (file_exists($filePath)) {
-			    $file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
-			    $parsed = yaml_parse($file);
+		if (file_exists($filePath)) {
+			$file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
+			$parsed = yaml_parse($file);
 
-			    if(empty($parsed)) { ?>
+			if(empty($parsed)) { ?>
 				<h3>You have no uploaded/shared files</h3>
 		<?php
-			    } else {
+			} else {
 				foreach ($parsed as $file) { ?>
 		<!-- The form with the Edit button -->
-				<form action="visual.php" method="post">
-					<input name ="table" value="<?php echo "users/" . $file['owner'] . '/uploads/' . $file['name']; ?>" hidden />
+					<form action="visual.php" method="post">
+						<input name ="table" value="<?php echo "users/" . $file['owner'] . '/uploads/' . $file['name']; ?>" hidden />
 					<?php 
 					echo $file['owner'] . ': ' . $file['name'] . ' - ';
 						
@@ -77,11 +77,9 @@
 			<h3>You have no uploaded/shared files</h3>
 	<?php
  		} 
-	} else { ?>
-	<h1>You are currently not logged in the system.</h1>
-	<a href="login_form.php">Login</a>
-	<a href="register_form.php">Register</a>
-	<?php } ?>
+	} else {
+		include("includes/not_logged.php");
+	} ?>
 </body>
 
 </html>
