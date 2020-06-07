@@ -21,7 +21,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
 
     * /register_form.php
 	* Позволява на потребителя да се регистрира в системата
-	* Пренасочва към includes/register.php, където се извършва същинкста регистрация или евентуален провал
+	* Пренасочва към includes/register.php, където се извършва същинската регистрация или евентуален провал
 	* Използва /includes/captcha.php за създаване на captcha image
 	
     * /visual.php
@@ -66,7 +66,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
 
     * /includes/login.php
 	* Извършва валидация за влизане в системата
-	* Извиква се от /logini_form.php 
+	* Извиква се от /login_form.php 
 	* Сетва $_SESSION['user'] = $_POST['user']
 
    * /includes/logout.php
