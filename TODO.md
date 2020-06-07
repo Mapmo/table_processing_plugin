@@ -10,9 +10,10 @@ Importing xlsx files - Tanya
 	- add numbers and digits to the cells  Martin
 	
 Manipulating data - Martin\
+	print_row_(no)search files have common code that should be extracted
+	redaonly functionality	
 
 Exporting data - Daniel\
-    	- Use different folder for downloading/conversion stage Daniel\
 	- backup files Daniel\
 	- configuration file for settings Daniel
 	- streamfile -> stream_file и го добави в документацията
@@ -20,6 +21,7 @@ Exporting data - Daniel\
 for future:\
 UI styles\
 Create a dropdown to select an operation (if we add more)
-make the share form hide when not active in index.php
-index.php requires some code to be extracted in another files
-print_row_(no)search files have common code that should be extracted
+make the share form hide when not active in includes/share_table_form.php
+deleting files from index
+resizing of inputs while editting in visual.php?
+checihng whether a file that we want to share is in user's yaml file in order to avoid duplicates
