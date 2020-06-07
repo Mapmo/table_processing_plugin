@@ -74,10 +74,10 @@ Final project for the Web Technologies subject at FMI, Sofia University
 	* includes/js/beautify.js
 	    * Съдържа функции, свързани с прилагането на форматиране на клетките на таблицата (toggleBoldStyle, etc.) и updateRowAndCol функцията, която ъпдейтва избраната клетка (чрез скритите input полета с id-та rowToBeautify и colToBeautify от visual.php)
 
- * /includes/login.php
-  * Извършва валидация за влизане в системата
-	* Извиква се от /login_form.php 
-	* Сетва $_SESSION['user'] = $_POST['user']
+    * /includes/login.php
+		* Извършва валидация за влизане в системата
+		* Извиква се от /login_form.php 
+		* Сетва $_SESSION['user'] = $_POST['user']
 
 	* /includes/logout.php
 		* Унищожава сесията и пренасочва към index.php
