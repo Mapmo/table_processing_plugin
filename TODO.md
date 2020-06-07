@@ -10,7 +10,6 @@ Importing xlsx files - Tanya
 	- add numbers and digits to the cells  Martin
 	
 Manipulating data - Martin\
-	print_row_(no)search files have common code that should be extracted
 	redaonly functionality	
 
 Exporting data - Daniel\
