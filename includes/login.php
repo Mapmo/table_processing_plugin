@@ -24,12 +24,12 @@ if(!$result = $login_query->execute()) {
 	die("Failed to query from DB!");
 }
 
+CloseCon($db_connection);
+
 if(!$firstrow = $login_query->fetch(PDO::FETCH_ASSOC)) {
-	CloseCon($db_connection);
  	die("Not valid username or/and password.");
 }
 if (!$firstrow) {
-	CloseCon($db_connection);
 	header('Location: ../login_form.php?warn=data');
 	exit;
 }
@@ -37,11 +37,8 @@ if (!$firstrow) {
 if ($password === $firstrow['password']) {
     #logs the user in the system
     $_SESSION['user']  = $_POST['user'];
-
-    CloseCon($db_connection);
     header('Location: ../');
 } else {
-    CloseCon($db_connection);
     header('Location: ../login_form.php?warn=data');
     exit;
 }
