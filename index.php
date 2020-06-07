@@ -46,30 +46,14 @@
 		<h3>You have no uploaded/shared files</h3>
 	<?php
 	} else {
-		foreach ($parsed as $file) { ?>
-	<!-- The form with the Edit button -->
-			<form action="visual.php" method="post">
-				<input name ="table" value="<?php echo "users/" . $file['owner'] . '/uploads/' . $file['name']; ?>" hidden />
-			<?php 
-			echo $file['owner'] . ': ' . $file['name'] . ' - ';
-				
-			switch($file['write']) {
-				case 0:
-				echo "readony";
-				break;
-				case 1:
-				echo "writeable";
-				break;
-				default:
-				echo "Corrupted";
-				break;
-			}?>
-			<input type="submit" value="Edit"/>
-		</form>
-	
-	<!-- here should be some js that pops the form to type username and rights, rather than having them shown all the time -->
-	<!-- The form for sharing a file with other users -->
-		<form method="post" action="includes/share_table.php">
+		foreach ($parsed as $file) {
+
+			#The form with the Edit button
+			include("includes/edit_button.php");
+	?>
+		<!-- here should be some js that pops the form to type username and rights, rather than having them shown all the time -->
+		<!-- The form for sharing a file with other users -->
+			<form method="post" action="includes/share_table.php">
 				<input name="name" value="<?php echo $file['name'];?>" hidden />
 				<input name="owner" value="<?php echo $file['owner'];?>" hidden />
 				<input type="text" name="userTo" placeholder="User to share the file with" required />
