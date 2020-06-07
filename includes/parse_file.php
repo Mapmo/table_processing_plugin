@@ -11,7 +11,6 @@ $files = array_filter($_FILES['upload']['name']);
 $total = count($_FILES['upload']['name']);
 
 for ($i = 0; $i < $total; $i++) {
-
     $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
 
     if ($tmpFilePath === "") {
@@ -23,9 +22,9 @@ for ($i = 0; $i < $total; $i++) {
     $newFilePath = $targetDir . $fileName;
     #If the file is already there, this for loop will determine the first suitable name for it
     if (file_exists($newFilePath)) {
-	$i = 1;
+	$index = 1;
 	do {
-	    $tmp = $targetDir . '(' . $i++ . ')' . $fileName;
+	    $tmp = $targetDir . '(' . $index++ . ')' . $fileName;
 	} while(file_exists($tmp));
 	
 	$newFilePath = $tmp;
@@ -42,10 +41,10 @@ for ($i = 0; $i < $total; $i++) {
     fwrite($shared, $owner);
     fwrite($shared, $write);
     fwrite($shared, ""); #for empty line
-}
-
-if (!move_uploaded_file($tmpFilePath, $newFilePath)) {
+    
+    fclose($shared);
+    if (!move_uploaded_file($tmpFilePath, $newFilePath)) {
 	die("Failed to move the uploaded file to the user's directory");
+    }
 }
-
 header('Location: ../index.php');
