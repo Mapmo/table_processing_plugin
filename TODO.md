@@ -10,7 +10,6 @@ Importing xlsx files - Tanya
 	- add numbers and digits to the cells  Martin
 	
 Manipulating data - Martin\
-	redaonly functionality	
 
 Exporting data - Daniel\
 	- backup files Daniel\
