@@ -61,7 +61,7 @@
 				<form method="post" action="includes/share_table.php">
 						<input name="name" value="<?php echo $file['name'];?>" hidden />
 						<input name="owner" value="<?php echo $file['owner'];?>" hidden />
-						<input type="text" name="userTo" placeholder="User to share the file with" />
+						<input type="text" name="userTo" placeholder="User to share the file with" required />
 						<select name="write">
 							<option value="0">Readonly</option>
 							<option value="1">Edit</option>
