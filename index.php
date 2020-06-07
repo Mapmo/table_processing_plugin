@@ -4,6 +4,7 @@
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 	<title>Table Processing Plugin</title>
+    <link rel="stylesheet" href="includes/css/main.css">
 </head>
 
 <body>
@@ -23,9 +24,23 @@
 			<input type="submit" value="Upload">
 		</form>
 
-		<!-- The list of accessible files for the user -->
 		<h2>Files that you have access to:</h2>	
-		<?php 
+
+		<!-- The list of accessible files for the user -->
+			<?php
+			#Warning message when the user attemts to do something wrong
+            if(isset($_GET['warn'])) {
+			 ?>
+                <h3 class="warn">
+            <?php
+                    switch($_GET['warn']) {
+                        case "self_share":
+                            echo "Cannot share with yourself";
+                            break;
+                    }
+                    echo "</h3>";
+			}
+
 			$filePath  = 'users/' . $_SESSION['user'] . '/shared_files.yml';
 			if (file_exists($filePath)) {
 			    $file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
