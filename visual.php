@@ -36,7 +36,7 @@
                                                                 echo $_POST['search'];
                                                             } ?>" />
         <input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden />
-        <input type="submit" />
+        <input type="submit" value="Search" />
     </form>
 
     <br>
