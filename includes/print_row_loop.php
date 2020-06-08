@@ -13,5 +13,6 @@ if($_POST['write'] === "1") {
 <?php    	
 	}
 }
-	echo '</tr>';
 ?>
+
+</tr>
