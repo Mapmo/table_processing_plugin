@@ -14,7 +14,7 @@ for ($i = 0; $i < $total; $i++) {
     $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
 
     if ($tmpFilePath === "") {
-	die("Empty path given");
+        die("Empty path given");
     }
 
     #Determine the absolute path to the new name of the uploaded file
@@ -22,13 +22,22 @@ for ($i = 0; $i < $total; $i++) {
     $newFilePath = $targetDir . $fileName;
     #If the file is already there, this for loop will determine the first suitable name for it
     if (file_exists($newFilePath)) {
-	$index = 1;
-	do {
-	    $tmp = $targetDir . '(' . $index++ . ')' . $fileName;
-	} while(file_exists($tmp));
-	
-	$newFilePath = $tmp;
-    }	
+        $index = 1;
+        do {
+            $tmp = $targetDir . '(' . $index++ . ')' . $fileName;
+        } while (file_exists($tmp));
+
+        $newFilePath = $tmp;
+    }
+
+    #Create beautifiers subdirectory of users/$_SESSION['user'] if it doesn't exist
+    $beautifierPath = $targetDir . '../beautifiers/';
+    if (!file_exists($beautifierPath)) {
+        mkdir($beautifierPath, 0777, true);
+    }
+    #Create beautifier file for the new table in users/$_SESSION['user']/beautifiers directory
+    $jsonPath = $beautifierPath . pathinfo(basename($newFilePath), PATHINFO_FILENAME) . '.json';
+    $jsonFile = fopen($jsonPath, 'a');
 
     #Add the information to the shared_files.yaml file
     $yaml_path = $targetDir . '../shared_files.yml';
@@ -41,10 +50,10 @@ for ($i = 0; $i < $total; $i++) {
     fwrite($shared, $owner);
     fwrite($shared, $write);
     fwrite($shared, ""); #for empty line
-    
+
     fclose($shared);
     if (!move_uploaded_file($tmpFilePath, $newFilePath)) {
-	die("Failed to move the uploaded file to the user's directory");
+        die("Failed to move the uploaded file to the user's directory");
     }
 }
 header('Location: ../index.php');
