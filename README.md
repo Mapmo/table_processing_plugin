@@ -60,6 +60,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
    * /includes/js
 	* /includes/js/update.js
 	    * Съдържа функцията check(), която служи за цъкане на скрития бутон за update във формата с таблицата
+		* извиква се и функцията updateBeautifier(), което ъпдейтва всички приложени от потребителя стилове в съответните json файлове в директорията users/{user_id}/beautifiers
 
 	* includes/js/beautify.js
 	    * Съдържа функции, свързани с прилагането на форматиране на клетките на таблицата (toggleBoldStyle, etc.) и updateRowAndCol функцията, която ъпдейтва избраната клетка (чрез скритите input полета с id-та rowToBeautify и colToBeautify от visual.php)
@@ -110,12 +111,16 @@ Final project for the Web Technologies subject at FMI, Sofia University
     * /includes/utils
 	* Съдържа основни функции, за манипулиране на данни
 
-/users - съхранява файловете на потребителите
+* /users - съхранява файловете на потребителите
 	* 0 - default user, използва се като skel при създаването на нови потребители
 	    * shared_files.yml - използва се за съхранение на файловете, които са споделени с потребителя. Има 3 параметъра:
 		- name: име на файла
 		- owner: собственик на файла
 		- write: 0/1 (0 - само четене, 1 - редакция)
+	* /{user_id}/beautifiers 
+		- пази информация за приложените стилове (bold, italic и underline) върху таблиците на потребителя с идентификатор user_id
+		- съдържа файлове в json формат
+		- всеки json е наименован със съответното име на таблицата (това в /uploads)
 			
 * /configs
 	* /configs/database.ini - Съдържа необходимите конфигурациите за свързване с базата
