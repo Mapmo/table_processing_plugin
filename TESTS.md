@@ -174,6 +174,18 @@ Expected results:
 Expected results:
 	- All styles appear and disapper
 
+	10. Add new styles to some cell/cells of a table. Click on "Back to home". Then click on "Edit" button for the same table.
+Expected results:
+	- The applied styles are still there.
+
+	11. Add new styles to some cell/cells of a table. Click on "Logout". Then use the credentials of the same user to Login. Click on "Edit" button for the same table.
+Expected results:
+	- The applied styles are still there.
+
+	12. Add new styles to some cell of a table. Then type in serach field a value that is a substring of text in the newly styled cell. Click on "Search".
+Expected results:
+	- The applied styles on the specific cell are still there.
+
 6. Exporting tables
 Pretasks:
 	- Test 5 is success
