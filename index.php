@@ -33,7 +33,7 @@
 	#Warning message when the user attemts to do something wrong
 	include("includes/index_warnings.php");
 	include("includes/index_ok.php");
-	include(".\includes\utils\yaml.php");
+	include("includes/utils/yaml.php");
 	
 	#Figure the location of the shared_files.yml
 	$filePath  = 'users/' . $_SESSION['user'] . '/shared_files.yml';
