@@ -12,4 +12,29 @@ function YamlAppend($yamlPath, $name, $owner, $write) {
 
     fclose($shared);
 }
+
+function YamlParse($content)
+{
+    $entities = explode("- ", $content);
+    $parsedContent = array();
+
+    foreach ($entities as $entity) {
+        if (trim($entity) !== "") {
+            $rows = explode("\n", $entity);
+            $parsedEntity = array();
+
+            foreach ($rows as $row) {
+                if (strpos($row, ":") !== FALSE) {
+                    $fields = explode(":", $row);
+
+                    for ($i = 0; $i < count($fields); $i = $i + 2) {
+                        $parsedEntity[trim($fields[$i])] = trim($fields[$i + 1]);
+                    }
+                }
+            }
+            $parsedContent[] = $parsedEntity;
+        }
+    }
+    return $parsedContent;
+}
 ?>

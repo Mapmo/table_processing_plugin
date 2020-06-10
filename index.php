@@ -29,9 +29,11 @@
 	
 	<!-- The list of accessible files for the user -->
 	<?php
+
 	#Warning message when the user attemts to do something wrong
 	include("includes/index_warnings.php");
 	include("includes/index_ok.php");
+	include(".\includes\utils\yaml.php");
 	
 	#Figure the location of the shared_files.yml
 	$filePath  = 'users/' . $_SESSION['user'] . '/shared_files.yml';
@@ -41,8 +43,8 @@
 		die("The file that contains information for you shared files is missing. Contact administrators ASAP");
 	}
 	$file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
-	$parsed = yaml_parse($file);
-	
+	$parsed = YamlParse($file);
+
 	if(empty($parsed)) { ?>
 		<h3>You have no uploaded/shared files</h3>
 	<?php
@@ -54,7 +56,6 @@
 	?>
 		<!-- The form for sharing a file with other users -->
 		<?php include("includes/share_table_form.php"); ?>
-
 	<br/>
 	<?php   
 		}
