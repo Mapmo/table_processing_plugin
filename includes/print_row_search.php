@@ -4,7 +4,7 @@ $hasAnyItem = false; //in case there is no match
 foreach ($xlsx->rows() as $r) {
 	$row++;
 
-	$item = '/' . $_GET['search'] . '/i';
+	$item = '/' . $_POST['search'] . '/i';
 	$height = 'style="display: none;"'; //if the regex is not met, then make the line invisible
 	for ($i = 0; $i < $column; $i++) {
 		if (preg_match($item, $r[$i])) {

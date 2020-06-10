@@ -1,7 +1,7 @@
 <?php
 include "SimpleXLSX.php";
 
-$table = $_GET['table'];
+$table = $_POST['table'];
 
 if ($xlsx = SimpleXLSX::parse($table)) { ?>
     <form action="/includes/update_table.php" method="post">
@@ -17,7 +17,7 @@ if ($xlsx = SimpleXLSX::parse($table)) { ?>
                 }
             }
 
-            if (isset($_GET['search'])) {
+            if (isset($_POST['search'])) {
                 include "print_row_search.php";
             } else {
                 include "print_row_nosearch.php";
