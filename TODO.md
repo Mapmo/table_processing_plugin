@@ -8,6 +8,7 @@ Importing xlsx files - Tanya
 	- locking of cell Tanya
 	- maximum of uploaded files Tanya\
 	- add numbers and digits to the cells  Martin
+	- remove beautifier buttons in readonly mode
 	
 Manipulating data - Martin\
 
