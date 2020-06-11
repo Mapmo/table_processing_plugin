@@ -40,18 +40,15 @@ for ($i = 0; $i < $total; $i++) {
     $jsonFile = fopen($jsonPath, 'a');
 
     #Add the information to the shared_files.yaml file
-    $yaml_path = $targetDir . '../shared_files.yml';
-    $shared = fopen($yaml_path, 'a');
-    $name = "- name: " . basename($newFilePath) . "\n";
-    $owner = "  owner: " . $_SESSION['user'] . "\n";
-    $write = "  write: 1\n\n";
 
-    fwrite($shared, $name);
-    fwrite($shared, $owner);
-    fwrite($shared, $write);
-    fwrite($shared, ""); #for empty line
-
-    fclose($shared);
+	include("utils/yaml.php");
+	
+	$yamlPath = $targetDir . '../shared_files.yml';
+	$name = basename($newFilePath);
+	$owner = $_SESSION['user'];
+	$write = 1; #because he is the owner of the file
+	YamlAppend($yamlPath, $name, $owner, $write);   
+ 
     if (!move_uploaded_file($tmpFilePath, $newFilePath)) {
         die("Failed to move the uploaded file to the user's directory");
     }

@@ -17,11 +17,7 @@ if ($xlsx = SimpleXLSX::parse($table)) { ?>
                 }
             }
 
-            if (isset($_POST['search'])) {
-                include "print_row_search.php";
-            } else {
-                include "print_row_nosearch.php";
-            }
+            include("print_row.php");
 
             ?>
         </table>

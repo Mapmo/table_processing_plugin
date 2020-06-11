@@ -4,8 +4,13 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <title>Table Processing Plugin</title>
-    <script defer src="includes/js/update.js"></script>
-    <script defer src="includes/js/beautify.js"></script>
+<?php
+	if($_POST['write'] === "1") { ?>
+    	<script defer src="includes/js/update.js"></script>
+<?php	
+	} ?>
+   
+<script defer src="includes/js/beautify.js"></script>
     <link rel="stylesheet" type="text/css" href="includes/css/beautify.css">
 </head>
 
@@ -36,6 +41,7 @@
                                                                 echo $_POST['search'];
                                                             } ?>" />
         <input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden />
+        <input type="text" name="write" value="<?php echo $_POST['write']; ?>" hidden />
         <input type="submit" value="Search" />
     </form>
 

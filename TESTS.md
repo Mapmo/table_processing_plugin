@@ -198,7 +198,76 @@ Expected results:
 Expected results:
 	- The file is downloaded successfully
 
+7. Share files
+Pretasks:
+	- Have 2 accounts in the system
+	- At least one of the accounts should have a file that is not shared with the other account
+	- Make sure you know what files both accounts have
 
+Steps:
+	1. Login to the system with the account that will be sharing the file
+Expected results:
+	- You log in successfully
 
+	2. In the field under the file for sharing type the name of the other account. Make sure the dropdown has value Readonly press "Share"
+Expected results:
+	- You get a green message that share was success
 
+ 	3. Repeat step 2, but use Edit in the dropdown this time
+Expected results:
+	- You get a green message that share was success
 
+	4. Logout of the system and the log in as the other user
+Expected results:
+	- You log in successfully and you see the shared files on the bottom
+	- The user is the same that shared them
+	- The permissions are as you set them
+	- Readonly file is above the writeable file
+
+	5. Click Edit for the Readonly file
+Expected results:
+	- You see all the data, but you cannot edit it
+	
+	6. Type something specifi for search in the search bar and press the Search button
+Expected results:
+	- You see only what you are searching for
+
+	7. Clear the search field and press the Search button
+Expected results:
+	- You see all the rows of the table you uploaded
+
+	8. Click on "Back to home"
+Expected results:
+	- You are back at index.php
+	- All the files are where they were before
+
+	9. Click on the writeable file that you shared with this account
+Expected results:
+	- You see the content of the file
+	- You are able to edit the file
+
+	10. Make some changes in the table and press Search
+Expected results: 
+	- The changes are preserved
+
+	11. Click on "Back to home" and then open the Readonly table that you shared
+Expected results: 
+	- The changes from 10. are there as well
+
+	12. Click on "Back to home"
+
+	13. Type the name of the current account in any field for sharing and press Share
+Expected results: 
+	- You get a warning that you cannot share the file with yourself
+
+	14. Type a non existent name in the share field
+Expected results: 
+	- You are told that there is no such user
+
+	15. Logout and login with the first account
+Expected results:
+	- All the files are there as you left them
+
+	16. Click Edit on the table you shared
+Expected results: 
+	- Verify that the file has been changed in step 10.
