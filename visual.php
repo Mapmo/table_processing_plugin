@@ -6,9 +6,10 @@
     <title>Table Processing Plugin</title>
 <?php
 	include "includes/utils/utils.php";
+	
 	if($_POST['write'] === "1") { ?>
     	<script defer src="includes/js/update.js"></script>
-<?php	
+	<?php	
 	} ?>
    
 <script defer src="includes/js/beautify.js"></script>
@@ -16,13 +17,24 @@
 </head>
 
 <body onload="return getJson()">
-    <!-- Logout -->
-    <form action="includes/logout.php" onsubmit="return check()">
+<?php
+	$uploadedFileName = $_POST['table'];
+    $lockFile = $uploadedFileName . ".lock"; #the lock file that serves as a mutex
+	$locker = locked($lockFile);
+	if($locker !== $_SESSION['user']) {
+		header('Location: /index.php?warn=locked&locker=' . $locker);
+		exit;
+	}
+?> 
+   <!-- Logout -->
+    <form action="includes/logout.php" onsubmit="return check()" method="post">
+		<input name="lock" value="<?php echo $lockFile ?>" hidden/>
         <input type="submit" value="Logout">
     </form>
 
     <!-- Go Back form -->
-    <form action="index.php" onsubmit="return check()">
+    <form action="index.php" onsubmit="return check()" method="post">
+		<input name="lock" value="<?php echo $lockFile ?>" hidden/>
         <input type="submit" value="Back to home">
     </form>
 
@@ -32,13 +44,6 @@
         exit;
     }
 	
-    $uploadedFileName = $_POST['table'];
-    $lockFile = $uploadedFileName . ".lock"; #the lock file that serves as a mutex
-	$locker = locked($lockFile);
-	if($locker !== $_SESSION['user']) {
-		header('Location: /index.php?warn=locked&locker=' . $locker);
-		exit;
-	}
     ?>
 
     <!-- Form to choose a phrase to search for in the table -->
