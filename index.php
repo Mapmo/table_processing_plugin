@@ -4,69 +4,63 @@
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 	<title>Table Processing Plugin</title>
+    <link rel="stylesheet" href="includes/css/main.css">
 </head>
 
 <body>
 	<?php
 	session_start();
-	if(isset($_SESSION['user'])) { 
+
+	#Validation that the user is logged in the system
+	if(!isset($_SESSION['user'])) {
+		include("includes/not_logged.php");
+		exit;
+	}
 	?>
-		<!-- Logout -->
-    		<form action="includes/logout.php" onsubmit="return check()">
-        		<input type="submit" value="Logout">
-   		 </form>
-
-		<!-- Upload file(s) form -->
-		<form action="includes/parse_file.php" enctype="multipart/form-data" method="post">
-			<label for="upload">Select files (accepts only Excel 2007+ files):</label>
-			<input type="file" id="upload" name="upload[]" accept=".xlsx" multiple="multiple"><br><br>
-			<input type="submit" value="Upload">
-		</form>
-
-		<!-- The list of accessible files for the user -->
-		<h2>Files that you have access to:</h2>	
-		<?php 
-			$filePath  = 'users/' . $_SESSION['user'] . '/shared_files.yml';
-			if (file_exists($filePath)) {
-			    $file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
-			    $parsed = yaml_parse($file);
-
-			    if(empty($parsed)) { ?>
-				<h3>You have no uploaded/shared files</h3>
-		<?php
-			    } else {
-				foreach ($parsed as $file) { ?>
-				<form action="visual.php" method="post">
-					<input name ="table" value="<?php echo "users/" . $file['owner'] . '/uploads/' . $file['name']; ?>" hidden />
-					<?php 
-					echo $file['owner'] . ': ' . $file['name'] . ' - ';
-						
-					switch($file['write']) {
-					    case 0:
-						 echo "readony";
-						break;
-					    case 1:
-						echo "writeable";
-						break;
-					    default:
-						echo "Corrupted";
-						break;
-					}?>
-					<input type="submit" value="Edit"/>
-				</form>
-				<br/>
-		<?php   
-				}
-			}
-		    } else { ?>
-			<h3>You have no uploaded/shared files</h3>
+	<!-- Logout -->
+	<form action="includes/logout.php" onsubmit="return check()">
+			<input type="submit" value="Logout">
+	</form>
+	
+	<!-- Upload file(s) form -->
+	<?php include("includes/upload_file_form.php"); ?>
+	
+	<h2>Files that you have access to:</h2>	
+	
+	<!-- The list of accessible files for the user -->
 	<?php
- 		   } 
-	} else { ?>
-	<h1>You are currently not logged in the system.</h1>
-	<a href="login_form.php">Login</a>
-	<a href="register_form.php">Register</a>
-	<?php } ?>
-</body>
 
-</html>
+	#Warning message when the user attemts to do something wrong
+	include("includes/index_warnings.php");
+	include("includes/index_ok.php");
+	include("includes/utils/yaml.php");
+	
+	#Figure the location of the shared_files.yml
+	$filePath  = 'users/' . $_SESSION['user'] . '/shared_files.yml';
+	
+	#Validation that the user has his shared_files.yml file
+	if (!file_exists($filePath)) {
+		die("The file that contains information for you shared files is missing. Contact administrators ASAP");
+	}
+	$file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
+	$parsed = YamlParse($file);
+
+	if(empty($parsed)) { ?>
+		<h3>You have no uploaded/shared files</h3>
+	<?php
+	} else {
+		foreach ($parsed as $file) {
+
+			#The form with the Edit button
+			include("includes/edit_button.php");
+	?>
+		<!-- The form for sharing a file with other users -->
+		<?php include("includes/share_table_form.php"); ?>
+	<br/>
+	<?php   
+		}
+	}
+	?>
+
+</body>
+</html>	
