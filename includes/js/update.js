@@ -16,4 +16,4 @@ function search() {
 		document.getElementById('searchButton').click();
 }
 
-setTimeout(search, 6000000) //Countdown till forcefully refreshing the user's session
+setTimeout(search, 600000) //Countdown till forcefully refreshing the user's session

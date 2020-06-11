@@ -271,3 +271,34 @@ Expected results:
 	16. Click Edit on the table you shared
 Expected results: 
 	- Verify that the file has been changed in step 10.
+
+8. Shared files mutex
+Pretasks:
+	- Have 2 users in the system
+	- The users need to have at least one shared file
+	- You haven't opened this file in the past 10 minutes
+Steps:
+	1. Login with the 2 users in 2 different sessions (use Incognito for something different once)
+	2. Have user A open the shared file
+Expected results:
+	- User A can easily log and edit the file (or view it if it is readonly)
+	3. Have user B open the shared file
+Expected results:
+	- User B cannot open the file and is notified that user A is using it
+	- User A has no problems using the file
+	4. User A goes back to home
+	5. User B attempts to edit the file
+Expected results:
+	- User B enters successfully
+	6. User A attempts to edit the file
+Expected results:
+	- User A cannot open the file and is notified that user A is using it
+	- User B has no problems using the file
+	7. User B logouts of the system
+	8. User A attempts to edit the file
+	- User A enters succesfully
+	9. User B logs back in the system and attempts to edit the file
+	- User B cannot open the file and is notified that user A is using it
+	- User A has no problems using the file
+	10. Exit user A's browser and wait more than 10 minutes to try to edit the file as user B
+	- User B succesfully enters the file for editting
