@@ -6,8 +6,9 @@ function sleep(delay) {
 function check() {
     if (document.getElementById('updateButton')) {
         document.getElementById('updateButton').click();
-        sleep(2000);
     }
+    updateBeautifier();
+    sleep(2000);
     return true;
 }
 
