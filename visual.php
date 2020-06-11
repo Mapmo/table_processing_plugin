@@ -42,7 +42,7 @@
                                                             } ?>" />
         <input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden />
         <input type="text" name="write" value="<?php echo $_POST['write']; ?>" hidden />
-        <input type="submit" value="Search" />
+        <input id="searchButton" type="submit" value="Search" />
     </form>
 
     <br>
