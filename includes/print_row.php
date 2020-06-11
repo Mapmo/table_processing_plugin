@@ -24,7 +24,7 @@ if (!isset($_POST['search'])) {
 			include("includes/print_row_loop.php");
 		}
 
-		if ($hasAnyItem === false) {
+		if (!isset($hasAnyItem)) {
 			echo '<tr><td><h1>No match found</h1></td></tr>';
 		}
 }
