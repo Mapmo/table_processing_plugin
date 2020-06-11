@@ -12,3 +12,8 @@ function check() {
     return true;
 }
 
+function search() {
+		document.getElementById('searchButton').click();
+}
+
+setTimeout(search, 100000) //Countdown till forcefully refreshing the user's session
