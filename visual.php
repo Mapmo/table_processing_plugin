@@ -33,8 +33,8 @@
     }
 	
     $uploadedFileName = $_POST['table'];
-    $lockFile = $uploadedFileName . ".lock";
-	$locker = locked();
+    $lockFile = $uploadedFileName . ".lock"; #the lock file that serves as a mutex
+	$locker = locked($lockFile);
 	if($locker !== $_SESSION['user']) {
 		header('Location: /index.php?warn=locked&locker=' . $locker);
 		exit;
