@@ -25,3 +25,4 @@ resizing of inputs while editting in visual.php?
 checihng whether a file that we want to share is in user's yaml file in order to avoid duplicates
 if something can be done about bold beautifier expanding the input?
 when there are 0 files to upload there is no Go back button
+Extract as configuration the 10 minutes refresh period in /includes/js/update.js and utils/utils.php
