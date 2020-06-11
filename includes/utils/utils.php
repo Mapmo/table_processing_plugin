@@ -25,3 +25,8 @@ function RecursiveCopy($src,$dst) {
     } 
     closedir($dir); 
 }
+
+function locked() {
+	session_start();
+	return "Test";
+}

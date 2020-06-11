@@ -5,6 +5,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <title>Table Processing Plugin</title>
 <?php
+	include "includes/utils/utils.php";
 	if($_POST['write'] === "1") { ?>
     	<script defer src="includes/js/update.js"></script>
 <?php	
@@ -30,8 +31,14 @@
     if (!isset($_POST['table'])) {
         exit;
     }
+	
     $uploadedFileName = $_POST['table'];
-
+    $lockFile = $uploadedFileName . ".lock";
+	$locker = locked();
+	if($locker !== $_SESSION['user']) {
+		header('Location: /index.php?warn=locked&locker=' . $locker);
+		exit;
+	}
     ?>
 
     <!-- Form to choose a phrase to search for in the table -->
