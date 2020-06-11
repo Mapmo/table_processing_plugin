@@ -11,6 +11,8 @@ if(isset($_GET['warn'])) {
 		case "unknown":
 			echo "Could not find user";
 			break;
+		case "locked":
+			echo "Locked by user " . $_GET['locker'];
 	}
 	echo "</h3>";
 }
