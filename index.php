@@ -9,6 +9,9 @@
 
 <body>
 	<?php
+    #Removes the lockfile, thus unlocking the file for editting by others
+    include("includes/unlock_file.php");
+
 	session_start();
 
 	#Validation that the user is logged in the system
