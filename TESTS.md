@@ -296,9 +296,17 @@ Expected results:
 	- User B has no problems using the file
 	7. User B logouts of the system
 	8. User A attempts to edit the file
+Expected results:
 	- User A enters succesfully
 	9. User B logs back in the system and attempts to edit the file
+Expected results:
 	- User B cannot open the file and is notified that user A is using it
 	- User A has no problems using the file
-	10. Exit user A's browser and wait more than 10 minutes to try to edit the file as user B
+	11. Wait more than 11 minutes. Attempt to enter editting with user B
+Expected results:
+	- User B cannot open the file and is notified that user A is using it
+	- User A has no problems using the file
+
+	10. Exit user A's browser and wait more than 11 minutes to try to edit the file as user B
+Expected results:
 	- User B succesfully enters the file for editting
