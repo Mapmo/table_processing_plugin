@@ -8,7 +8,7 @@ function check() {
         document.getElementById('updateButton').click();
     }
     updateBeautifier();
-    sleep(2000);
+    sleep(500);
     return true;
 }
 
