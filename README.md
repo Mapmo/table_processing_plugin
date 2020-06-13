@@ -56,25 +56,26 @@ Final project for the Web Technologies subject at FMI, Sofia University
 		* Форма, която пренасочва index.php -> visual.php за дадена таблица
 		* Появява се под формата на бутон
 
-   	* /includes/fonts
+  * /includes/fonts
 		* Директория, съдържаща много шрифотве
 		* Използват се за /includes/captcha.php	
-
-	* /includes/index_ok.php 
+    
+  * /includes/index_ok.php 
 		* Използва се за обработка на "ок" съобщенията в index.php посредством $_GET['ok']
 
 	* /includes/index_warnings.php
 		* Използва се за обработка на "warn" съобщенията в index.php посредством $_GET['warn']
 
-   	* /includes/js
-		* /includes/js/update.js
-	    	* Съдържа функцията check(), която служи за цъкане на скрития бутон за update във формата с таблицата
+  * /includes/js
+	  * /includes/js/update.js
+	    * Съдържа функцията check(), която служи за цъкане на скрития бутон за update във формата с таблицата
+		  * извиква се и функцията updateBeautifier(), което ъпдейтва всички приложени от потребителя стилове в съответните json файлове в директорията users/{user_id}/beautifiers
 
 	* includes/js/beautify.js
 	    * Съдържа функции, свързани с прилагането на форматиране на клетките на таблицата (toggleBoldStyle, etc.) и updateRowAndCol функцията, която ъпдейтва избраната клетка (чрез скритите input полета с id-та rowToBeautify и colToBeautify от visual.php)
 
-    * /includes/login.php
-	* Извършва валидация за влизане в системата
+ * /includes/login.php
+  * Извършва валидация за влизане в системата
 	* Извиква се от /login_form.php 
 	* Сетва $_SESSION['user'] = $_POST['user']
 
@@ -126,12 +127,16 @@ Final project for the Web Technologies subject at FMI, Sofia University
 		* /includes/yaml.php
 			* Съдържа функция за append-ване в shared_files.yaml файла на потребителя
 
-/users - съхранява файловете на потребителите
+* /users - съхранява файловете на потребителите
 	* 0 - default user, използва се като skel при създаването на нови потребители
 	    * shared_files.yml - използва се за съхранение на файловете, които са споделени с потребителя. Има 3 параметъра:
 		- name: име на файла
 		- owner: собственик на файла
 		- write: 0/1 (0 - само четене, 1 - редакция)
+	* /{user_id}/beautifiers 
+		- пази информация за приложените стилове (bold, italic и underline) върху таблиците на потребителя с идентификатор user_id
+		- съдържа файлове в json формат
+		- всеки json е наименован със съответното име на таблицата (това в /uploads)
 			
 * /configs
 	* /configs/database.ini - Съдържа необходимите конфигурациите за свързване с базата
