@@ -8,7 +8,12 @@ function check() {
         document.getElementById('updateButton').click();
     }
     updateBeautifier();
-    sleep(2000);
+    sleep(500);
     return true;
 }
 
+function search() {
+		document.getElementById('searchButton').click();
+}
+
+setTimeout(search, 300000) //Countdown till forcefully refreshing the user's session

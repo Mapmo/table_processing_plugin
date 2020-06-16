@@ -25,3 +25,27 @@ function RecursiveCopy($src,$dst) {
     } 
     closedir($dir); 
 }
+
+function locked($lockFile) {
+	session_start();
+	clearstatcache();
+	
+	$who = $_SESSION['user'];
+	if (file_exists($lockFile)) {
+
+		$mtime = filemtime($lockFile); 
+		$lastModified = time() - $mtime;
+		
+		if($lastModified < 600) {
+			$locker = file_get_contents($lockFile);
+			if( $locker !== $who) {
+				return $locker;
+			}
+		}
+	}
+	
+	$fd = fopen($lockFile, "w+");
+	fwrite($fd, $who);
+	
+	return $who;
+}
