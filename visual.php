@@ -5,26 +5,26 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <title>Table Processing Plugin</title>
 <?php
-	include "includes/utils/utils.php";
-	
-	if($_POST['write'] === "1") { ?>
-    	<script defer src="includes/js/update.js"></script>
+    include "includes/utils/utils.php";
+    $fileLockTimeout = parse_ini_file("configs/timeouts.ini")["file_lock_timeout"];
+    if($_POST['write'] === "1") { ?>
+    	<script src="includes/js/update.js"></script>
+        <script type="text/javascript">setFileLockTimeoutSec(<?php echo $fileLockTimeout ?>)</script>
 	<?php	
 	} ?>
-   
 <script defer src="includes/js/beautify.js"></script>
     <link rel="stylesheet" type="text/css" href="includes/css/beautify.css">
 </head>
 
 <body onload="return getJson()">
 <?php
-	$uploadedFileName = $_POST['table'];
+    $uploadedFileName = $_POST['table'];
     $lockFile = $uploadedFileName . ".lock"; #the lock file that serves as a mutex
-	$locker = locked($lockFile);
-	if($locker !== $_SESSION['user']) {
-		header('Location: ./index.php?warn=locked&locker=' . $locker);
-		exit;
-	}
+    $locker = locked($lockFile,$fileLockTimeout);
+    if($locker !== $_SESSION['user']) {
+        header('Location: ./index.php?warn=locked&locker=' . $locker);
+        exit;
+    }
 ?> 
    <!-- Logout -->
     <form action="includes/logout.php" onsubmit="return check()" method="post">
