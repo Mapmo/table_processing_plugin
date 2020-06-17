@@ -10,6 +10,8 @@ if (!file_exists($targetDir)) {
 $files = array_filter($_FILES['upload']['name']);
 $total = count($_FILES['upload']['name']);
 
+include_once("utils/yaml.php");
+
 for ($i = 0; $i < $total; $i++) {
     $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
 
@@ -41,7 +43,6 @@ for ($i = 0; $i < $total; $i++) {
 
     #Add the information to the shared_files.yaml file
 
-	include("utils/yaml.php");
 	
 	$yamlPath = $targetDir . '../shared_files.yml';
 	$name = basename($newFilePath);
