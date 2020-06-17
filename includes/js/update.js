@@ -13,7 +13,9 @@ function check() {
 }
 
 function search() {
-		document.getElementById('searchButton').click();
+    document.getElementById('searchButton').click();
 }
 
-setTimeout(search, 300000) //Countdown till forcefully refreshing the user's session
+function setFileLockTimeoutSec(seconds) {
+    setTimeout(search, seconds*1000);//Countdown till forcefully refreshing the user's session
+}
