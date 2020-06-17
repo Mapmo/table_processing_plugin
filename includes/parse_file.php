@@ -16,7 +16,8 @@ for ($i = 0; $i < $total; $i++) {
     $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
 
     if ($tmpFilePath === "") {
-        die("Empty path given");
+        header('Location: ../pages/upload_no_files_page.html');
+        return;
     }
 
     #Determine the absolute path to the new name of the uploaded file
