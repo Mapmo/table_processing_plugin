@@ -38,18 +38,25 @@ for ($i = 0; $i < $total; $i++) {
         mkdir($beautifierPath, 0777, true);
     }
     #Create beautifier file for the new table in users/$_SESSION['user']/beautifiers directory
-    $jsonPath = $beautifierPath . pathinfo(basename($newFilePath), PATHINFO_FILENAME) . '.json';
-    $jsonFile = fopen($jsonPath, 'a');
+    $jsonBeautifierPath = $beautifierPath . pathinfo(basename($newFilePath), PATHINFO_FILENAME) . '.json';
+    $jsonBeautifierFile = fopen($jsonBeautifierPath, 'a');
+
+    #Create cell-locking subdirectory of users/$_SESSION['user'] if it doesn't exist
+    $cellLockingPath = $targetDir . '../cell_locking/';
+    if (!file_exists($cellLockingPath)) {
+        mkdir($cellLockingPath, 0777, true);
+    }
+    #Create cell-locking file for the new table in users/$_SESSION['user']/cell_locking directory
+    $jsonCellLockingPath = $cellLockingPath . pathinfo(basename($newFilePath), PATHINFO_FILENAME) . '.json';
+    $jsonCellLockingFile = fopen($jsonCellLockingPath, 'a');
 
     #Add the information to the shared_files.yaml file
+    $yamlPath = $targetDir . '../shared_files.yml';
+    $name = basename($newFilePath);
+    $owner = $_SESSION['user'];
+    $write = 1; #because he is the owner of the file
+    YamlAppend($yamlPath, $name, $owner, $write);
 
-	
-	$yamlPath = $targetDir . '../shared_files.yml';
-	$name = basename($newFilePath);
-	$owner = $_SESSION['user'];
-	$write = 1; #because he is the owner of the file
-	YamlAppend($yamlPath, $name, $owner, $write);   
- 
     if (!move_uploaded_file($tmpFilePath, $newFilePath)) {
         die("Failed to move the uploaded file to the user's directory");
     }
