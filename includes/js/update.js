@@ -19,3 +19,8 @@ function search() {
 function setFileLockTimeoutSec(seconds) {
     setTimeout(search, seconds*1000);//Countdown till forcefully refreshing the user's session
 }
+
+function getJson() {
+    getJsonBeautifier();
+    getJsonCellLocking();
+}
