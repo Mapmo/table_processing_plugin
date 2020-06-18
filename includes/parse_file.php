@@ -16,7 +16,7 @@ for ($i = 0; $i < $total; $i++) {
     $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
 
     if ($tmpFilePath === "") {
-        header('Location: ../pages/upload_no_files_page.html');
+        header('Location: ../index.php?warn=no_files_to_upload');
         return;
     }
 
