@@ -2,44 +2,31 @@ var jsonObj;
 var pathToBeautifier = "./users/" + getUsername() + "/beautifiers/" + getTableName() + ".json";
 
 function toggleBoldStyle() {
-
-    var row = document.getElementById("rowToBeautify").value;
-    var col = document.getElementById("colToBeautify").value;
-
-    if (!isNaN(row) && !isNaN(col)) {
-        var nameOfCell = row + "|" + col;
-        var cell = document.getElementsByName(nameOfCell)[0];
-        cell.classList.toggle("boldStyle");
-    }
+    toggleStyle("boldStyle");
 }
 
 function toggleItalicStyle() {
-
-    var row = document.getElementById("rowToBeautify").value;
-    var col = document.getElementById("colToBeautify").value;
-
-    if (!isNaN(row) && !isNaN(col)) {
-        var nameOfCell = row + "|" + col;
-        var cell = document.getElementsByName(nameOfCell)[0];
-        cell.classList.toggle("italicStyle");
-    }
+    toggleStyle("italicStyle");
 }
 
 function toggleUnderlineStyle() {
+    toggleStyle("underlineStyle");
+}
 
-    var row = document.getElementById("rowToBeautify").value;
-    var col = document.getElementById("colToBeautify").value;
+function toggleStyle(style) {
+    var row = document.getElementById("rowToFormat").value;
+    var col = document.getElementById("colToFormat").value;
 
     if (!isNaN(row) && !isNaN(col)) {
         var nameOfCell = row + "|" + col;
         var cell = document.getElementsByName(nameOfCell)[0];
-        cell.classList.toggle("underlineStyle");
+        cell.classList.toggle(style);
     }
 }
 
 function updateRowAndCol(row, col) {
-    document.getElementById("rowToBeautify").value = row;
-    document.getElementById("colToBeautify").value = col;
+    document.getElementById("rowToFormat").value = row;
+    document.getElementById("colToFormat").value = col;
 }
 
 function getTableName() {
