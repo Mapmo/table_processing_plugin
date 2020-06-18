@@ -39,11 +39,6 @@ function getJsonBeautifier() {
     xmlhttp.send();
 }
 
-function updateRowAndCol(row, col) {
-    document.getElementById("rowToFormat").value = row;
-    document.getElementById("colToFormat").value = col;
-} // to rm?
-
 function getTableName() {
     var exportFilename = document.getElementsByName("exportFilename")[0].value;
     return exportFilename.split('.')[0];
