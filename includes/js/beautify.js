@@ -1,5 +1,8 @@
+var owner = document.getElementById("owner").value;
+var user = document.getElementById("user").value;
+
 var jsonObj;
-var pathToBeautifier = "./users/" + getUsername() + "/beautifiers/" + getTableName() + ".json";
+var pathToBeautifier = "./users/" + owner + "/beautifiers/" + getTableName() + ".json";
 
 function toggleBoldStyle() {
     toggleStyle("boldStyle");
@@ -24,22 +27,7 @@ function toggleStyle(style) {
     }
 }
 
-function updateRowAndCol(row, col) {
-    document.getElementById("rowToFormat").value = row;
-    document.getElementById("colToFormat").value = col;
-}
-
-function getTableName() {
-    var exportFilename = document.getElementsByName("exportFilename")[0].value;
-    return exportFilename.split('.')[0];
-}
-
-function getUsername() {
-    var fileToSave = document.getElementsByName("fileТoSave")[0].value;
-    return fileToSave.split('/')[1];
-}
-
-function getJson() {
+function getJsonBeautifier() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
@@ -49,6 +37,16 @@ function getJson() {
     };
     xmlhttp.open("GET", pathToBeautifier, true);
     xmlhttp.send();
+}
+
+function updateRowAndCol(row, col) {
+    document.getElementById("rowToFormat").value = row;
+    document.getElementById("colToFormat").value = col;
+} // to rm?
+
+function getTableName() {
+    var exportFilename = document.getElementsByName("exportFilename")[0].value;
+    return exportFilename.split('.')[0];
 }
 
 function applyAllStyles() {
@@ -90,13 +88,7 @@ function updateBeautifier() {
 
     var json = JSON.stringify(obj);
 
-    var path = "./includes/beautifier_update.php";
-
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", path, true);
-
-    xmlhttp.setRequestHeader("Content-Type", "application/json;");
-    xmlhttp.send(json);
+    sendAjaxPostRequest(json);
 }
 
 function getUpdatedCells(style) {
