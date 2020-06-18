@@ -11,9 +11,30 @@ function toggleLockingOfCell() {
     if (!isNaN(row) && !isNaN(col)) {
         var nameOfCell = row + "|" + col;
         var cell = document.getElementsByName(nameOfCell)[0];
-
         cell.classList.toggle("lockCellStyleOwner");
     }
+}
+
+function toggleLockingOfRow() {
+    var row = document.getElementById("rowToFormat").value;
+    var table = document.getElementById("currentTable");
+    var tableRow = table.rows[parseInt(row) - 1];
+    var cells = tableRow.cells;
+
+    Array.from(cells).forEach(cell => {
+        cell.childNodes[0].classList.toggle("lockCellStyleOwner");
+    });
+}
+
+function toggleLockingOfCol() {
+    var col = document.getElementById("colToFormat").value;
+    var table = document.getElementById("currentTable");
+    var cell;
+
+    Array.from(table.rows).forEach(row => {
+        cell = row.cells[parseInt(col) - 1]
+        cell.childNodes[0].classList.toggle("lockCellStyleOwner");
+    });
 }
 
 function getJsonCellLocking() {
@@ -27,6 +48,7 @@ function getJsonCellLocking() {
     xmlhttp.open("GET", pathToCellLocking, true);
     xmlhttp.send();
 }
+
 
 function lockCells() {
 
