@@ -5,7 +5,7 @@ $table = $_POST['table'];
 
 if ($xlsx = SimpleXLSX::parse($table)) { ?>
     <form action="/includes/update_table.php" method="post">
-        <table>
+        <table id="currentTable">
             <?php
             $row = 0;
             $column = 1;
