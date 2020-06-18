@@ -57,32 +57,44 @@
                                                             } ?>" />
         <input type="text" id="table" name="table" value="<?php echo $uploadedFileName; ?>" hidden />
         <input type="text" name="write" value="<?php echo $_POST['write']; ?>" hidden />
+        <input type="text" name="owner" value="<?php echo $_POST['owner']; ?>" hidden />
         <input id="searchButton" type="submit" value="Search" />
     </form>
 
     <br>
-    <div>
-        <button id="boldButton" onclick="toggleBoldStyle()"><b>B</b></button>
-        <button id="italicButton" onclick="toggleItalicStyle()"><i>I</i></button>
-        <button id="underlineButton" onclick="toggleUnderlineStyle()"><u>U</u></button>
-        <button id="lockCell" onclick="toggleLockingOfCell()">Lock/Unlock Cell</button>
-        <button id="lockRow" >Lock/Unlock Row</button>
-        <button id="lockCol" >Lock/Unlock Column</button>
-        <input id="rowToFormat" type="hidden"/>
-        <input id="colToFormat" type="hidden"/>
-        <input id="owner" value=<?php echo $_POST['owner']?>  type="hidden"/>
-        <input id="user" value=<?php echo $_SESSION['user']?>  type="hidden"/>
-    </div>
 
-    <?php include "includes/print_table.php"; ?>
+    <?php
+    if ($_POST['write'] === "1") {
+    ?>
+        <div>
+            <button id="boldButton" onclick="toggleBoldStyle()"><b>B</b></button>
+            <button id="italicButton" onclick="toggleItalicStyle()"><i>I</i></button>
+            <button id="underlineButton" onclick="toggleUnderlineStyle()"><u>U</u></button>
 
-    <!-- Form to chooses how to save the table -->
-    <form action="includes/streamfile.php" onsubmit="return check()">
-        <label for="table">Choose a name for the exported file:</label>
-        <input type="text" name="fileТoSave" value="<?php echo $uploadedFileName ?>" hidden />
-        <input type="text" name="exportFilename" value="<?php echo basename($uploadedFileName); ?>" required />
-        <input type="submit" value="Save as">
-    </form>
+            <?php
+            if ($_POST['owner'] == $_SESSION['user']) {
+            ?>
+                <button id="lockCell" onclick="toggleLockingOfCell()">Lock/Unlock Cell</button>
+                <button id="lockRow" onclick="toggleLockingOfRow()">Lock/Unlock Row</button>
+                <button id="lockCol" onclick="toggleLockingOfCol()">Lock/Unlock Column</button>
+        <?php }
+        } ?>
+
+        <input id="rowToFormat" type="hidden" />
+        <input id="colToFormat" type="hidden" />
+        <input id="owner" value=<?php echo $_POST['owner'] ?> type="hidden" />
+        <input id="user" value=<?php echo $_SESSION['user'] ?> type="hidden" />
+        </div>
+
+        <?php include "includes/print_table.php"; ?>
+
+        <!-- Form to chooses how to save the table -->
+        <form action="includes/streamfile.php" onsubmit="return check()">
+            <label for="table">Choose a name for the exported file:</label>
+            <input type="text" name="fileТoSave" value="<?php echo $uploadedFileName ?>" hidden />
+            <input type="text" name="exportFilename" value="<?php echo basename($uploadedFileName); ?>" required />
+            <input type="submit" value="Save as">
+        </form>
 </body>
 
 </html>
