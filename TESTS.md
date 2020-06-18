@@ -116,7 +116,11 @@ Steps:
 Expected results:
         - You receive a proper message that you have no uploaded files
 
-	2. Click on browse and select an .xlsx file. Click on Open. Then click on the Upload button
+    2a. Click on the Upload button without choosing files for upload
+Expected results:
+    - Error message is shown
+
+	2b. Click on browse and select an .xlsx file. Click on Open. Then click on the Upload button
 Expected results:
 	- The file you uploaded now appears in the list of files you have
 	- You see owner: filename - access of the file
