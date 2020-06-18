@@ -77,6 +77,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
 			* Съдържа функцията setFileLockTimeoutSec(seconds), която след определено време измерно в секунди рефрешва сесията на потребителя, който модифицира файл.
 			* Съдържа функцията getJson(), която се извиква при зареждането на body-то на visual.php, която прилага съответните стилизирания и заключване на клетки, направени предварително
 			* Съдържа функцията sendAjaxPostRequest(), която праща ajax заявка към `./includes/format_update.php` с цел ъпдейтване на стилизирането и заключените клетки
+			* Функцията updateRowAndCol() ъпдейтва съдържанието на скритите полета във visual.php с новоизбраната клетка - ред и колона.
 
 	* includes/js/beautify.js
 	    * Съдържа функции, свързани с прилагането на форматиране на клетките на таблицата (toggleBoldStyle, etc.) и updateRowAndCol функцията, която ъпдейтва избраната клетка (чрез скритите input полета с id-та rowToBeautify и colToBeautify от visual.php)
