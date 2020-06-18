@@ -9,3 +9,11 @@
 .underlineStyle {
     text-decoration: underline;
 }
+
+.lockCellStyleViewer {
+    background-color : #d1d1d1;
+}
+
+.lockCellStyleOwner {
+    border-color: blue;
+}
