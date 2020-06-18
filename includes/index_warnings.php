@@ -13,6 +13,10 @@ if(isset($_GET['warn'])) {
 			break;
 		case "locked":
 			echo "Locked by user " . $_GET['locker'];
+			break;
+		case "shared_file_exists":
+            echo "The selected file is already shared with the user";
+            break;
 	}
 	echo "</h3>";
 }
