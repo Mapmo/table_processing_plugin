@@ -4,11 +4,8 @@ Final project for the Web Technologies subject at FMI, Sofia University
 Tasks for the demo:
 
 Importing xlsx files - Tanya
-	- own format for local tables with style Tanya\
-	- locking of cell Tanya
 	- maximum of uploaded files Tanya\
 	- add numbers and digits to the cells  Martin
-	- remove beautifier buttons in readonly mode
 	
 Manipulating data - Martin\
 
@@ -19,7 +16,6 @@ Exporting data - Daniel\
 	-
 
 for future:\
-UI styles\
 make the share form hide when not active in includes/share_table_form.php
 deleting files from index
 resizing of inputs while editting in visual.php?
