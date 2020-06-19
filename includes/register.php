@@ -65,7 +65,7 @@ $id = $get_id['id'];
 #creates the home directory of the user
 
 $skel = "../users/0";
-$home = "../users/" . $id;
+$home = "../users/" . $_POST['user'];
 
 RecursiveCopy($skel, $home);
 

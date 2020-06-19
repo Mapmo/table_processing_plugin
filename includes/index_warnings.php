@@ -13,6 +13,10 @@ if(isset($_GET['warn'])) {
 			break;
 		case "locked":
 			echo "Locked by user " . $_GET['locker'];
+			break;
+        case "no_files_to_upload":
+            echo "No files were selected to be uploaded.";
+            break;
 	}
 	echo "</h3>";
 }
