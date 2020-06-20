@@ -14,9 +14,12 @@ if(isset($_GET['warn'])) {
 		case "locked":
 			echo "Locked by user " . $_GET['locker'];
 			break;
-		case "shared_file_exists":
-            echo "The selected file is already shared with the user";
-            break;
+    case "shared_file_exists":
+      echo "The selected file is already shared with the user";
+      break;
+    case "no_files_to_upload":
+      echo "No files were selected to be uploaded.";
+      break;
 	}
 	echo "</h3>";
 }
