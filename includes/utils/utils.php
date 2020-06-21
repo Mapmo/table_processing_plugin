@@ -48,8 +48,8 @@ function locked($lockFile,$timeout) {
         }
     }
 
-	if(is_writeable($lockFile) === false) {
-		throw new Exception("Error 403, permission to " . $lockFIle. " denied");
+	if(file_exists($lockFile) === true && is_writeable($lockFile) === false) {
+		throw new Exception("Error 403, permission to " . $lockFile. " denied");
 	}
     $fd = fopen($lockFile, "w+");
     fwrite($fd, $who);
