@@ -43,7 +43,12 @@ foreach ($files as $file) {
 	}
 }
 
-YamlAppend($yamlPath, $name, $owner, $write);
+try {
+	YamlAppend($yamlPath, $name, $owner, $write);
+} catch (Exception $e) {
+	header('Location: ../index.php?warn=permissions');
+	exit;
+}
 
 header('Location: ../index.php?ok=share');
 ?>

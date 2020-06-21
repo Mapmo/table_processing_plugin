@@ -1,5 +1,8 @@
 <?php
 function YamlAppend($yamlPath, $name, $owner, $write) {
+	if(!is_writeable($yamlPath)) {
+		throw new Exception('Failed to open');
+	}
     $shared = fopen($yamlPath, 'a');
     $nameStr = "- name: " . $name . "\n";
    	$ownerStr = "  owner: " . $owner . "\n";
