@@ -43,7 +43,7 @@
 
     <?php
 
-    if (!isset($_POST['table'])) {
+    if (isset($_POST['table']) === false) {
         exit;
     }
 
