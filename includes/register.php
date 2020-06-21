@@ -67,7 +67,12 @@ $id = $get_id['id'];
 $skel = "../users/0";
 $home = "../users/" . $_POST['user'];
 
-RecursiveCopy($skel, $home);
+try {
+	RecursiveCopy($skel, $home);
+} catch (Exception $e) {
+	die("Cannot create home directory, error 403");
+	exit;
+}
 
 CloseCon($db_connection);
 ?>

@@ -20,8 +20,8 @@ if(isset($_GET['warn'])) {
     	case "no_files_to_upload":
       		echo "No files were selected to be uploaded.";
       		break;
-		case "permisions":
-			echo "Could not share with the target due to technical issues. CONTACT ADMIN ASAP!!! ERROR 403";
+		case "permissions":
+			echo "Could not share/upload with the target due to technical issues error 403. CONTACT ADMIN ASAP!!! ERROR 403";
 			break;
 	}
 	echo "</h3>";

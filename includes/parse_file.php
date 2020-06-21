@@ -56,7 +56,13 @@ for ($i = 0; $i < $total; $i++) {
     $name = basename($newFilePath);
     $owner = $_SESSION['user'];
     $write = 1; #because he is the owner of the file
-    YamlAppend($yamlPath, $name, $owner, $write);
+    
+	try {
+		YamlAppend($yamlPath, $name, $owner, $write);
+	} catch (Exception $e) {
+		header('Location: ../index.php?warn=permissions');
+		exit;
+	}
 
     if (!move_uploaded_file($tmpFilePath, $newFilePath)) {
         die("Failed to move the uploaded file to the user's directory");
