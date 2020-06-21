@@ -46,7 +46,7 @@ $register_query->bindParam(':password', $password);
 
 $register = $register_query->execute();
 
-if (!$register) {
+if ($register === false) {
 	CloseCon($db_connection);
 	die("Failed to query from DB!");
 }
@@ -71,7 +71,6 @@ try {
 	RecursiveCopy($skel, $home);
 } catch (Exception $e) {
 	die("Cannot create home directory, error 403");
-	exit;
 }
 
 CloseCon($db_connection);

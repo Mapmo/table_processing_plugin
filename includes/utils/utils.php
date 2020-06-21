@@ -10,7 +10,7 @@ function SanitizeInput($input)
 }
 
 function RecursiveCopy($src,$dst) {
-	if((file_exists($src) && file_exists($dst)) === false) {
+	if(file_exists($src) === false) {
 		throw new Exception("Error 403, file not found");
 	}
     $dir = opendir($src);
