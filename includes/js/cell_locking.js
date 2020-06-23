@@ -65,7 +65,7 @@ function lockCells() {
                 cell.classList.add("lockCellStyleOwner");
             } else {
                 cell.classList.add("lockCellStyleViewer");
-                cell.disabled = true;
+				cell.setAttribute("readonly","");
             }
         });
     }

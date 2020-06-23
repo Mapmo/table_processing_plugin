@@ -23,7 +23,10 @@ function toggleStyle(style) {
     if (!isNaN(row) && !isNaN(col)) {
         var nameOfCell = row + "|" + col;
         var cell = document.getElementsByName(nameOfCell)[0];
-        cell.classList.toggle(style);
+        if(cell.getAttribute("readonly") === "") {
+			return;
+		} 
+		cell.classList.toggle(style);
     }
 }
 
