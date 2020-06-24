@@ -42,6 +42,11 @@ for ($i = 0; $i < $total; $i++) {
     $jsonBeautifierPath = $beautifierPath . pathinfo(basename($newFilePath), PATHINFO_FILENAME) . '.json';
     $jsonBeautifierFile = fopen($jsonBeautifierPath, 'a');
 
+    #validation if the beautifier file is writeable
+    if (is_writeable($jsonBeautifierFile) === false) {
+        throw new Exception("Error 403, permission to " . $jsonBeautifierFile . " denied");
+    }
+
     #Create cell-locking subdirectory of users/$_SESSION['user'] if it doesn't exist
     $cellLockingPath = $targetDir . '../cell_locking/';
     if (!file_exists($cellLockingPath)) {
@@ -51,18 +56,23 @@ for ($i = 0; $i < $total; $i++) {
     $jsonCellLockingPath = $cellLockingPath . pathinfo(basename($newFilePath), PATHINFO_FILENAME) . '.json';
     $jsonCellLockingFile = fopen($jsonCellLockingPath, 'a');
 
+    #validation if the beautifier file is writeable
+    if (is_writeable($jsonCellLockingFile) === false) {
+        throw new Exception("Error 403, permission to " . $jsonCellLockingFile . " denied");
+    }
+
     #Add the information to the shared_files.yaml file
     $yamlPath = $targetDir . '../shared_files.yml';
     $name = basename($newFilePath);
     $owner = $_SESSION['user'];
     $write = 1; #because he is the owner of the file
-    
-	try {
-		YamlAppend($yamlPath, $name, $owner, $write);
-	} catch (Exception $e) {
-		header('Location: ../index.php?warn=permissions');
-		exit;
-	}
+
+    try {
+        YamlAppend($yamlPath, $name, $owner, $write);
+    } catch (Exception $e) {
+        header('Location: ../index.php?warn=permissions');
+        exit;
+    }
 
     if (!move_uploaded_file($tmpFilePath, $newFilePath)) {
         die("Failed to move the uploaded file to the user's directory");
