@@ -205,6 +205,9 @@ Expected results: The cells are still blue (locked).
 	17. Share the table with locked cell/cells with another user who can edit it. Logout and login as that user. Click on 'Edit' for the shared table. 
 Expected results: The locked cells should be displayed with grey background. The user has no right to edit the content in this cells. The user has no right to apply styles (as bold, italic or underlined) to the locked cells.
 
+	18. Open shared table that has locked cells that you cannot edit. Click 'Search'. 
+Expected results: The locked cells should still have values in them.
+
 6. Exporting tables
 Pretasks:
 	- Test 5 is success
