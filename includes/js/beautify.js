@@ -38,7 +38,7 @@ function getJsonBeautifier() {
             applyAllStyles();
         }
     };
-    xmlhttp.open("GET", pathToBeautifier, true);
+    xmlhttp.open("GET", pathToBeautifier + "?nocache=" + (new Date()).getTime(), true);
     xmlhttp.send();
 }
 

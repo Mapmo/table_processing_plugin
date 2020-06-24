@@ -45,7 +45,7 @@ function getJsonCellLocking() {
             lockCells();
         }
     };
-    xmlhttp.open("GET", pathToCellLocking, true);
+    xmlhttp.open("GET", pathToCellLocking + "?nocache=" + (new Date()).getTime(), true);
     xmlhttp.send();
 }
 
