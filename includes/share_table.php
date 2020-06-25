@@ -34,7 +34,21 @@ $write = $_POST['write'];
 
 include("utils/yaml.php");
 
-YamlAppend($yamlPath, $name, $owner, $write);
+$files = YamlParse(file_get_contents($yamlPath));
+
+foreach ($files as $file) {
+	if($file['owner']===$owner && $file['name']===$name && $file['write']===$write){
+		header('Location: ../index.php?warn=shared_file_exists');
+		exit;
+	}
+}
+
+try {
+	YamlAppend($yamlPath, $name, $owner, $write);
+} catch (Exception $e) {
+	header('Location: ../index.php?warn=permissions');
+	exit;
+}
 
 header('Location: ../index.php?ok=share');
 ?>

@@ -1,58 +1,36 @@
+var owner = document.getElementById("owner").value;
+var user = document.getElementById("user").value;
+
 var jsonObj;
-var pathToBeautifier = "./users/" + getUsername() + "/beautifiers/" + getTableName() + ".json";
+var pathToBeautifier = "./users/" + owner + "/beautifiers/" + getTableName() + ".json";
 
 function toggleBoldStyle() {
-
-    var row = document.getElementById("rowToBeautify").value;
-    var col = document.getElementById("colToBeautify").value;
-
-    if (!isNaN(row) && !isNaN(col)) {
-        var nameOfCell = row + "|" + col;
-        var cell = document.getElementsByName(nameOfCell)[0];
-        cell.classList.toggle("boldStyle");
-    }
+    toggleStyle("boldStyle");
 }
 
 function toggleItalicStyle() {
-
-    var row = document.getElementById("rowToBeautify").value;
-    var col = document.getElementById("colToBeautify").value;
-
-    if (!isNaN(row) && !isNaN(col)) {
-        var nameOfCell = row + "|" + col;
-        var cell = document.getElementsByName(nameOfCell)[0];
-        cell.classList.toggle("italicStyle");
-    }
+    toggleStyle("italicStyle");
 }
 
 function toggleUnderlineStyle() {
+    toggleStyle("underlineStyle");
+}
 
-    var row = document.getElementById("rowToBeautify").value;
-    var col = document.getElementById("colToBeautify").value;
+function toggleStyle(style) {
+    var row = document.getElementById("rowToFormat").value;
+    var col = document.getElementById("colToFormat").value;
 
     if (!isNaN(row) && !isNaN(col)) {
         var nameOfCell = row + "|" + col;
         var cell = document.getElementsByName(nameOfCell)[0];
-        cell.classList.toggle("underlineStyle");
+        if(cell.getAttribute("readonly") === "") {
+			return;
+		} 
+		cell.classList.toggle(style);
     }
 }
 
-function updateRowAndCol(row, col) {
-    document.getElementById("rowToBeautify").value = row;
-    document.getElementById("colToBeautify").value = col;
-}
-
-function getTableName() {
-    var exportFilename = document.getElementsByName("exportFilename")[0].value;
-    return exportFilename.split('.')[0];
-}
-
-function getUsername() {
-    var fileToSave = document.getElementsByName("fileТoSave")[0].value;
-    return fileToSave.split('/')[1];
-}
-
-function getJson() {
+function getJsonBeautifier() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
@@ -60,8 +38,13 @@ function getJson() {
             applyAllStyles();
         }
     };
-    xmlhttp.open("GET", pathToBeautifier, true);
+    xmlhttp.open("GET", pathToBeautifier + "?nocache=" + (new Date()).getTime(), true);
     xmlhttp.send();
+}
+
+function getTableName() {
+    var exportFilename = document.getElementsByName("exportFilename")[0].value;
+    return exportFilename.split('.')[0];
 }
 
 function applyAllStyles() {
@@ -103,13 +86,7 @@ function updateBeautifier() {
 
     var json = JSON.stringify(obj);
 
-    var path = "./includes/beautifier_update.php";
-
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", path, true);
-
-    xmlhttp.setRequestHeader("Content-Type", "application/json;");
-    xmlhttp.send(json);
+    sendAjaxPostRequest(json);
 }
 
 function getUpdatedCells(style) {

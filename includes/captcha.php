@@ -6,7 +6,6 @@
 	header("Pragma: no-cache");
 	header("Cache-Control: no-cache, no-store, must-revalidate");
 
-	//$rnd = base64_encode(openssl_random_pseudo_bytes(3));
 	$allowed_letters = '23456789abdefghjkmnqrtuABDEFGHJKLMPQRTU!@#$%&?=';
 	$rnd = "";
 	for($i=0; $i<6; $i++){

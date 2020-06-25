@@ -190,6 +190,24 @@ Expected results:
 Expected results:
 	- The applied styles on the specific cell are still there.
 
+	13. Click on 'Edit' button for a table that is your property(you are the owner). Click on a cell of your choice. Then click on 'Lock/Unlock Cell'
+Expected results: The cell is getting blue - it is locked for other users.
+
+	14. Execute step 13 and click 'Back to home'. Then click 'Edit' for the same table. 
+Expected results: The cell from step 13 is still blue.
+
+	15.  Execute step 13 and click 'Logout'. Then login and click 'Edit' for the same table.
+Expected results: The cell from step 13 is still blue.
+
+	16. Execute steps 13, 14 and 15, but instead of clicking 'Lock/Unlock Cell', click 'Lock/Unlock Row' and 'Lock/Unlock Column'.
+Expected results: The cells are still blue (locked).
+
+	17. Share the table with locked cell/cells with another user who can edit it. Logout and login as that user. Click on 'Edit' for the shared table. 
+Expected results: The locked cells should be displayed with grey background. The user has no right to edit the content in this cells. The user has no right to apply styles (as bold, italic or underlined) to the locked cells.
+
+	18. Open shared table that has locked cells that you cannot edit. Click 'Search'. 
+Expected results: The locked cells should still have values in them.
+
 6. Exporting tables
 Pretasks:
 	- Test 5 is success

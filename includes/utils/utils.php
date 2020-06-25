@@ -10,6 +10,9 @@ function SanitizeInput($input)
 }
 
 function RecursiveCopy($src,$dst) {
+	if(file_exists($src) === false) {
+		throw new Exception("Error 403, file not found");
+	}
     $dir = opendir($src);
     @mkdir($dst);
 
@@ -45,6 +48,9 @@ function locked($lockFile,$timeout) {
         }
     }
 
+	if(file_exists($lockFile) === true && is_writeable($lockFile) === false) {
+		throw new Exception("Error 403, permission to " . $lockFile. " denied");
+	}
     $fd = fopen($lockFile, "w+");
     fwrite($fd, $who);
 
