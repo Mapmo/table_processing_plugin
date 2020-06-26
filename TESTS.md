@@ -332,3 +332,15 @@ Expected results:
 	10. Exit user A's browser and wait more than 11 minutes to try to edit the file as user B
 Expected results:
 	- User B succesfully enters the file for editting
+
+9. Delete tables
+Pretasks: you have logged in and have uploaded a table
+Steps:
+	1. Share the table with another user. Then delete the shared table as owner.
+Expected results: The table is deleted and is no longer shared with that user. The beautifier, cell locking and coeditor files for this table are also deleted.
+
+	2. Share the table with 2 or more users. Then delete the shared table as owner.
+Expected results: The table is deleted and is no longer shared with all the users. The beautifier, cell locking and coeditor files for this table are also deleted.
+
+	3. Share the table with a user. Log out and login with the credentials of that specific user. Then delete the shared table.
+Expected results: The table is no longer shown to the user that deleted it. The table is still available for the owner and for the other that is is shared with.
