@@ -33,7 +33,7 @@ $owner = $_POST['owner'];
 $write = $_POST['write'];
 
 $tableName = pathinfo($name)['filename'];
-$pathCoeditors =  "../users/" . $owner . "/coeditors/" . $tableName . ".yml";
+$pathCoeditors =  "../users/" . $owner . "/coeditors/" . $tableName . ".txt";
 
 include("utils/yaml.php");
 
