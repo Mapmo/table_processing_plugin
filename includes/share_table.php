@@ -36,6 +36,7 @@ $tableName = pathinfo($name)['filename'];
 $pathCoeditors =  "../users/" . $owner . "/coeditors/" . $tableName . ".txt";
 
 include("utils/yaml.php");
+include("add_coeditor.php");
 
 $files = YamlParse(file_get_contents($yamlPath));
 
@@ -48,7 +49,7 @@ foreach ($files as $file) {
 
 try {
 	YamlAppend($yamlPath, $name, $owner, $write);
-	YamlAddCoeditor($pathCoeditors, $userTo);
+	AddCoeditor($pathCoeditors, $userTo);
 } catch (Exception $e) {
 	header('Location: ../index.php?warn=permissions');
 	exit;

@@ -3,6 +3,7 @@
 //check if it's locked ---> mutex?
 
 include("../includes/utils/yaml.php");
+include("../includes/add_coeditor.php");
 
 $curUser = $_POST['user'];
 $tablePath = $_POST['table'];
@@ -74,7 +75,7 @@ if ($curUser === $owner) {
     //rewrite the coeditors file
     foreach ($coeditors as $coeditor) {
         if ($coeditor !== "") {
-            YamlAddCoeditor($coeditorsFilePath, $coeditor);
+            AddCoeditor($coeditorsFilePath, $coeditor);
         }
     }
 
