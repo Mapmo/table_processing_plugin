@@ -16,6 +16,7 @@ Exporting data - Daniel\
 	- streamfile -> stream_file и го добави в документацията
 
 for future:\
+when an user is editting a table, the owner cannot delete the file ---> add mutex\
 make the share form hide when not active in includes/share_table_form.php\
 resizing of inputs while editting in visual.php?\
 checihng whether a file that we want to share is in user's yaml file in order to avoid duplicates - Daniel\
