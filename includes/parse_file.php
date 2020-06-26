@@ -33,33 +33,17 @@ for ($i = 0; $i < $total; $i++) {
         $newFilePath = $tmp;
     }
 
-    #Create beautifiers subdirectory of users/$_SESSION['user'] if it doesn't exist
+    include("create_config_subdirectories.php");
+
+    $newFileName = pathinfo(basename($newFilePath), PATHINFO_FILENAME);
+
     $beautifierPath = $targetDir . '../beautifiers/';
-    if (!file_exists($beautifierPath)) {
-        mkdir($beautifierPath, 0777, true);
-    }
-    #Create beautifier file for the new table in users/$_SESSION['user']/beautifiers directory
-    $jsonBeautifierPath = $beautifierPath . pathinfo(basename($newFilePath), PATHINFO_FILENAME) . '.json';
-    $jsonBeautifierFile = fopen($jsonBeautifierPath, 'a');
-
-    #validation if the beautifier file is writeable
-    if (is_writeable($jsonBeautifierFile) === false) {
-        throw new Exception("Error 403, permission to " . $jsonBeautifierFile . " denied");
-    }
-
-    #Create cell-locking subdirectory of users/$_SESSION['user'] if it doesn't exist
     $cellLockingPath = $targetDir . '../cell_locking/';
-    if (!file_exists($cellLockingPath)) {
-        mkdir($cellLockingPath, 0777, true);
-    }
-    #Create cell-locking file for the new table in users/$_SESSION['user']/cell_locking directory
-    $jsonCellLockingPath = $cellLockingPath . pathinfo(basename($newFilePath), PATHINFO_FILENAME) . '.json';
-    $jsonCellLockingFile = fopen($jsonCellLockingPath, 'a');
+    $coeditorsPath = $targetDir . '../coeditors';
 
-    #validation if the beautifier file is writeable
-    if (is_writeable($jsonCellLockingFile) === false) {
-        throw new Exception("Error 403, permission to " . $jsonCellLockingFile . " denied");
-    }
+    create_config_subdirectory($beautifierPath, $newFileName, '.json');
+    create_config_subdirectory($cellLockingPath, $newFileName, '.json');
+    create_config_subdirectory($coeditorsPath, $newFileName, '.yaml');
 
     #Add the information to the shared_files.yaml file
     $yamlPath = $targetDir . '../shared_files.yml';
