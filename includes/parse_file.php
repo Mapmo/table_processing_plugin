@@ -39,11 +39,11 @@ for ($i = 0; $i < $total; $i++) {
 
     $beautifierPath = $targetDir . '../beautifiers/';
     $cellLockingPath = $targetDir . '../cell_locking/';
-    $coeditorsPath = $targetDir . '../coeditors';
+    $coeditorsPath = $targetDir . '../coeditors/';
 
     create_config_subdirectory($beautifierPath, $newFileName, '.json');
     create_config_subdirectory($cellLockingPath, $newFileName, '.json');
-    create_config_subdirectory($coeditorsPath, $newFileName, '.yaml');
+    create_config_subdirectory($coeditorsPath, $newFileName, '.yml');
 
     #Add the information to the shared_files.yaml file
     $yamlPath = $targetDir . '../shared_files.yml';

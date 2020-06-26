@@ -2,7 +2,6 @@
 
 function create_config_subdirectory($path, $newFileName, $extension)
 {
-
     #Create config subdirectory of users/$_SESSION['user'] if it doesn't exist
     if (!file_exists($path)) {
         mkdir($path, 0777, true);
