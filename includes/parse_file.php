@@ -43,7 +43,7 @@ for ($i = 0; $i < $total; $i++) {
 
     create_config_subdirectory($beautifierPath, $newFileName, '.json');
     create_config_subdirectory($cellLockingPath, $newFileName, '.json');
-    create_config_subdirectory($coeditorsPath, $newFileName, '.yml');
+    create_config_subdirectory($coeditorsPath, $newFileName, '.txt');
 
     #Add the information to the shared_files.yaml file
     $yamlPath = $targetDir . '../shared_files.yml';
