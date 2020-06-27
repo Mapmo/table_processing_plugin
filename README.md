@@ -120,6 +120,9 @@ Final project for the Web Technologies subject at FMI, Sofia University
         * Файлът се парсва и се репрезентира на страницата като таблица, чиито клетки могат да се редактират
 	    * Файлът използва includes/print_row.php за визуализиране на редовете
 
+    * /includes/print_header_row.php
+        * Файлът показва имената на колоните в таблицата (А,B,C ...), в собствени непроменящи се клетки
+        
     * /includes/register.php
 		* Използва се за регистриране в системата
 		* Извиква се /register_form.php
