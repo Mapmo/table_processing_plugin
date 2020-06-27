@@ -29,6 +29,11 @@ function RecursiveCopy($src,$dst) {
     closedir($dir);
 }
 
+function ToAlpha($num)
+{
+    return chr(substr("000" . ($num + 65), -3));
+}
+
 function locked($lockFile,$timeout) {
     session_start();
     clearstatcache();
