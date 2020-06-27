@@ -9,6 +9,7 @@
 
 <body>
 	<?php
+
 	#Removes the lockfile, thus unlocking the file for editting by others
 	include("includes/unlock_file.php");
 
@@ -52,7 +53,30 @@
 		<h3>You have no uploaded/shared files</h3>
 	<?php
 	} else {
-		foreach ($parsed as $file) {
+
+		// define how many results will be shown per page
+		$resultsPerPage = 5;
+
+		// find out the number of tables shared with that user
+		$numberOfResults = count($parsed);
+
+		// determine number of total pages available
+		$numberOfPages = ceil($numberOfResults / $resultsPerPage);
+
+		// determine which page number visitor is currently on
+		if (!isset($_GET['page'])) {
+			$page = 1;
+		} else {
+			$page = $_GET['page'];
+		}
+
+		// determine the sql LIMIT starting number for the results on the displaying page
+		$thisPageFirstResult = ($page - 1) * $resultsPerPage;
+
+		$maxShownResults = ($numberOfResults < $thisPageFirstResult + $resultsPerPage) ? $numberOfResults : $thisPageFirstResult + $resultsPerPage;	
+
+		for ($i = $thisPageFirstResult; $i < $maxShownResults; $i++) {
+			$file = $parsed[$i];
 
 			#The form with the Edit button
 			include("includes/edit_button.php");
@@ -64,6 +88,11 @@
 			include("includes/delete_button.php");
 
 			echo "<br/>";
+		}
+
+		// display the links to the pages
+		for ($page = 1; $page <= $numberOfPages; $page++) {
+			echo '<a href="index.php?page=' . $page . '">' . $page . '</a> ';
 		}
 	}
 	?>
