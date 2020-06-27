@@ -10,10 +10,9 @@ Importing xlsx files - Tanya\
 Manipulating data - Martin\
 
 Exporting data - Daniel\
-	- streamfile -> stream_file и го добави в документацията\
-	- when an user is editting a table, the owner cannot delete the file ---> add mutex\
+    - if something can be done about bold beautifier expanding the input? - Daniel \
+
 
 for future:\
 make the share form hide when not active in includes/share_table_form.php\
 resizing of inputs while editting in visual.php?\
-if something can be done about bold beautifier expanding the input? - Daniel \
