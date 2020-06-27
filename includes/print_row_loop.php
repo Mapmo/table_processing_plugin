@@ -1,3 +1,6 @@
+
+<td><input value="<?php echo $row ?>" style="text-align: center;" readonly></td>
+
 <?php
 if($_POST['write'] === "1") {
     for ($i = 0; $i < $column; $i++) {
