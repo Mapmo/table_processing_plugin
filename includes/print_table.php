@@ -17,6 +17,7 @@ if ($xlsx = SimpleXLSX::parse($table)) { ?>
                 }
             }
 
+            include("print_header_row.php");
             include("print_row.php");
 
             ?>
