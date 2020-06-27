@@ -5,7 +5,6 @@ Tasks for the demo:
 
 Importing xlsx files - Tanya\
 	- maximum of uploaded files (add pagination) Tanya\
-	- add numbers and digits to the cells - Martin\
 	
 Manipulating data - Martin\
 
