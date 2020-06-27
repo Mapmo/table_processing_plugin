@@ -23,7 +23,10 @@ if ($curUser === $owner) {
     $fileLockTimeout = parse_ini_file("../configs/timeouts.ini")["file_lock_timeout"];
     include("utils/utils.php");
 
-    $locker = locked("../$tablePath.lock",$fileLockTimeout);
+    $lockFile = "../$tablePath.lock";
+
+
+    $locker = locked($lockFile,$fileLockTimeout);
 
     if ($locker !== $_SESSION['user']) {
         header('Location: ../index.php?warn=locked&locker=' . $locker);
@@ -70,6 +73,7 @@ if ($curUser === $owner) {
 
     //delete the table itself from uploads subdirectory
     unlink("../" . $tablePath);
+    unlink($lockFile);
 
     header('Location: ../index.php?ok=delete_table');
 } else {
