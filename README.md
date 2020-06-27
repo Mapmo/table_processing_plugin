@@ -126,6 +126,9 @@ Final project for the Web Technologies subject at FMI, Sofia University
 		* Валидира капчата и повторената парола
 		* Създава home directory за потребителя с номера на неговото id в базата данни
 
+    * /includes/register.php
+        * Използва се за изпращане на файла към потребителя, като се разделя на подчасти в зависимост от размера му
+        
     * /includes/SimpleXLSX.php
         * Външна библиотека
         * Използва се за парсване на .xlsx файла във формат на php асоциативен масив
