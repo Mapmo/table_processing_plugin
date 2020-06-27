@@ -20,6 +20,16 @@ $coeditors = explode("\n", $content);
 
 if ($curUser === $owner) {
 
+    $fileLockTimeout = parse_ini_file("../configs/timeouts.ini")["file_lock_timeout"];
+    include("utils/utils.php");
+
+    $locker = locked("../$tablePath.lock",$fileLockTimeout);
+
+    if ($locker !== $_SESSION['user']) {
+        header('Location: ../index.php?warn=locked&locker=' . $locker);
+        exit;
+    }
+
     array_push($coeditors, $curUser);
 
     foreach ($coeditors as $coeditor) {
