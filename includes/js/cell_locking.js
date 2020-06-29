@@ -61,11 +61,14 @@ function lockCells() {
             var nameOfCell = row + "|" + col;
             var cell = document.getElementsByName(nameOfCell)[0];
 
-            if (user === owner) {
-                cell.classList.add("lockCellStyleOwner");
-            } else {
-                cell.classList.add("lockCellStyleViewer");
-				cell.setAttribute("readonly","");
+            if (typeof cell !== 'undefined') {
+
+                if (user === owner) {
+                    cell.classList.add("lockCellStyleOwner");
+                } else {
+                    cell.classList.add("lockCellStyleViewer");
+                    cell.setAttribute("readonly", "");
+                }
             }
         });
     }
