@@ -18,7 +18,7 @@ function toggleLockingOfCell() {
 function toggleLockingOfRow() {
     var row = document.getElementById("rowToFormat").value;
     var table = document.getElementById("currentTable");
-    var tableRow = table.rows[parseInt(row) - 1];
+    var tableRow = table.rows[parseInt(row)];
     var cells = tableRow.cells;
 
     Array.from(cells).forEach(cell => {
@@ -32,7 +32,7 @@ function toggleLockingOfCol() {
     var cell;
 
     Array.from(table.rows).forEach(row => {
-        cell = row.cells[parseInt(col) - 1]
+        cell = row.cells[parseInt(col)]
         cell.childNodes[0].classList.toggle("lockCellStyleOwner");
     });
 }
@@ -61,11 +61,14 @@ function lockCells() {
             var nameOfCell = row + "|" + col;
             var cell = document.getElementsByName(nameOfCell)[0];
 
-            if (user === owner) {
-                cell.classList.add("lockCellStyleOwner");
-            } else {
-                cell.classList.add("lockCellStyleViewer");
-				cell.setAttribute("readonly","");
+            if (typeof cell !== 'undefined') {
+
+                if (user === owner) {
+                    cell.classList.add("lockCellStyleOwner");
+                } else {
+                    cell.classList.add("lockCellStyleViewer");
+                    cell.setAttribute("readonly", "");
+                }
             }
         });
     }

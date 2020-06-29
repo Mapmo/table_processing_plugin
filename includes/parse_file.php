@@ -11,6 +11,7 @@ $files = array_filter($_FILES['upload']['name']);
 $total = count($_FILES['upload']['name']);
 
 include_once("utils/yaml.php");
+include("create_config_subdirectories.php");
 
 for ($i = 0; $i < $total; $i++) {
     $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
@@ -32,8 +33,6 @@ for ($i = 0; $i < $total; $i++) {
 
         $newFilePath = $tmp;
     }
-
-    include("create_config_subdirectories.php");
 
     $newFileName = pathinfo(basename($newFilePath), PATHINFO_FILENAME);
 
