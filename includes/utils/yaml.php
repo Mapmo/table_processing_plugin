@@ -40,4 +40,3 @@ function YamlParse($content)
     }
     return $parsedContent;
 }
-?>

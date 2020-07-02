@@ -17,13 +17,13 @@ $user = hash($hash_config['hash_algorithm'], htmlentities($userTo) . $hash_confi
 $login_query = $db_connection->prepare("SELECT user FROM users WHERE user = :user");
 
 $login_query->bindParam(':user', $user);
-        
+
 CloseCon($db_connection);
 
 $result = $login_query->execute() || die("Failed to query from DB!");
 
-if(!$login_query->fetch(PDO::FETCH_ASSOC)) {
-	header('Location: ../index.php?warn=unknown');    
+if (!$login_query->fetch(PDO::FETCH_ASSOC)) {
+	header('Location: ../index.php?warn=unknown');
 	exit;
 }
 
@@ -32,12 +32,16 @@ $name = $_POST['name'];
 $owner = $_POST['owner'];
 $write = $_POST['write'];
 
+$tableName = pathinfo($name)['filename'];
+$pathCoeditors =  "../users/" . $owner . "/coeditors/" . $tableName . ".txt";
+
 include("utils/yaml.php");
+include("add_coeditor.php");
 
 $files = YamlParse(file_get_contents($yamlPath));
 
 foreach ($files as $file) {
-	if($file['owner']===$owner && $file['name']===$name && $file['write']===$write){
+	if ($file['owner'] === $owner && $file['name'] === $name && $file['write'] === $write) {
 		header('Location: ../index.php?warn=shared_file_exists');
 		exit;
 	}
@@ -45,10 +49,10 @@ foreach ($files as $file) {
 
 try {
 	YamlAppend($yamlPath, $name, $owner, $write);
+	AddCoeditor($pathCoeditors, $userTo);
 } catch (Exception $e) {
 	header('Location: ../index.php?warn=permissions');
 	exit;
 }
 
 header('Location: ../index.php?ok=share');
-?>

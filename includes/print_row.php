@@ -1,12 +1,16 @@
 <?php
 
 if (!isset($_POST['search'])) {
+	if(count($xlsx->rows())>0){
+		include("print_header_row.php");
+	}
 	foreach ($xlsx->rows() as $r) {
 		$row++;
 		echo '<tr>';
 		include("includes/print_row_loop.php");
 	}
 } else {
+		$hasAnyItem = false;
 		foreach ($xlsx->rows() as $r) {
 			$row++;
 
@@ -20,11 +24,16 @@ if (!isset($_POST['search'])) {
 				}
 			}
 
+			if( !isset($printedHeaderRow) && $hasAnyItem === true ){
+				include("print_header_row.php");
+				$printedHeaderRow=true;
+			}
+
 			echo '<tr ' . $height . '>';
 			include("includes/print_row_loop.php");
 		}
 
-		if (!isset($hasAnyItem)) {
+		if ($hasAnyItem === false) {
 			echo '<tr><td><h1>No match found</h1></td></tr>';
 		}
 }

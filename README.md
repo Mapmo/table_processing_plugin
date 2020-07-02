@@ -13,6 +13,7 @@ Final project for the Web Technologies subject at FMI, Sofia University
         * При submit се праща POST HTTP към /includes/parse_file.php и след това бива върнат отново тук
 	* Ако потребителят има качени/споделени файлове в системата, той може да ги редактира чрез натискане на бутона Edit
 	* Всеки файл е под формата на форма, за да може да се предаде чрез $_POST['table'] на visual.php коя таблица да отвори
+	* Всяка от таблиците може да се изтрие чрез натискане на бутона 'Delete'
 
     * /login_form.php
 	* Позволява на потребителя да въведе потребителско име и парола
@@ -119,12 +120,18 @@ Final project for the Web Technologies subject at FMI, Sofia University
         * Файлът се парсва и се репрезентира на страницата като таблица, чиито клетки могат да се редактират
 	    * Файлът използва includes/print_row.php за визуализиране на редовете
 
+    * /includes/print_header_row.php
+        * Файлът показва имената на колоните в таблицата (А,B,C ...), в собствени непроменящи се клетки
+        
     * /includes/register.php
 		* Използва се за регистриране в системата
 		* Извиква се /register_form.php
 		* Валидира капчата и повторената парола
 		* Създава home directory за потребителя с номера на неговото id в базата данни
 
+    * /includes/register.php
+        * Използва се за изпращане на файла към потребителя, като се разделя на подчасти в зависимост от размера му
+        
     * /includes/SimpleXLSX.php
         * Външна библиотека
         * Използва се за парсване на .xlsx файла във формат на php асоциативен масив
@@ -144,8 +151,18 @@ Final project for the Web Technologies subject at FMI, Sofia University
     * /includes/utils
 		* Съдържа основни функции, за манипулиране на данни
 	
-		* /includes/yaml.php
-			* Съдържа функция за append-ване в shared_files.yaml файла на потребителя
+	* /includes/utils/yaml.php
+		* Съдържа функция за append-ване, parse-ване в shared_files.yaml файла на потребителя
+
+	* /includes/create_config_subdirectories.php 
+		* съдържа функция- абстракция за създаването на конфигурационните директории - за beautifiers, cell locking и coeditors на таблици
+
+	* includes/delete_button.php 
+		* форма с бутон за изтриване на таблица
+
+	* includes/delete_table.php
+		* същинската логика по изтриването на таблица
+		* следи се дали текущият потребител е собственик на таблицата: ако е, тя се изтрива за всички. Ако не е, се изтрива само за текущия потребител, но е достъпна за всички други coeditors.
 
 * /users - съхранява файловете на потребителите
 	* 0 - default user, използва се като skel при създаването на нови потребители

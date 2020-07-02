@@ -16,7 +16,6 @@ if ($xlsx = SimpleXLSX::parse($table)) { ?>
                     $column = $val;
                 }
             }
-
             include("print_row.php");
 
             ?>
@@ -26,7 +25,7 @@ if ($xlsx = SimpleXLSX::parse($table)) { ?>
         <input name="cntcol" type="text" value="<?php echo $column ?>;" hidden />
         <input id="updateButton" name="updateButton" type="submit" hidden />
     </form>
-<?php
+    <?php
 } else {
     echo SimpleXLSX::parseError();
 }
