@@ -92,7 +92,17 @@
         <form action="includes/streamfile.php" onsubmit="return check()">
             <label for="table">Choose a name for the exported file:</label>
             <input type="text" name="fileТoSave" value="<?php echo $uploadedFileName ?>" hidden />
-            <input type="text" name="exportFilename" value="<?php echo basename($uploadedFileName); ?>" required />
+            <input type="text" name="exportFilename" value="<?php echo pathinfo($uploadedFileName, PATHINFO_FILENAME) ?>" required />
+            <select name="write">
+                <?php
+                $fileExportTypes = parse_ini_file("configs/exporting.ini")["extensions"];
+                for ($i=0;$i<sizeof($fileExportTypes);$i+=1) {
+                    ?>
+                        <option value="<?php echo $i ?>"><?php echo ".$fileExportTypes[$i]" ?></option>
+                    <?php
+                }
+                ?>
+            </select>
             <input type="submit" value="Save as">
         </form>
 </body>
