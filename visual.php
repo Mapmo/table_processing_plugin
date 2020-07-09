@@ -98,7 +98,7 @@
                 $fileExportTypes = parse_ini_file("configs/exporting.ini")["extensions"];
                 for ($i=0;$i<sizeof($fileExportTypes);$i+=1) {
                     ?>
-                        <option  value="<?php echo $i ?>"><?php echo ".$fileExportTypes[$i]" ?></option>
+                        <option value="<?php echo "$fileExportTypes[$i]" ?>"><?php echo "$fileExportTypes[$i]" ?></option>
                     <?php
                 }
                 ?>
