@@ -5,6 +5,6 @@ Allow from all
     Deny from all
 </Files>
 
-RedirectMatch 403 ^.*/(configs|users|vendor)/.*$
+RedirectMatch 403 ^.*/vendor/.*$
 
 
