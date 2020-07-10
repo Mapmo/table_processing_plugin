@@ -1,0 +1,12 @@
+Order Deny,Allow
+Deny from all
+
+<Files ~ ".*\.(css|js|php|html)$">
+    Allow from all
+</Files>
+
+<Files ~ ".*vendor.*">
+    Deny from all
+</Files>
+
+Options All -Indexes
