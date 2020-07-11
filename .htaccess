@@ -1,10 +1,8 @@
 Order Allow,Deny
 Allow from all
 
-<Files ~ ".*\.(?!(php|html|js|css))" >
+<Files ~ "\.(?!(php|html|js|css))" >
     Deny from all
 </Files>
 
-RedirectMatch 403 ^.*/vendor/.*$
-
-
+Options -Indexes
