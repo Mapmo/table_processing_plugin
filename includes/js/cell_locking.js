@@ -5,6 +5,7 @@ var jsonLockedCells;
 var pathToCellLocking = "./users/" + owner + "/cell_locking/" + getTableName() + ".json";
 
 function toggleLockingOfCell() {
+
     var row = document.getElementById("rowToFormat").value;
     var col = document.getElementById("colToFormat").value;
 
@@ -105,4 +106,45 @@ function getLockedCells() {
     }
 
     return cellsJson;
+}
+
+function toggleLockFromTo() {
+
+    var fromCell = document.getElementById("fromCell").value;
+    var toCell = document.getElementById("toCell").value;
+
+    var fromRow = getRow(fromCell);
+    var fromCol = getCol(fromCell);
+
+    var toRow = getRow(toCell);
+    var toCol = getCol(toCell);
+
+    if (!isNaN(fromRow) && !isNaN(fromCol) && !isNaN(toRow) && !isNaN(toCol)) {
+
+        for (var i = fromRow; i <= toRow; i++) {
+            for (var j = fromCol; j <= toCol; j++) {
+
+                var nameOfCell = i + "|" + j;
+                var cell = document.getElementsByName(nameOfCell)[0];
+                cell.classList.toggle("lockCellStyleOwner");
+            }
+        }
+    }
+}
+
+function getRow(cell) {
+    var num = cell.replace(/[A-Z]/g, '');
+    return num;
+}
+
+function getCol(cell) {
+    var alpha = cell.replace(/[0-9]/g, '');
+    var column = 0;
+    var length = alpha.length;
+
+    for (var i = 0; i < length; i++) {
+        column += (alpha.charCodeAt(i) - 64) * Math.pow(26, length - i - 1);
+    }
+
+    return column;
 }

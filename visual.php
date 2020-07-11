@@ -77,6 +77,12 @@
                 <button id="lockCell" onclick="toggleLockingOfCell()">Lock/Unlock Cell</button>
                 <button id="lockRow" onclick="toggleLockingOfRow()">Lock/Unlock Row</button>
                 <button id="lockCol" onclick="toggleLockingOfCol()">Lock/Unlock Column</button>
+                <br>
+                <label for="fromCell">From Cell:</label>
+                <input id="fromCell" />
+                <label for="toCell">To Cell:</label>
+                <input id="toCell" />
+                <button id="lockFromTo" onclick="toggleLockFromTo()">Lock Region</button>
         <?php }
         } ?>
 
@@ -96,10 +102,10 @@
             <select name="extension">
                 <?php
                 $fileExportTypes = parse_ini_file("configs/exporting.ini")["extensions"];
-                for ($i=0;$i<sizeof($fileExportTypes);$i+=1) {
-                    ?>
-                        <option value="<?php echo "$fileExportTypes[$i]" ?>"><?php echo "$fileExportTypes[$i]" ?></option>
-                    <?php
+                for ($i = 0; $i < sizeof($fileExportTypes); $i += 1) {
+                ?>
+                    <option value="<?php echo "$fileExportTypes[$i]" ?>"><?php echo "$fileExportTypes[$i]" ?></option>
+                <?php
                 }
                 ?>
             </select>
