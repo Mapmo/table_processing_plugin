@@ -17,9 +17,16 @@
     <script defer src="includes/js/beautify.js"></script>
     <script defer src="includes/js/cell_locking.js"></script>
     <link rel="stylesheet" type="text/css" href="includes/css/format.css">
+    <link rel="stylesheet" href="includes/css/main.css">
 </head>
 
 <body onload="return getJson()">
+    <header>
+        <div class="header">
+            <span class="logo"><img src="http://w14ref.w3c.fmi.uni-sofia.bg/img/logo.png" alt="Logo" height="100" /></span>
+            <span class="titleName">pptbl14</span>
+        </div>
+    </header>
     <?php
     $uploadedFileName = $_POST['table'];
     $lockFile = $uploadedFileName . ".lock"; #the lock file that serves as a mutex
@@ -111,6 +118,12 @@
             </select>
             <input type="submit" value="Save as">
         </form>
+
+        <footer>
+            <div class="footer">
+                <span>Created by Mapmo, Tantanita & Dannyboy</span>
+            </div>
+        </footer>
 </body>
 
 </html>
