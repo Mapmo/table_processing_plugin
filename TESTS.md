@@ -208,6 +208,9 @@ Expected results: The locked cells should be displayed with grey background. The
 	18. Open shared table that has locked cells that you cannot edit. Click 'Search'. 
 Expected results: The locked cells should still have values in them.
 
+	19. Click 'Edit' on some table. Then enter values of top left and bottom right cell you would like to lock in the 'From Cell' and 'To Cell' fields respectively. Ex: A5-B12. Click on 'Lock Region'.
+Expected results: The chosen region is locked (coloured in blue). 
+
 6. Exporting tables
 Pretasks:
 	- Test 5 is success
