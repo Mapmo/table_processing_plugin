@@ -8,6 +8,12 @@
 </head>
 
 <body>
+
+	<header>
+		<span class="logo"><img src="http://w14ref.w3c.fmi.uni-sofia.bg/img/logo.png" alt="Logo" height="100" /></span>
+		<span class="titleName">pptbl14</span>
+	</header>
+
 	<?php
 
 	#Removes the lockfile, thus unlocking the file for editting by others
@@ -18,84 +24,92 @@
 	#Validation that the user is logged in the system
 	if (!isset($_SESSION['user'])) {
 		include("includes/not_logged.php");
-		exit;
-	}
-	?>
-	<!-- Logout -->
-	<form action="includes/logout.php" onsubmit="return check()">
-		<input type="submit" value="Logout">
-	</form>
-
-	<!-- Upload file(s) form -->
-	<?php include("includes/upload_file_form.php"); ?>
-
-	<h2>Files that you have access to:</h2>
-
-	<!-- The list of accessible files for the user -->
-	<?php
-
-	#Warning message when the user attemts to do something wrong
-	include("includes/index_warnings.php");
-	include("includes/index_ok.php");
-	include("includes/utils/yaml.php");
-
-	#Figure the location of the shared_files.yml
-	$filePath  = 'users/' . $_SESSION['user'] . '/shared_files.yml';
-
-	#Validation that the user has his shared_files.yml file
-	if (!file_exists($filePath)) {
-		die("The file that contains information for you shared files is missing. Contact administrators ASAP");
-	}
-	$file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
-	$parsed = YamlParse($file);
-
-	if (empty($parsed)) { ?>
-		<h3>You have no uploaded/shared files</h3>
-	<?php
 	} else {
+	?>
+		<!-- Logout -->
+		<form action="includes/logout.php" onsubmit="return check()">
+			<input type="submit" value="Logout">
+		</form>
 
-		// define how many results will be shown per page
-		$resultsPerPage = 5;
+		<!-- Upload file(s) form -->
+		<?php include("includes/upload_file_form.php"); ?>
 
-		// find out the number of tables shared with that user
-		$numberOfResults = count($parsed);
+		<h2>Files that you have access to:</h2>
 
-		// determine number of total pages available
-		$numberOfPages = ceil($numberOfResults / $resultsPerPage);
+		<!-- The list of accessible files for the user -->
+		<?php
 
-		// determine which page number visitor is currently on
-		if (!isset($_GET['page'])) {
-			$page = 1;
+		#Warning message when the user attemts to do something wrong
+		include("includes/index_warnings.php");
+		include("includes/index_ok.php");
+		include("includes/utils/yaml.php");
+
+		#Figure the location of the shared_files.yml
+		$filePath  = 'users/' . $_SESSION['user'] . '/shared_files.yml';
+
+		#Validation that the user has his shared_files.yml file
+		if (!file_exists($filePath)) {
+			die("The file that contains information for you shared files is missing. Contact administrators ASAP");
+		}
+		$file = file_get_contents('users/' . $_SESSION['user'] . '/shared_files.yml');
+		$parsed = YamlParse($file);
+
+		if (empty($parsed)) { ?>
+			<h3>You have no uploaded/shared files</h3>
+	<?php
 		} else {
-			$page = $_GET['page'];
-		}
 
-		// determine the sql LIMIT starting number for the results on the displaying page
-		$thisPageFirstResult = ($page - 1) * $resultsPerPage;
+			// define how many results will be shown per page
+			$resultsPerPage = 5;
 
-		$maxShownResults = ($numberOfResults < $thisPageFirstResult + $resultsPerPage) ? $numberOfResults : $thisPageFirstResult + $resultsPerPage;	
+			// find out the number of tables shared with that user
+			$numberOfResults = count($parsed);
 
-		for ($i = $thisPageFirstResult; $i < $maxShownResults; $i++) {
-			$file = $parsed[$i];
+			// determine number of total pages available
+			$numberOfPages = ceil($numberOfResults / $resultsPerPage);
 
-			#The form with the Edit button
-			include("includes/edit_button.php");
+			// determine which page number visitor is currently on
+			if (!isset($_GET['page'])) {
+				$page = 1;
+			} else {
+				$page = $_GET['page'];
+			}
 
-			#The form for sharing a file with other users
-			include("includes/share_table_form.php");
+			// determine the sql LIMIT starting number for the results on the displaying page
+			$thisPageFirstResult = ($page - 1) * $resultsPerPage;
 
-			#The form for deleting the table
-			include("includes/delete_button.php");
+			$maxShownResults = ($numberOfResults < $thisPageFirstResult + $resultsPerPage) ? $numberOfResults : $thisPageFirstResult + $resultsPerPage;
 
-			echo "<br/>";
-		}
+			for ($i = $thisPageFirstResult; $i < $maxShownResults; $i++) {
+				$file = $parsed[$i];
 
-		// display the links to the pages
-		for ($page = 1; $page <= $numberOfPages; $page++) {
-			echo '<a href="index.php?page=' . $page . '">' . $page . '</a> ';
+				#The form with the Edit button
+				include("includes/edit_button.php");
+
+				#The form for sharing a file with other users
+				include("includes/share_table_form.php");
+
+				#The form for deleting the table
+				include("includes/delete_button.php");
+
+				echo "<br/>";
+			}
+
+			echo 'Page: ';
+
+			// display the links to the pages
+			for ($page = 1; $page <= $numberOfPages; $page++) {
+				echo '<a href="index.php?page=' . $page . '">' . $page . '</a> ';
+			}
 		}
 	}
 	?>
+
+	<footer>
+		<div class="footer">
+			<span>Created by Mapmo, Tantanita & Dannyboy</span>
+		</div>
+	</footer>
 
 </body>
 
