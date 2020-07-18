@@ -1,7 +1,7 @@
 Order Allow,Deny
 Allow from all
 
-<Files ~ "\.(?!(php|html|js|css))" >
+<Files ~ "\.(?!(php|html|js|css|png))" >
     Deny from all
 </Files>
 

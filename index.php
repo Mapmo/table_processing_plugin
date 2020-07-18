@@ -10,7 +10,7 @@
 <body>
 
 	<header>
-		<span class="logo"><img src="http://w14ref.w3c.fmi.uni-sofia.bg/img/logo.png" alt="Logo" height="100" /></span>
+		<span class="logo"><img src="./includes/img/pptbl14.png" alt="Logo" height="100" /></span>
 		<span class="titleName">pptbl14</span>
 	</header>
 
