@@ -111,7 +111,9 @@ function getLockedCells() {
 function toggleLockFromTo() {
 
     var fromCell = document.getElementById("fromCell").value;
+	fromCell = fromCell.toUpperCase();
     var toCell = document.getElementById("toCell").value;
+	toCell = toCell.toUpperCase();
 
     var fromRow = getRow(fromCell);
     var fromCol = getCol(fromCell);
