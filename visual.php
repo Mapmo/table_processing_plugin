@@ -17,9 +17,16 @@
     <script defer src="includes/js/beautify.js"></script>
     <script defer src="includes/js/cell_locking.js"></script>
     <link rel="stylesheet" type="text/css" href="includes/css/format.css">
+    <link rel="stylesheet" href="includes/css/main.css">
 </head>
 
 <body onload="return getJson()">
+    <header>
+        <div class="header">
+            <span class="logo"><img src="./includes/img/pptbl14.png" alt="Logo" height="100" /></span>
+            <span class="titleName">pptbl14</span>
+        </div>
+    </header>
     <?php
     $uploadedFileName = $_POST['table'];
     $lockFile = $uploadedFileName . ".lock"; #the lock file that serves as a mutex
@@ -77,6 +84,12 @@
                 <button id="lockCell" onclick="toggleLockingOfCell()">Lock/Unlock Cell</button>
                 <button id="lockRow" onclick="toggleLockingOfRow()">Lock/Unlock Row</button>
                 <button id="lockCol" onclick="toggleLockingOfCol()">Lock/Unlock Column</button>
+                <br>
+                <label for="fromCell">From Cell:</label>
+                <input id="fromCell" />
+                <label for="toCell">To Cell:</label>
+                <input id="toCell" />
+                <button id="lockFromTo" onclick="toggleLockFromTo()">Lock Region</button>
         <?php }
         } ?>
 
@@ -92,9 +105,25 @@
         <form action="includes/streamfile.php" onsubmit="return check()">
             <label for="table">Choose a name for the exported file:</label>
             <input type="text" name="fileТoSave" value="<?php echo $uploadedFileName ?>" hidden />
-            <input type="text" name="exportFilename" value="<?php echo basename($uploadedFileName); ?>" required />
+            <input type="text" name="exportFilename" value="<?php echo pathinfo($uploadedFileName, PATHINFO_FILENAME) ?>" required />
+            <select name="extension">
+                <?php
+                $fileExportTypes = parse_ini_file("configs/exporting.ini")["extensions"];
+                for ($i = 0; $i < sizeof($fileExportTypes); $i += 1) {
+                ?>
+                    <option value="<?php echo "$fileExportTypes[$i]" ?>"><?php echo "$fileExportTypes[$i]" ?></option>
+                <?php
+                }
+                ?>
+            </select>
             <input type="submit" value="Save as">
         </form>
+
+        <footer>
+            <div class="footer">
+                <span>Created by Mapmo, Tantanita & Dannyboy</span>
+            </div>
+        </footer>
 </body>
 
 </html>

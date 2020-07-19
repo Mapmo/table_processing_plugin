@@ -1,4 +1,8 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Writer\Html;
 
 $exporting_configs = parse_ini_file("../configs/exporting.ini");
 
@@ -31,6 +35,8 @@ if (!isset($getExportFilename) || !isset($getFileToSave)) {
 include_once "utils/utils.php";
 $fileToSave = SanitizeInput($getFileToSave);
 
+$exportedExtension = SanitizeInput($_GET['extension']);
+
 if (!file_exists($fileToSave)) {
     error_log("The file [" . "$fileToSave" . ", which the user wants to save, doesn't exist");
     die("<p>Problem with the system, try later</p>");
@@ -39,14 +45,28 @@ if (!file_exists($fileToSave)) {
 $exportFilename = SanitizeInput($getExportFilename);
 
 if (empty($exportFilename)) {
-    echo "<p>Illegal usage of symbols in the name of export file or its extension</p>";
-    exit;
+    die("<p>Illegal usage of symbols in the name of export file or its extension</p>");
 }
 
-header('Content-Type: ' . $exporting_configs["mimetypes"]['xlsx']);
-header('Content-Disposition: attachment; filename=' . basename($exportFilename));
+$supportedExtensions = $exporting_configs['extensions'];
+if (!in_array($exportedExtension,$supportedExtensions)) {
+    die("$exportedExtension<p>Unsupported extension type selected </p>");
+}
+
+if ($exportedExtension === 'html'){
+    $writer = new Html(IOFactory::load($fileToSave));
+    $fileToSave = dirname($fileToSave) . "/$exportFilename.$exportedExtension";
+    $writer->save($fileToSave);
+}
+
+header('Content-Type: ' . $exporting_configs["mimetypes"][$exportedExtension]);
+header("Content-Disposition: attachment; filename=$exportFilename.$exportedExtension");
 
 if (!ReadfileChunked($fileToSave,$exporting_configs["chunk_size"])) {
-    error_log("Problem during streaming file [" . $fileToSave . "] to the client");
+    error_log("Problem during streaming file [ $fileToSave.$exportedExtension ] to the client");
     echo "<p>Problem occurred during the file download. Please try again</p>";
+}
+
+if($exportedExtension !== 'xlsx'){
+    unlink($fileToSave);
 }
